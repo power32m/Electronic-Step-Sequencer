@@ -1,0 +1,22 @@
+{
+  "name": "op16-sequencer",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test": "node --test tests/project.test.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  },
+  "description": "交互式3D电子步进音序器：六轨编排、钢琴卷帘、浏览器音源与WAV导出",
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
