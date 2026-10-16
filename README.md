@@ -22,7 +22,7 @@ Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1**
 
 ## What is OP·16?
 
-OP·16 combines a step sequencer with an interactive 3D electronic instrument. Turn knobs, press keys and watch the selected part play, or open the piano roll to edit individual melody notes.
+OP·16 combines a step sequencer with an interactive 3D electronic instrument. Turn knobs, press keys and watch lead, harmony and bass play on three stacked keyboards, or open the piano roll to edit individual melody notes.
 
 It is designed for learning electronic music, exploring rhythm and melody, experimenting with chiptune sounds, and demonstrating sound and interaction design. Start in your browser without an account, audio plugins or a music workstation.
 
@@ -36,7 +36,7 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 | Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
 | Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
 | Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
-| Interactive 3D | Rotate the device, switch to a top view, enable auto-rotation, and watch note-driven key feedback |
+| Interactive 3D | Three stacked keyboards with simultaneous lead, harmony and bass feedback; automatic pitch ranges, independent audition, top view and rotation |
 | Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
 | Audio export | Export complete classic arrangements, or 1–32 bars for blank projects, as 44.1 kHz, 16-bit stereo WAV, with progress and cancellation |
 

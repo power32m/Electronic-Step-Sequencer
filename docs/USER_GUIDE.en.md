@@ -32,7 +32,7 @@ Melody generation replaces the lead across the entire current phrase. Melody var
 
 Drag to rotate and scroll to zoom. Controls also provide a top view, automatic rotation, and reset view. Click the physical-looking keys to audition notes, or drag the device knobs to adjust sound parameters.
 
-Choose the part and octave used by the 3D keyboard to audition notes and see playback feedback for that part. Notes outside the visible key range still play. The display curve is a visual indication of the beat.
+The three stacked keyboards show lead, harmony/countermelody and bass from top to bottom, with orange, green and blue feedback. Each layer automatically covers its full score range; chords illuminate all their notes together. Click a key to audition that layer's sound. Muted parts and parts excluded by solo do not illuminate. The display curve is a visual indication of the beat.
 
 ## Save and export
 

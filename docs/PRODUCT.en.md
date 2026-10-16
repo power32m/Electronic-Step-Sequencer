@@ -10,7 +10,7 @@ No installation needed. Open the app and click **播放 (Play)** to hear the bui
 
 ## An electronic instrument you can see, hear and edit
 
-OP·16 combines a six-part step sequencer with an interactive 3D instrument. Rotate the device, separate its layers or look through its enclosure above the arrangement controls. Below, compose drums, bass, lead and harmony. During playback, the playhead, step grid and selected part's keyboard feedback move together.
+OP·16 combines a six-part step sequencer with an interactive 3D instrument. Rotate the device or switch to its top view above the arrangement controls. Below, compose drums, bass, lead and harmony. During playback, the playhead, step grid and three keyboards' lead, harmony and bass feedback move together.
 
 Warm off-white surfaces, dark panels and persimmon-orange accents give the instrument its visual character. Physical-looking keycaps, knobs and a restrained layout invite beginners to try making music.
 

@@ -88,3 +88,6 @@ html{scroll-padding-top:100px}
 @media(max-width:480px){.player-bar{padding:12px;gap:12px;grid-template-columns:110px minmax(0,1fr)}.player-bar .transport-action{font-size:14px}.player-bar.is-stuck{padding:10px 12px}.player-navigation{gap:6px;flex-wrap:wrap}.player-navigation #play-from-bar{flex:1;font-size:12px;padding:6px}.seek-row{gap:6px}.seek-row label{gap:4px;font-size:12px}#seek-bar{width:48px}.player-navigation #rewind{font-size:0;width:32px;padding:5px}.player-navigation #rewind:after{content:'↤';font-size:18px}.player-bar.is-stuck #rewind:after{font-size:18px}#export-progress{flex-wrap:wrap;justify-content:flex-start}#export-message{min-width:0}}
 
 @media(max-width:480px){.bar-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.bar-cell button{gap:8px}.bar-cell button span{white-space:nowrap}.bar-cell button strong{font-size:16px;white-space:nowrap}}
+
+/* Three stacked manuals, all visible in top view. */
+.stage-wrap{height:clamp(520px,44vw,710px)}.layer-legend{display:inline-flex;align-items:center;gap:9px;color:#64735b}.layer-legend i{width:8px;height:8px;border-radius:50%;background:var(--layer);margin-left:8px}.keyboard-strip{flex-wrap:wrap;gap:12px}@media(max-width:850px){.stage-wrap{height:490px}}@media(max-width:480px){.stage-wrap{height:370px}.layer-legend{gap:5px;font-size:11px}.keyboard-strip>span:nth-child(3){font-size:11px}}

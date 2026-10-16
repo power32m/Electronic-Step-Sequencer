@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import {audible,eventNotes,keyboardBase} from './project.js';
+import {noteName,stepDuration} from './project.js';
+import {KEYBOARD_LAYERS,isBlackKey,keyboardRange,activeKeyboardNotes} from './keyboards.js';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
@@ -16,13 +17,13 @@ export function createDevice(host,callbacks){
  const surfaces=[],clickables=[],keys=[],knobs=[];
  function box(group,w,h,d,x,y,z,material,r=.06){const m=new THREE.Mesh(new RoundedBoxGeometry(w,h,d,3,r),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);return m;}
  function cyl(group,r,h,x,y,z,material){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,48),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);return m;}
- const bottom=box(base,13.4,.48,5.1,0,.32,0,silver,.14);surfaces.push(bottom);box(base,12.7,.14,4.5,0,.59,0,black,.04);
+ const bottom=box(base,13.4,.48,9.1,0,.32,2,silver,.14);surfaces.push(bottom);box(base,12.7,.14,8.5,0,.59,2,black,.04);
  for(const x of [-5.8,5.8])for(const z of [-1.9,1.9])cyl(base,.22,.16,x,.08,z,rubber);
  box(board,12.5,.09,4.3,0,.7,0,pcb,.025);
  for(let i=0;i<9;i++){const x=-5.2+i*1.25;box(board,.72,.12,.5,x,.81,-.2,black,.015);for(let j=0;j<6;j++)box(board,.07,.045,.12,x-.3+j*.12,.805,.13,gold,.005);}
  for(let i=0;i<14;i++){box(board,.25,.085,.12,-5.6+i*.83,.79,-1.45,gold,.008);box(board,Math.min(3,.4+i*.17),.012,.015,-4+i*.62,.756,.48+(i%4)*.21,gold,.002);}
  box(board,1.7,.11,.95,3.8,.84,.95,black,.025);for(let i=0;i<8;i++)cyl(board,.08,.16,-5+i*.45,.85,1.5,gold);
- const chassis=box(upper,13.4,.3,5.1,0,1,0,silver,.13);surfaces.push(chassis);box(upper,12.55,.045,2.0,0,1.17,1.22,black,.045);
+ const chassis=box(upper,13.4,.3,9.1,0,1,2,silver,.13);surfaces.push(chassis);
  // Display: glass, raised bezel, typeset LCD, no remote textures.
  box(upper,5.1,.16,1.72,-2.22,1.2,-1.12,black,.06);
  const screenCanvas=document.createElement('canvas');screenCanvas.width=1024;screenCanvas.height=320;const screenCtx=screenCanvas.getContext('2d');const screenTex=new THREE.CanvasTexture(screenCanvas);screenTex.colorSpace=THREE.SRGBColorSpace;
@@ -30,32 +31,57 @@ export function createDevice(host,callbacks){
  function screenDraw(p,step){screenCtx.fillStyle='#171c19';screenCtx.fillRect(0,0,1024,320);screenCtx.fillStyle='#c9d0b7';screenCtx.font='26px monospace';screenCtx.fillText('OP·16  /  FIELD SEQUENCER',38,47);screenCtx.font='bold 39px monospace';screenCtx.fillText(p.bpm+' BPM',735,47);screenCtx.strokeStyle='#d6dbbf';screenCtx.lineWidth=3;screenCtx.beginPath();for(let x=30;x<990;x++){const y=147+Math.sin((x/960*4+Math.max(step,0)/16)*Math.PI*2)*(step<0?24:43)*Math.sin(x/960*Math.PI);x===30?screenCtx.moveTo(x,y):screenCtx.lineTo(x,y);}screenCtx.stroke();for(let i=0;i<16;i++){screenCtx.fillStyle=i===step%16?'#e76338':'#3b433b';screenCtx.fillRect(34+i*60,240,43,28);}screenCtx.fillStyle='#88947f';screenCtx.font='20px monospace';screenCtx.fillText('6 VOICES / '+p.phraseBars+' BARS   '+(step>=0?'BAR '+(Math.floor(step/16)+1)+' / STEP '+String(step%16+1).padStart(2,'0'):'READY'),38,306);screenTex.needsUpdate=true;}
  const printCanvas=document.createElement('canvas');printCanvas.width=1600;printCanvas.height=180;const pc=printCanvas.getContext('2d');pc.clearRect(0,0,1600,180);pc.fillStyle='#555d51';pc.font='22px monospace';pc.fillText('OP–16  /  PORTABLE FIELD SEQUENCER',30,36);for(let i=0;i<4;i++){const x=950+i*145;pc.font='16px monospace';pc.fillText(['TEMPO','SWING','FILTER','LEVEL'][i],x,80);for(let j=0;j<11;j++){const a=-Math.PI*.8+j/10*Math.PI*1.6;pc.fillRect(x+25+Math.sin(a)*48,42-Math.cos(a)*25,2,7);}}pc.font='14px monospace';pc.fillText('DESIGNED FOR EXPLORATION     /     4 VOICES · 16 STEPS',30,158);const pt=new THREE.CanvasTexture(printCanvas);pt.colorSpace=THREE.SRGBColorSpace;const pm=new THREE.MeshBasicMaterial({map:pt,transparent:true,depthWrite:false});const print=new THREE.Mesh(new THREE.PlaneGeometry(12.3,.66),pm);print.rotation.x=-Math.PI/2;print.position.set(0,1.161,-.06);upper.add(print);
  for(let i=0;i<4;i++){const x=1.55+i*1.36;const g=new THREE.Group();g.position.set(x,1.24,-1.08);upper.add(g);cyl(g,.49,.08,0,0,0,silver);cyl(g,.4,.27,0,.14,0,i===0?accent:ivory);for(let k=0;k<24;k++){const angle=k/24*Math.PI*2;box(g,.028,.15,.027,Math.sin(angle)*.397,.15,Math.cos(angle)*.397,i===0?accent:silver,.005);}const mark=box(g,.035,.014,.18,0,.281,-.19,black,.006);knobs.push(g);g.userData.action='knob';g.userData.index=i;g.traverse(o=>{if(o.isMesh){o.userData.action='knob';o.userData.index=i;clickables.push(o);}});}
- for(let i=0;i<16;i++){const x=-5.2+i*.69;const k=box(upper,.59,.23,.93,x,1.33,1.25,ivory.clone(),.055);k.userData.homeY=1.33;k.userData.action='key';k.userData.note=24+[0,2,4,5,7,9,11,12,14,16,17,19,21,23,24,26][i];keys.push(k);clickables.push(k);if([0,1,3,4,5].includes(i%7)&&i<15){const bk=box(upper,.32,.22,.44,x+.345,1.49,.99,black.clone(),.035);bk.userData.homeY=1.49;bk.userData.action='key';bk.userData.note=k.userData.note+1;keys.push(bk);clickables.push(bk);}}
+ const layers=KEYBOARD_LAYERS.map((spec,i)=>{
+  const group=new THREE.Group();group.position.set(0,.3-i*.12,i*1.8+.85);upper.add(group);
+  box(group,12.55,.1,1.7,0,1.18,.25,black,.06);
+  box(group,.045,.025,1.3,-6.07,1.25,.28,mat(spec.color),.012);
+  const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;
+  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
+  const label=new THREE.Mesh(new THREE.PlaneGeometry(1.7,.85),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));
+  label.rotation.x=-Math.PI/2;label.position.set(-5.18,1.26,.25);group.add(label);
+  return {...spec,group,canvas,texture,keys:[],range:null};
+ });
+ function configure(project){
+  for(const layer of layers){
+   const range=keyboardRange(project,layer.track),signature=range.min+':'+range.max+':'+project.tracks[layer.track].mode;
+   if(signature===layer.signature)continue;layer.signature=signature;layer.range=range;
+   for(const key of layer.keys){clearTimeout(key.userData.previewTimer);layer.group.remove(key);keys.splice(keys.indexOf(key),1);clickables.splice(clickables.indexOf(key),1);key.geometry.dispose();key.material.dispose();}layer.keys=[];
+   const whites=[];for(let n=range.min;n<=range.max;n++)if(!isBlackKey(n))whites.push(n);
+   const width=10.25/whites.length,start=-4.02;
+   for(let i=0;i<whites.length;i++){
+    const note=whites[i],x=start+(i+.5)*width;
+    const add=(note,blackKey,x)=>{const key=box(layer.group,width*(blackKey?.58:.92),blackKey?.18:.20,blackKey?.57:1.12,x,blackKey?1.49:1.32,blackKey?-.025:.25,(blackKey?black:ivory).clone(),Math.min(.035,width*.12));Object.assign(key.userData,{homeY:key.position.y,action:'key',note,track:layer.track,color:layer.color,blackKey});keys.push(key);layer.keys.push(key);clickables.push(key);};
+    add(note,false,x);if(note<range.max&&isBlackKey(note+1))add(note+1,true,x+width/2);
+   }
+   const ctx=layer.canvas.getContext('2d');ctx.clearRect(0,0,512,256);ctx.fillStyle='#'+layer.color.toString(16).padStart(6,'0');ctx.font='bold 64px "Microsoft YaHei",sans-serif';ctx.fillText(layer.track===5?(project.tracks[5].mode==='single'?'副旋律':'和弦'):layer.label,18,80);ctx.fillStyle='#d0d4c9';ctx.font='40px monospace';ctx.fillText(layer.english,18,132);ctx.fillStyle='#939f90';ctx.font='42px monospace';ctx.fillText(noteName(range.min)+' - '+noteName(range.max),18,187);layer.texture.needsUpdate=true;
+  }
+  dirty=true;
+ }
  function paintKey(key){
   key.userData.restColor??=key.material.color.clone();
   const active=key.userData.playbackActive||key.userData.previewActive;
-  if(active)key.material.color.setHex(colors[p?.display.color]??colors['柿橙']);else key.material.color.copy(key.userData.restColor);
-  key.material.emissive.setHex(active?(colors[p?.display.color]??colors['柿橙']):0x000000);
+  if(active)key.material.color.setHex(key.userData.color);else key.material.color.copy(key.userData.restColor);
+  key.material.emissive.setHex(active?(key.userData.color):0x000000);
   key.material.emissiveIntensity=active?.12:0;
   key.position.y=key.userData.homeY-(active?.045:0);
  }
  const play=box(upper,.58,.2,.57,-5.83,1.29,-1.13,accent,.065);play.userData.action='play';clickables.push(play);box(upper,.58,.2,.57,-5.83,1.29,-.39,black,.065);
  for(let i=0;i<4;i++)for(let j=0;j<3;j++)cyl(upper,.025,.01,-6.02+i*.14,1.158,-2.04+j*.13,black);
- for(const x of [-6.3,6.3])for(const z of [-2.15,2.15]){cyl(upper,.09,.018,x,1.158,z,black);box(upper,.11,.012,.015,x,1.17,z,silver,.003);}
+ for(const x of [-6.3,6.3])for(const z of [-2.15,6.15]){cyl(upper,.09,.018,x,1.158,z,black);box(upper,.11,.012,.015,x,1.17,z,silver,.003);}
  for(let i=0;i<2;i++)box(base,.82,.19,.13,5.2-i, .34,-2.59,black,.025);
  const ground=new THREE.Mesh(new THREE.PlaneGeometry(100,100),new THREE.ShadowMaterial({color:0x4c5144,opacity:.16}));ground.rotation.x=-Math.PI/2;ground.position.y=-.015;ground.receiveShadow=true;scene.add(ground);
  const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let pointerDown=null;
  let knobDrag=null;function pick(e){const r=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);return ray.intersectObjects(clickables)[0];}
  renderer.domElement.addEventListener('pointerdown',e=>{pointerDown={x:e.clientX,y:e.clientY};const hit=pick(e);if(hit?.object.userData.action==='knob'){e.stopImmediatePropagation();controls.enabled=false;knobDrag={index:hit.object.userData.index,y:e.clientY};renderer.domElement.setPointerCapture(e.pointerId);callbacks.knob(knobDrag.index,0,true);}},true);
  renderer.domElement.addEventListener('pointermove',e=>{if(knobDrag){const d=knobDrag.y-e.clientY;callbacks.knob(knobDrag.index,d,false);knobDrag.y=e.clientY;e.stopImmediatePropagation();dirty=true;}},true);
- const releaseKnob=()=>{knobDrag=null;controls.enabled=true;};renderer.domElement.addEventListener('pointercancel',releaseKnob);renderer.domElement.addEventListener('lostpointercapture',releaseKnob);renderer.domElement.addEventListener('pointerup',releaseKnob);renderer.domElement.addEventListener('pointerup',e=>{if(!pointerDown||Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)>5)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(clickables)[0];if(hit){const u=hit.object.userData;if(u.action==='key'){callbacks.preview(u.note);const key=hit.object;clearTimeout(key.userData.previewTimer);key.userData.previewActive=true;paintKey(key);key.userData.previewTimer=setTimeout(()=>{key.userData.previewActive=false;paintKey(key);dirty=true;},150);}else if(u.action==='play')callbacks.play();else {}dirty=true;}});
+ const releaseKnob=()=>{knobDrag=null;controls.enabled=true;};renderer.domElement.addEventListener('pointercancel',releaseKnob);renderer.domElement.addEventListener('lostpointercapture',releaseKnob);renderer.domElement.addEventListener('pointerup',releaseKnob);renderer.domElement.addEventListener('pointerup',e=>{if(!pointerDown||Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)>5)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(clickables)[0];if(hit){const u=hit.object.userData;if(u.action==='key'){callbacks.preview(u.note,u.track);const key=hit.object;clearTimeout(key.userData.previewTimer);key.userData.previewActive=true;paintKey(key);key.userData.previewTimer=setTimeout(()=>{key.userData.previewActive=false;paintKey(key);dirty=true;},150);}else if(u.action==='play')callbacks.play();else {}dirty=true;}});
  surfaces.forEach(m=>m.material=m.material.clone());
  let p,step=-1,dirty=true,last=performance.now(),frames=0,elapsed=0,targetExplode=0,currentExplode=0,hidden=false,hostHidden=false,lastTop=true,cameraTarget=null;const stats={fps:0,frames:0,webgl:renderer.capabilities.isWebGL2?'WebGL2':'WebGL',meshes:0};root.traverse(o=>{if(o.isMesh)stats.meshes++;});
  // Frame the physical instrument instead of using a fixed distance on wide screens.
  root.updateMatrixWorld(true);const bodyBounds=new THREE.Box3().setFromObject(root);
  function framePosition(top=false,explode=0){
   const bounds=bodyBounds.clone();bounds.max.y+=explode*3.1;
-  const center=new THREE.Vector3(0,.6+explode*1.4,0),direction=new THREE.Vector3(...(top?[0,1,.001]:[1.8,10.2,14.8])).normalize();
+  const center=new THREE.Vector3(0,.6+explode*1.4,2),direction=new THREE.Vector3(...(top?[0,1,.001]:[1.8,10.2,14.8])).normalize();
   const right=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),direction).normalize(),up=new THREE.Vector3().crossVectors(direction,right);
   const tanV=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),tanH=tanV*camera.aspect;let distance=0;
   for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){
@@ -66,10 +92,15 @@ export function createDevice(host,callbacks){
   return center.clone().addScaledVector(direction,distance);
  }
  function resize(){const r=host.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();camera.position.copy(framePosition(p?.display.top??true,targetExplode));camera.lookAt(controls.target);cameraTarget=null;dirty=true;}const observer=new ResizeObserver(resize);observer.observe(host);controls.addEventListener('change',()=>dirty=true);
- let lastFramedExplode=0;
- function update(project,s){p=project;step=s;targetExplode=p.display.explode/100;accent.color.setHex(colors[p.display.color]);surfaces.forEach(m=>{m.material.transparent=p.display.xray>0;m.material.opacity=1-p.display.xray/100*.82;m.material.depthWrite=p.display.xray<15;});knobs.forEach((k,i)=>k.rotation.y=-2.3+[p.bpm/240,p.swing/65,Math.log(p.cutoff/120)/Math.log(16000/120),p.master][i]*4.6);const ti=p.display.keyboardTrack,track=p.tracks[ti],activeNotes=new Set();if(s>=0&&audible(p,track))for(let back=0;back<32;back++){const event=track.steps[(s-back+track.steps.length)%track.steps.length];if(event.on&&back<event.length)eventNotes(p,ti,event).forEach(n=>activeNotes.add(n));}keys.forEach(k=>{if(k.userData.baseNote===undefined)k.userData.baseNote=k.userData.note;k.userData.note=k.userData.baseNote+keyboardBase(p)-24;k.userData.playbackActive=activeNotes.has(k.userData.note);paintKey(k);});stats.activeNotes=Array.from(activeNotes);stats.litNotes=keys.filter(k=>activeNotes.has(k.userData.note)).map(k=>k.userData.note);stats.keyboardRange=[Math.min(...keys.map(k=>k.userData.note)),Math.max(...keys.map(k=>k.userData.note))];if(p.display.top!==lastTop||targetExplode!==lastFramedExplode){lastTop=p.display.top;lastFramedExplode=targetExplode;if(lastTop)root.rotation.y=0;cameraTarget=framePosition(lastTop,targetExplode);}controls.minPolarAngle=p.display.top?.001:.18;controls.maxPolarAngle=p.display.top?.05:Math.PI*.47;screenDraw(p,s);dirty=true;}
- function animate(now){requestAnimationFrame(animate);const wall=(now-last)/1000,dt=Math.min(wall,.05);last=now;if(hidden||hostHidden||!p)return;if(cameraTarget){camera.position.lerp(cameraTarget,1-Math.exp(-dt*7));camera.lookAt(controls.target);dirty=true;if(camera.position.distanceTo(cameraTarget)<.01){camera.position.copy(cameraTarget);camera.lookAt(controls.target);cameraTarget=null;}}if(!cameraTarget)controls.update();const moving=Math.abs(currentExplode-targetExplode)>.0005;if(moving){currentExplode=THREE.MathUtils.lerp(currentExplode,targetExplode,1-Math.exp(-dt*8));dirty=true;}board.position.y=currentExplode*1.4;upper.position.y=currentExplode*3.1;if(p.display.auto&&!p.display.top){root.rotation.y+=dt*.13;dirty=true;}if(dirty||moving||p.display.auto){renderer.render(scene,camera);frames++;elapsed+=wall;stats.frames++;if(elapsed>=1){stats.fps=Math.round(frames/elapsed);frames=0;elapsed=0;}dirty=false;}
+ let lastFramedExplode=0,playing=false,stepAt=performance.now(),phase=0;
+ function position(){return step<0?-1:step+Math.min(.999,phase+(playing?(performance.now()-stepAt)/1000/stepDuration(p,step):0));}
+ function syncKeys(){
+  const pos=position();stats.layers=layers.map(layer=>{const active=activeKeyboardNotes(p,layer.track,pos);for(const key of layer.keys){key.userData.playbackActive=active.has(key.userData.note);paintKey(key);}return {track:layer.track,label:layer.label,range:layer.range,activeNotes:[...active],litNotes:layer.keys.filter(k=>active.has(k.userData.note)).map(k=>k.userData.note)};});stats.activeNotes=stats.layers.flatMap(l=>l.activeNotes);stats.litNotes=stats.layers.flatMap(l=>l.litNotes);
+ }
+
+ function update(project,s){p=project;step=s;phase=0;stepAt=performance.now();targetExplode=p.display.explode/100;accent.color.setHex(colors[p.display.color]);surfaces.forEach(m=>{m.material.transparent=p.display.xray>0;m.material.opacity=1-p.display.xray/100*.82;m.material.depthWrite=p.display.xray<15;});knobs.forEach((k,i)=>k.rotation.y=-2.3+[p.bpm/240,p.swing/65,Math.log(p.cutoff/120)/Math.log(16000/120),p.master][i]*4.6);syncKeys();if(p.display.top!==lastTop||targetExplode!==lastFramedExplode){lastTop=p.display.top;lastFramedExplode=targetExplode;if(lastTop)root.rotation.y=0;cameraTarget=framePosition(lastTop,targetExplode);}controls.minPolarAngle=p.display.top?.001:.18;controls.maxPolarAngle=p.display.top?.05:Math.PI*.47;screenDraw(p,s);dirty=true;}
+ function animate(now){requestAnimationFrame(animate);const wall=(now-last)/1000,dt=Math.min(wall,.05);last=now;if(hidden||hostHidden||!p)return;if(playing&&step>=0){syncKeys();dirty=true;}if(cameraTarget){camera.position.lerp(cameraTarget,1-Math.exp(-dt*7));camera.lookAt(controls.target);dirty=true;if(camera.position.distanceTo(cameraTarget)<.01){camera.position.copy(cameraTarget);camera.lookAt(controls.target);cameraTarget=null;}}if(!cameraTarget)controls.update();const moving=Math.abs(currentExplode-targetExplode)>.0005;if(moving){currentExplode=THREE.MathUtils.lerp(currentExplode,targetExplode,1-Math.exp(-dt*8));dirty=true;}board.position.y=currentExplode*1.4;upper.position.y=currentExplode*3.1;if(p.display.auto&&!p.display.top){root.rotation.y+=dt*.13;dirty=true;}if(dirty||moving||p.display.auto){renderer.render(scene,camera);frames++;elapsed+=wall;stats.frames++;if(elapsed>=1){stats.fps=Math.round(frames/elapsed);frames=0;elapsed=0;}dirty=false;}
  }
  document.addEventListener('visibilitychange',()=>{hidden=document.hidden;dirty=true;last=performance.now();});resize();requestAnimationFrame(animate);
- return {update,stats,setVisible(visible){hostHidden=!visible;dirty=true;last=performance.now();},reset(){root.rotation.y=0;cameraTarget=null;camera.position.copy(framePosition(p?.display.top??true,targetExplode));camera.lookAt(controls.target);dirty=true;},dispose(){observer.disconnect();renderer.dispose();target.dispose();}};
+ return {update,configure,stats,setPlaying(value){if(p){phase=position()-step;stepAt=performance.now();}playing=value;dirty=true;},setVisible(visible){hostHidden=!visible;dirty=true;last=performance.now();},reset(){root.rotation.y=0;cameraTarget=null;camera.position.copy(framePosition(p?.display.top??true,targetExplode));camera.lookAt(controls.target);dirty=true;},dispose(){observer.disconnect();renderer.dispose();target.dispose();}};
 }
