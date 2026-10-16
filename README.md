@@ -107,3 +107,7 @@ See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) for component versions, mus
 ## Feedback
 
 Please use this repository's Issues to report problems. Include your browser and operating system, steps to reproduce, and the affected bar or action. Share projects containing your own creative work only if you wish to make them public.
+
+### Random accompaniment
+
+Create a **Blank project**, then click **随机伴奏 (Random accompaniment)** beside the sound controls. Each click generates a different drum, bass and chord arrangement across all project bars (up to 32), preserving your lead melody, harmony progression, tempo and mixer. Five rhythm families rotate with randomized velocities and bass details. Undo restores the previous arrangement. The action is disabled for classic scores.

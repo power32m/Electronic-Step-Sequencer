@@ -36,3 +36,22 @@
 @media(max-width:480px){.stage-wrap{height:340px}.knob{width:64px;height:64px}.knob i{left:29px;top:9px;transform-origin:2px 22px;height:15px}.sound-controls{gap:6px}.knob-control input{width:64px;font-size:15px}.knob-control label{font-size:13px}}
 
 @media(max-width:850px){.sound-controls{grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:480px;justify-self:center}}
+
+/* The display shares the exact top and bottom edges of the transport buttons. */
+.console{grid-template-columns:150px 145px minmax(350px,1fr) 120px minmax(250px,280px);grid-template-areas:'transport lcd sound groove classics';gap:20px}
+.transport{grid-area:transport;display:grid;grid-template-rows:14px 48px 48px auto;gap:8px;min-width:0}
+.transport .transport-action{margin:0}.transport p{margin:0;font-size:10px}
+.lcd{grid-area:lcd;margin-top:22px;height:104px;padding:10px 12px 8px;min-width:0}
+.lcd strong{font-size:32px;line-height:1.25}.lcd-bars{margin:4px 0 6px}.lcd-bars i{height:12px}
+.lcd>div:first-child{font-size:7px}.lcd p{font-size:7px;white-space:nowrap}
+.sound-controls{grid-area:sound;gap:10px}
+.pattern-box{grid-area:classics;min-width:0}
+.accompaniment-controls{grid-area:groove;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:14px}
+.accompaniment-controls>.eyebrow{font-size:11px;letter-spacing:1px;line-height:14px}
+.accompaniment-controls button{height:76px;padding:10px 5px;font-size:15px;white-space:nowrap}
+.accompaniment-controls small{text-align:center;font-size:11px;color:#7c886f;line-height:1.6}
+@media(max-width:1250px){.console{grid-template-columns:140px 135px minmax(330px,1fr) 120px;grid-template-areas:'transport lcd sound groove' 'classics classics classics classics';gap:20px}.pattern-box{grid-area:classics;grid-template-columns:160px minmax(220px,1fr) minmax(330px,1.5fr);gap:12px}}
+@media(max-width:1050px){.console{grid-template-columns:140px 135px 1fr;grid-template-areas:'transport lcd groove' 'sound sound sound' 'classics classics classics';gap:20px}.sound-controls{grid-area:sound;padding:8px 0;justify-self:center;width:100%;max-width:460px}.pattern-box{display:block}.pattern-box>.eyebrow{margin-bottom:12px}.pattern-box select{margin-bottom:10px}.accompaniment-controls{max-width:180px;justify-self:end;width:100%}}
+@media(max-width:600px){.console{grid-template-columns:140px minmax(0,1fr);grid-template-areas:'transport lcd' 'sound sound' 'groove groove' 'classics classics';gap:20px 14px}.accompaniment-controls{display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:none;justify-self:stretch;gap:10px}.accompaniment-controls button{grid-column:2;grid-row:1/3;height:58px;font-size:16px}.accompaniment-controls small{text-align:left}.pattern-box>div{grid-template-columns:repeat(2,1fr)}}
+
+@media(max-width:600px){.sequencer>.section-bar{flex-wrap:wrap;gap:12px}.sequencer>.section-bar>div:first-child{width:100%}.project-name{width:100%}.project-name input{width:100%}.sound-controls{grid-template-columns:repeat(4,minmax(0,1fr))}.pattern-box>div{display:grid}}
