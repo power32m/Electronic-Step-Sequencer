@@ -12,13 +12,13 @@ Six-part composition · Piano roll · Browser synthesis · Interactive 3D instru
 
 **[Play online →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　|　[User guide](docs/USER_GUIDE.en.md)　|　[Product overview](docs/PRODUCT.en.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1**
 
 </div>
 
 > **New here?** Open the web app and click **播放 (Play)** to hear the complete boss-battle demo. Edit its notes, change the sounds, then download your work as a WAV file or an editable project. The app interface is currently in Chinese; this repository provides English documentation.
 
-![OP·16 desktop version 2.1 — interface reference](docs/images/device.png)
+![OP·16 version 2.2.1 — interface reference](docs/images/instrument-wide.jpg)
 
 ## What is OP·16?
 
@@ -39,7 +39,7 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 | Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
 | Audio export | Export 1–32 bars as 44.1 kHz, 16-bit stereo WAV |
 
-![Six-part arrangement and piano roll — desktop version 2.1 interface reference](docs/images/sequencer.png)
+![Six-part arrangement and piano roll — version 2.2.1 interface reference](docs/images/sequencer-readable.jpg)
 
 ## Get started in three steps
 

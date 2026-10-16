@@ -11,3 +11,28 @@
 .brand-credit{display:flex;flex-direction:column;gap:3px;margin-left:10px;padding-left:20px;border-left:1px solid #d5d9ce;color:#747d6c;font-size:11px;line-height:1.5;letter-spacing:.3px;white-space:nowrap}@media(max-width:650px){header{flex-wrap:wrap;gap:16px}.brand{flex-wrap:wrap}.brand-credit{margin-left:0;padding-left:12px}.header-right{margin-left:auto}}
 
 .transport .transport-action{display:block;width:100%;height:48px;padding:0 8px;font-size:14px;white-space:nowrap}.transport .new-project{margin-top:8px;background:#fafaf6;color:#40473b;border-color:#cdd2c5;box-shadow:0 2px 6px #252b2010}.transport .new-project span{margin-right:5px}.tonality #phrase-length{width:52px;border:1px solid #cdd2c5;border-radius:4px;padding:5px;background:#fafaf6}.tonality #add-bar{font-size:10px;padding:6px 8px}
+
+/* Full-width instrument stage and readable performance controls. */
+.stage-wrap{height:clamp(400px,32vw,520px)}
+#device{inset:0}.stage-caption{left:28px;right:28px;bottom:18px;font-size:11px}
+.console{grid-template-columns:150px 145px minmax(400px,1fr) minmax(270px,310px);gap:24px;align-items:start;padding:26px 25px}
+.sound-controls{display:grid;grid-template-columns:repeat(4,minmax(0,100px));justify-content:center;gap:18px;padding:0}
+.knob-control{max-width:none;min-width:0}.knob-control .eyebrow,.pattern-box>.eyebrow{font-size:11px;letter-spacing:1px}
+.knob{width:76px;height:76px;margin:14px auto 11px;box-shadow:0 4px 10px #0002,inset 0 0 0 5px #e6e9de,inset 0 0 0 6px #d6d9cd}
+.knob i{width:4px;height:18px;left:35px;top:10px;transform-origin:2px 27px}
+.knob-control label{font-size:14px;color:#56614d}.knob-control input{font:600 16px Consolas,monospace;width:82px;margin-top:5px;padding:4px 0}
+.pattern-box select{font-size:15px;min-height:44px;margin:14px 0 10px;padding:10px;color:#35432d}
+.pattern-box button{font-size:13px;padding:11px 5px;min-height:40px}.pattern-box>div{gap:8px}
+.transport>.eyebrow{font-size:11px}.transport p{font-size:11px;line-height:1.6}.transport .transport-action{font-size:16px}
+.matrix-head,.track{grid-template-columns:280px 1fr}.step-numbers span{font:600 13px Consolas,monospace;color:#6b795a;padding-bottom:14px}
+.track{min-height:66px}.track .steps button{height:54px;gap:7px}.steps button small{font:600 14px Consolas,monospace;color:#70805d;line-height:1.2}.steps button.enabled small{color:#e4ead9}.steps button span{width:5px;height:4px}
+.track-select{font-size:15px}.track-select em{font-size:13px}.track-info small{font-size:10px;letter-spacing:.2px}.track-info select{font-size:13px;max-width:135px;padding:4px}
+.track-mix button{font-size:12px;width:26px;height:26px;padding:0}.track-mix{gap:6px}.track-info>div:first-child{min-width:140px}
+.matrix-head>span{font-size:12px}.matrix{min-width:1000px}
+.composition-controls label,.check-label{font-size:13px}.tonality select,.keyboard-strip select{font-size:13px}.melody-actions button,.file-bar button,.export-controls select{font-size:13px}
+.editor label,.editor-title strong,.editor button{font-size:13px}.editor output,.editor select{font-size:13px}.keyboard-strip{font-size:12px}.keyboard-strip output{font-size:12px}
+@media(max-width:1250px){.console{grid-template-columns:140px 135px minmax(390px,1fr);gap:20px}.pattern-box{grid-column:1/-1;display:grid;grid-template-columns:180px minmax(250px,1fr) minmax(390px,1.5fr);align-items:center;gap:16px}.pattern-box select{width:100%;margin:0}.pattern-box>div{display:grid;grid-template-columns:repeat(4,1fr)}.sound-controls{gap:12px}.matrix-head,.track{grid-template-columns:265px 1fr}}
+@media(max-width:850px){.stage-wrap{height:400px}.console{grid-template-columns:140px 1fr}.sound-controls{grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,100px));gap:14px;padding:10px 0}.pattern-box{display:block}.pattern-box>.eyebrow{margin-bottom:12px}.pattern-box select{margin-bottom:10px}.pattern-box>div{grid-template-columns:repeat(2,1fr)}.stage-caption{font-size:10px;left:16px;right:16px}.stage-caption span:last-child{max-width:55%;text-align:right}.track-info>div:first-child{min-width:140px}}
+@media(max-width:480px){.stage-wrap{height:340px}.knob{width:64px;height:64px}.knob i{left:29px;top:9px;transform-origin:2px 22px;height:15px}.sound-controls{gap:6px}.knob-control input{width:64px;font-size:15px}.knob-control label{font-size:13px}}
+
+@media(max-width:850px){.sound-controls{grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:480px;justify-self:center}}

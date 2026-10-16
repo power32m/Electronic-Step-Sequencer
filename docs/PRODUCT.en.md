@@ -6,7 +6,7 @@
 
 No installation needed. Open the app and click **播放 (Play)** to hear the built-in demo and start editing. The app interface is currently in Chinese; English documentation is available here.
 
-**Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2**
+**Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.1**
 
 ## An electronic instrument you can see, hear and edit
 

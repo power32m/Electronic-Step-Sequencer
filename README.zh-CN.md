@@ -12,13 +12,13 @@
 
 **[在线体验 →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　｜　[使用指南](docs/USER_GUIDE.md)　｜　[产品介绍](docs/PRODUCT.md)**
 
-作者：**无痛穿耳**　·　创作日期：**2026.10.15**　·　版本：**2.2**
+作者：**无痛穿耳**　·　创作日期：**2026.10.15**　·　版本：**2.2.1**
 
 </div>
 
 > **第一次使用？** 打开上方网页版，点击“播放”，即可听到完整的 Boss 战示例。可以直接改音符、换音色，再把自己的作品下载为 WAV 或工程文件。
 
-![OP·16 桌面版2.1界面参考](docs/images/device.png)
+![OP·16 2.2.1界面](docs/images/instrument-wide.jpg)
 
 ## 这是什么
 
@@ -39,7 +39,7 @@ OP·16 是一款把编曲与乐器外观放在同一界面中的步进音序器�
 | 作品管理 | 浏览器自动保存、JSON工程导入导出、撤销重做、小节复制粘贴 |
 | 音频导出 | 44.1kHz、16-bit、立体声WAV，支持1–32小节 |
 
-![六轨编排与钢琴卷帘，桌面版2.1界面参考](docs/images/sequencer.png)
+![六轨编排与钢琴卷帘，2.2.1界面](docs/images/sequencer-readable.jpg)
 
 ## 三步开始
 
