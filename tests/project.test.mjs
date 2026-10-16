@@ -58,3 +58,8 @@ test('Deleting one triplet preserves the neighboring notes',()=>{
  const s={on:true,note:60,length:1,velocity:.8,offset:0,extra:[{note:62,length:.3,velocity:.7,offset:.333},{note:64,length:.3,velocity:.7,offset:.667}]};
  removeEvent(s,1);assert.equal(s.extra.length,1);assert.equal(s.extra[0].note,64);removeEvent(s);assert.equal(s.note,64);assert(!s.extra);removeEvent(s);assert(!s.on);
 });
+
+test('removed appearance controls reset legacy settings without changing music',()=>{
+ const p=preset();p.display.explode=85;p.display.xray=70;p.display.color='石板蓝';p.display.top=true;
+ const restored=validate(p);assert.equal(restored.display.explode,0);assert.equal(restored.display.xray,0);assert.equal(restored.display.color,'柿橙');assert(restored.display.top);assert.deepEqual(restored.tracks,p.tracks);
+});
