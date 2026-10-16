@@ -18,7 +18,9 @@
 
 > 点击“播放”聆听完整经典编曲，修改音符，或新建空白工程、选择风格生成伴奏。作品可保存为JSON工程或导出立体声WAV。应用界面为中文，仓库提供中英文说明。
 
-![当前三层键盘界面](docs/images/instrument-current.png)
+[![OP·16 动态演示](docs/images/op16-demo.gif)](https://github.com/power32m/Electronic-Step-Sequencer/releases/download/v2.2.1/OP16-demo-20s.mp4)
+
+**[20秒有声演示（MP4）](https://github.com/power32m/Electronic-Step-Sequencer/releases/download/v2.2.1/OP16-demo-20s.mp4)** · 上方动图无声，点击打开完整视频。
 
 ## 这是什么
 

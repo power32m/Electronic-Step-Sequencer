@@ -18,7 +18,9 @@ Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1** · Up
 
 > Click **播放 (Play)** to hear a complete arrangement. Edit its notes or create a blank project with a styled accompaniment. Save editable JSON or export stereo WAV. **The app interface is in Chinese; this repository provides English and Chinese documentation.**
 
-![Current three-keyboard instrument](docs/images/instrument-current.png)
+[![OP·16 animated preview](docs/images/op16-demo.gif)](https://github.com/power32m/Electronic-Step-Sequencer/releases/download/v2.2.1/OP16-demo-20s.mp4)
+
+**[20-second demo with sound (MP4)](https://github.com/power32m/Electronic-Step-Sequencer/releases/download/v2.2.1/OP16-demo-20s.mp4)** · The animated preview is silent.
 
 ## What is OP·16?
 
