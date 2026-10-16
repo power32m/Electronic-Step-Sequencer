@@ -12,6 +12,6 @@
 《Shadow of the Ninja / 赤影战士》Boss Theme，原作游戏 Natsume（1990）。本案例根据用户指定的 MIDI 文件重建，文件标注 Arranged By Herr Dethnout 2017，来源：https://www.vgmusic.com/file/967564181be77d05ae63be4fe47ed6e8.html 。原始MIDI保留于项目素材目录及正式版音乐来源目录，版权归相应权利人；程序组件许可不改变音乐的权利归属。
 
 
-## Classic library additions (2.2)
+## Classic library sources / 经典曲库来源
 
-See [docs/CLASSIC_LIBRARY.md](docs/CLASSIC_LIBRARY.md) for the four source MIDI links, known arrangers, selected parts, omitted duplicate layers and the 32-bar excerpt policy. Music rights remain with the respective rights holders.
+See [docs/CLASSIC_LIBRARY.md](docs/CLASSIC_LIBRARY.md) for the six classic MIDI sources, known arrangers, complete selected timelines and omitted duplicate layers. The boss-battle source is credited above. Music rights remain with the respective rights holders.

@@ -1,6 +1,6 @@
 # Classic library / 经典曲库
 
-![Classic library controls / 经典曲库控制区](images/classics.jpg)
+[Online app / 在线体验](https://op16-field-sequencer.breezysquid.chatgpt.site/) · [English guide](USER_GUIDE.en.md) · [中文指南](USER_GUIDE.md)
 
 Complete MIDI arrangements at their source tempos, with the original timeline through the final note. These are synthesized adaptations of fan arrangements, not original soundtrack recordings. Repeated sections already present in each MIDI are retained; the old bar-32 cutoff is removed. Six-part curation still omits doubled orchestral and echo layers as documented below.
 

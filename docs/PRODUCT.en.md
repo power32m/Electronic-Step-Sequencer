@@ -4,34 +4,40 @@
 
 ## 🌐 [Try the web app](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-No installation needed. Open the app and click **播放 (Play)** to hear the built-in demo and start editing. The app interface is currently in Chinese; English documentation is available here.
+**Watch the parts on three keyboards. Edit the music on six tracks.** Click **播放 (Play)** to start with a complete arrangement. The interface is Chinese.
 
-**Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.1**
+Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.1 · Updated 2026.10.16
 
-## An electronic instrument you can see, hear and edit
+![Current three-keyboard instrument](images/instrument-current.png)
 
-OP·16 combines a six-part step sequencer with an interactive 3D instrument. Rotate the device or switch to its top view above the arrangement controls. Below, compose drums, bass, lead and harmony. During playback, the playhead, step grid and three keyboards' lead, harmony and bass feedback move together.
+## See how the parts form a piece
 
-Warm off-white surfaces, dark panels and persimmon-orange accents give the instrument its visual character. Physical-looking keycaps, knobs and a restrained layout invite beginners to try making music.
+OP·16 combines a step sequencer with three stacked keyboards. The upper orange layer shows lead, the middle green layer shows countermelody or chords, and the lower blue layer shows bass. All three respond together; chords illuminate their component notes, and each layer covers its full score range automatically.
 
-## Start with a complete piece, then make it your own
+The default 2D top view locks angle and zoom for precise clicks. Switch to 3D to rotate, zoom or enable auto-rotation. Click a key to audition that layer's sound. Warm off-white surfaces, a metal enclosure and dark keybeds frame the instrument; matching colors identify the tracks below.
 
-The default demo is a synthesized rendition of a MIDI arrangement of the boss-battle music from *Shadow of the Ninja*: 150 BPM, 24 bars, 384 steps and a phrase lasting about 38.4 seconds. Two melodies, bass and drums play together, making it easy to explore how separate parts form a piece of music.
+## Listen first, then make your own version
 
-Solo the lead, then bring back the bass and drums to compare. Change a few notes and listen to the effect on rhythm and mood. The classic library provides complete MIDI arrangements of Super C, Double Dragon II, Jackal, Castlevania, River City Ransom and Super Mario Bros.: 74, 44, 35, 48, 88 and 37 bars respectively, with full-length playback and export. The Blank Project button below Play starts an empty four-bar arrangement; add or set bars up to a maximum of 32.
+Seven complete examples include Shadow of the Ninja's boss battle, Super C, Double Dragon II, Jackal, Castlevania's Vampire Killer, River City Ransom and Super Mario Bros. These are synthesized six-part adaptations of specific MIDI arrangements, ranging from 24 to 88 bars, not original soundtrack recordings.
 
-## Direct editing, with results you can keep
+Solo the lead, then bring back bass, harmony and drums to compare their roles. Change notes, sounds or tempo and observe the feedback. The sticky player provides pause/continue, bar jumps, playback from the editing bar and rewind while scrolling.
 
-Click steps to toggle notes. Use the piano roll to drag notes to a different pitch or position, or change their length. Scale constraints keep new notes within the selected scale. Melody generation and variations supply material you can continue editing. These operations run locally without an AI music service.
+Blank projects start at four bars and support up to 32. Choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin or FC Chiptune and generate an accompaniment. Repeated clicks vary the style while preserving the lead. Local-rule melody generation provides another starting point. No AI music service is required.
 
-Save an editable JSON project or export stereo WAV audio. The web app requires no registration and saves projects in the current browser. Projects do not automatically sync to another device; transfer them with exported project files.
+## Direct editing and portable results
 
-## Who is it for?
+The six-part grid controls drums, bass, lead and countermelody/chords with aligned sound, volume, mute and solo controls. Bar tools sit beside navigation. The piano roll edits pitch, position, velocity and duration, including triplets and short notes within a step.
 
-- Beginners exploring the relationship between drums, bass and melody.
-- Chiptune enthusiasts experimenting with short musical phrases.
-- Designers, teachers and developers demonstrating sound and 3D interaction.
+Save editable JSON or export 44.1 kHz, 16-bit stereo WAV. Export shows progress and can be cancelled; long pieces still take time. Synthesis runs locally, with a voice Worker reducing UI-thread work.
 
-OP·16 focuses on lightweight composition and interaction. It does not provide a full workstation's recording tools, plugins, unrestricted polyphonic editing or guaranteed professional audio latency. A modern desktop browser with WebGL2 support is recommended.
+The web app needs no account and requires network for first load. Packaged Windows resources run offline. Projects do not automatically sync between them; transfer JSON files. This repository provides desktop source and build instructions, without a downloadable EXE release at present.
 
-See the [user guide](USER_GUIDE.en.md) for controls and the [repository homepage](../README.md) for source and technical details. Music attribution and component notices are in [THIRD-PARTY-NOTICES.md](../THIRD-PARTY-NOTICES.md).
+## Where it fits
+
+- Learning how drums, bass, lead and harmony work together.
+- Rewriting classic arrangements or creating short chiptune phrases.
+- Teaching or demonstrating sound and interactive instrument design.
+
+OP·16 focuses on lightweight composition. It does not provide recording, VST, general MIDI import/export, unrestricted polyphonic editing or guaranteed professional audio latency. Keep JSON backups; background playback depends on the OS/browser.
+
+See the [user guide](USER_GUIDE.en.md), [Windows guide](WINDOWS.en.md), [music sources](CLASSIC_LIBRARY.md) and [third-party notices](../THIRD-PARTY-NOTICES.md).

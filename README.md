@@ -6,68 +6,88 @@
 
 **See your rhythm take shape.**
 
-Six-part composition · Piano roll · Browser synthesis · Interactive 3D instrument
+Three stacked keyboards · Six-part sequencing · Piano roll · FC/NES classics
 
-## 🌐 [Try the web app — no installation needed](https://op16-field-sequencer.breezysquid.chatgpt.site/)
+## 🌐 [Play online — no installation or account needed](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-**[Play online →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　|　[User guide](docs/USER_GUIDE.en.md)　|　[Product overview](docs/PRODUCT.en.md)**
+**[User guide](docs/USER_GUIDE.en.md) · [Product overview](docs/PRODUCT.en.md) · [Windows desktop](docs/WINDOWS.en.md) · [What's new](CHANGELOG.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1** · Updated **2026.10.16**
 
 </div>
 
-> **New here?** Open the web app and click **播放 (Play)** to hear the complete boss-battle demo. Edit its notes, change the sounds, then download your work as a WAV file or an editable project. The app interface is currently in Chinese; this repository provides English documentation.
+> Click **播放 (Play)** to hear a complete arrangement. Edit its notes or create a blank project with a styled accompaniment. Save editable JSON or export stereo WAV. **The app interface is in Chinese; this repository provides English and Chinese documentation.**
 
-![OP·16 version 2.2.1 — interface reference](docs/images/instrument-wide.jpg)
+![Current three-keyboard instrument](docs/images/instrument-current.png)
 
 ## What is OP·16?
 
-OP·16 combines a step sequencer with an interactive 3D electronic instrument. Turn knobs, press keys and watch lead, harmony and bass play on three stacked keyboards, or open the piano roll to edit individual melody notes.
-
-It is designed for learning electronic music, exploring rhythm and melody, experimenting with chiptune sounds, and demonstrating sound and interaction design. Start in your browser without an account, audio plugins or a music workstation.
+OP·16 is a lightweight electronic instrument and step sequencer. Three keyboards show lead, countermelody/chords and bass together; a six-part grid and piano roll let you edit the music. Sounds and the 3D model are generated locally. Explore rhythm, learn how parts work together or experiment with chiptune sounds.
 
 ## Features
 
-| Feature | What you can do |
+| Area | Current behavior |
 | --- | --- |
-| Six musical parts | Arrange kick, snare, hi-hat, bass, lead, and either chords or an independent countermelody |
-| Complete phrases | Use 16 steps per bar; the boss-battle demo has 24 bars and 384 steps, the complete classic arrangements have 74 / 44 / 35 / 48 / 88 / 37 bars |
-| Playback navigation | First-screen sticky player; pause/continue, bar jump, play from the selected bar and rewind |
-| Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
-| Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
-| Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
-| Interactive 3D | Three stacked keyboards with simultaneous lead, harmony and bass feedback; automatic pitch ranges, independent audition, top view and rotation |
-| Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
-| Audio export | Export complete classic arrangements, or 1–32 bars for blank projects, as 44.1 kHz, 16-bit stereo WAV, with progress and cancellation |
+| Three keyboards | Orange lead, green countermelody/chords, blue bass; simultaneous feedback, full-score pitch ranges and per-layer audition |
+| Views | Default 2D locks rotation and zoom for precise clicks; 3D allows rotation, zoom and auto-rotation |
+| Six parts | Kick, snare, hi-hat, bass, lead and countermelody/chords; 16 steps per bar, four-bar navigation, volume, mute and solo |
+| Playback | Sticky player, pause/continue, bar jump, playback from the editing bar and rewind |
+| Editing | Piano roll, pitch, velocity, duration, independently timed notes within a step, undo/redo and bar copy/paste |
+| Composition | Root, scale constraints, chord degrees, local-rule melody generation and variations |
+| Accompaniment | Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin and FC Chiptune, plus Random Style; repeat for variations in blank projects |
+| Audio | Dedicated voice Worker, reusable cached buffers, WAV export with progress and cancellation |
+| Projects | Local autosave, JSON import/export, v1/v2/v3 compatibility; 4 MB import limit on web and updated Windows builds |
 
-![Six-part arrangement and piano roll — version 2.2.1 interface reference](docs/images/sequencer-readable.jpg)
+![Current six-part editor and piano roll](docs/images/composer-current.png)
 
-## Get started in three steps
+## Classic library
 
-1. **Open the web app and click 播放 (Play).** This click enables browser audio.
-2. **Choose a part or bar and edit notes.** Edit bass and melody parts in the piano roll. Use the left/right arrows to navigate the 24-bar demo, four bars at a time.
-3. **Save your work.** Download a project file to continue editing later, or export a WAV file.
+Complete **six-part adaptations of the listed MIDI arrangements**, preserving their selected parts' timeline and existing repeats. These are synthesized performances, not original soundtrack recordings.
 
-Select **赤影战士 · Boss 战 (Shadow of the Ninja · Boss Battle)** in the preset list to restore the original demo. The classic library also includes **超级魂斗罗 (Super C)**, **双截龙Ⅱ (Double Dragon II)**, **赤色要塞 (Jackal)**, **恶魔城 · Vampire Killer (Castlevania)**, **热血物语 · 街头主题 (River City Ransom)** and **超级马里奥 · 地面主题 (Super Mario Bros.)**, with complete MIDI arrangements of 74, 44, 35, 48, 88 and 37 bars respectively. Click **空白工程 (Blank Project)** below Play to start from scratch. Set the project length or add bars, up to 32. See the [classic library notes](docs/CLASSIC_LIBRARY.md).
+| In-app name | Game / piece | Bars | BPM |
+| --- | --- | ---: | ---: |
+| 赤影战士 · Boss 战 | Shadow of the Ninja · Boss Battle | 24 | 150 |
+| 超级魂斗罗 | Super C | 74 | 150 |
+| 双截龙Ⅱ | Double Dragon II | 44 | 80 |
+| 赤色要塞 | Jackal | 35 | 80 |
+| 恶魔城 · Vampire Killer | Castlevania · Vampire Killer | 48 | 127 |
+| 热血物语 · 街头主题 | River City Ransom · Street Theme | 88 | 100 |
+| 超级马里奥 · 地面主题 | Super Mario Bros. · Overworld | 37 | 105 |
 
-## Storage and limitations
+First launch defaults to the boss battle; later launches can restore autosave. Classics support full-length playback, editing and export. Blank projects begin with four bars and support 1–32 bars. See [sources and arrangement notes](docs/CLASSIC_LIBRARY.md).
 
-Audio is synthesized in each visitor's browser. Projects are autosaved in that browser, independently of other users. Autosave does not sync across devices and may be lost when browser data is cleared. Download a JSON project as a backup.
+## Start listening or composing
 
-The first page load requires a network connection. Full offline caching and PWA installation are not currently available. Background playback depends on the browser and operating system; foreground use is recommended. The 3D view requires WebGL2. Mobile behavior and professional audio-interface latency have not been comprehensively validated.
+1. **Listen:** select a piece and click **播放 (Play)**. Click again to pause, then **继续 (Continue)** to resume. The player stays visible while scrolling.
+2. **Edit:** choose a bar and part; toggle steps or edit notes in the piano roll. Bar tools sit below the four-bar navigation.
+3. **Create:** click **空白工程 (Blank Project)** below Play, choose a style and click **随机伴奏 (Random Accompaniment)**. Add or generate your lead. Repeat for accompaniment variations; Undo restores the previous result.
+4. **Keep your work:** save JSON or export WAV, which includes a 1.8-second tail. Long pieces take time to render.
 
-General MIDI import/export, VST plugins, sung vocals and complete DAW projects are not supported. Melody tracks preserve independently timed notes within a step, including triplets. Standard chord mode creates triads from a root note; the piano roll remains a lightweight editor rather than a full DAW.
+## Web and Windows
 
-## Run locally
+| | Web app | Windows desktop |
+| --- | --- | --- |
+| Start | [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) | Build from source; [instructions](docs/WINDOWS.en.md) |
+| Network | First load needs network; no complete offline cache/PWA | Packaged resources run offline; installed WebView2 Runtime required |
+| Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
+| Project transfer | Save/open JSON | Save/open JSON |
 
-Use **Node.js 22.12 or later**.
+The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **This repository contains source and documentation; it currently has no downloadable EXE release.** Keep all files together when publishing a desktop build.
+
+Autosave does not sync across browsers, devices, web and desktop. Download JSON backups before clearing browser data or replacing a project. Background playback depends on the OS/browser. A modern browser with WebGL2 is required for the instrument; desktop use is recommended for detailed editing.
+
+General MIDI import/export, VST, audio recording, vocals and cloud project storage are not supported. Standard chord mode creates triads; OP·16 is not a full DAW or unrestricted polyphonic editor.
+
+## Run and build the source
+
+Use **Node.js 22.12 or later**:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open the local URL shown in your terminal. To check and build the project:
+Checks and production build:
 
 ```bash
 npm test
@@ -75,40 +95,22 @@ npm run build
 npm run preview
 ```
 
-The production output is written to `dist/` and can be deployed to static hosting with HTTPS. Assets use relative paths, including when hosted in a subdirectory. The live demo is hosted separately; **this repository does not automatically serve it through GitHub Pages**.
+Output is in `dist/`, suitable for static HTTPS hosting. Relative asset paths support subdirectories. The public demo is hosted independently, **not automatically through GitHub Pages**. See the [Windows guide](docs/WINDOWS.en.md) for WPF/WebView2 builds.
 
-### Optional: build the Windows desktop app
+## Technology and files
 
-On Windows, install the .NET 8 SDK, build the web app first, then run:
-
-```powershell
-dotnet publish desktop/OP16.Desktop.csproj -c Release -r win-x64 --self-contained true -o release
-```
-
-The desktop app requires Microsoft Edge WebView2 Runtime. Keep all files in the publish directory together. Web and desktop projects use different storage locations; transfer work between them with JSON project files.
-
-## Technology and layout
-
-The frontend uses vanilla JavaScript, Vite and Three.js. Web Audio synthesizes the sounds, with a Worker and the audio clock handling scheduling. The 3D model is generated in code and needs no external model files. The optional Windows host uses .NET 8, WPF and WebView2.
+Vanilla JavaScript, Vite, Three.js and Web Audio. `synth-worker.js` prepares voice buffers; the audio clock and ticker schedule playback. Windows uses .NET 8, WPF and WebView2.
 
 ```text
-src/          UI, arrangement data, synthesis, 3D device and piano roll
-public/       Icons and other static assets
-desktop/      Optional Windows desktop host source
-docs/         Product overview, guides and interface reference images
-tests/        Demo score and project data checks
+src/       UI, projects, classic scores, audio, three-layer instrument, piano roll
+desktop/   Windows host source
+docs/      Bilingual product, user and Windows guides; current screenshots
+tests/     Score integrity, compatibility, accompaniment and keyboard checks
+public/    Static assets
 ```
 
-## Demo music and third-party components
+## Credits and feedback
 
-The **Shadow of the Ninja · Boss Battle** demo reconstructs Herr Dethnout's 2017 MIDI arrangement to demonstrate two melodies, bass and drums. It is a synthesized rendition, rather than an FC/NES soundtrack recording or a cycle-accurate hardware emulation. Music and game rights belong to their respective rights holders. Public availability of the application source does not grant commercial rights to the music.
+Music and game rights remain with their owners. Source visibility does not grant commercial music rights. See [music sources](docs/CLASSIC_LIBRARY.md) and [third-party notices](THIRD-PARTY-NOTICES.md). No open-source license has been designated for the application's own code.
 
-See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) for component versions, music attribution and license notices. No open-source license has been designated for the application's own code.
-
-## Feedback
-
-Please use this repository's Issues to report problems. Include your browser and operating system, steps to reproduce, and the affected bar or action. Share projects containing your own creative work only if you wish to make them public.
-
-### Random accompaniment
-
-Create a **Blank project**, then click **随机伴奏 (Random accompaniment)** beside the sound controls. Each click generates a different drum, bass and chord arrangement across all project bars (up to 32), preserving your lead melody, harmony progression, tempo and mixer. Choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin or FC Chiptune in the style selector, or keep Random Style. Repeated clicks produce variations within the selected style; the selection is saved with the project. Chiptune uses FC triangle bass and pulse chords. Undo restores the previous arrangement. The action is disabled for classic scores.
+Report problems in [Issues](https://github.com/power32m/Electronic-Step-Sequencer/issues), including browser/OS, reproduction steps and the affected bar. Share personal projects only if you want them public.

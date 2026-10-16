@@ -11,3 +11,7 @@ desktop/obj/
 *.suo
 *.log
 .DS_Store
+
+# Local documentation screenshots and browser sessions
+output/
+.playwright-cli/
