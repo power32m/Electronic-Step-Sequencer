@@ -6,9 +6,11 @@
 
 The interface is currently in Chinese. Chinese labels below identify the controls in the app; English text explains their meaning.
 
-1. Click **播放 (Play)** to enable audio. Space starts or stops playback, except while you are typing in a text field.
+1. Click **播放 (Play)** to enable audio. Space plays or pauses, except while you are typing in a text field.
 2. The default boss-battle demo has 24 bars, displayed four bars per page. Use the left/right arrows to change pages. The view follows playback by default; manual selection lets you stay on a bar to edit it.
 3. **M** mutes a part; **S** solos it. The sixth part is an independent countermelody in the boss-battle demo and can play triads in other presets.
+
+The top player stays visible while editing. Play toggles Pause/Continue and preserves the audio position. Enter a bar number to jump; during playback it continues at that bar. Use **从第N小节播放** to restart at the selected editing bar, or **回到开头** to stop and rewind.
 
 ## Edit notes
 
@@ -28,7 +30,7 @@ Melody generation replaces the lead across the entire current phrase. Melody var
 
 ## The 3D instrument
 
-Drag to rotate and scroll to zoom. Controls also provide a top view, automatic rotation, layer separation, enclosure transparency and color options. Click the physical-looking keys to audition notes, or drag the device knobs to adjust sound parameters.
+Drag to rotate and scroll to zoom. Controls also provide a top view, automatic rotation, and reset view. Click the physical-looking keys to audition notes, or drag the device knobs to adjust sound parameters.
 
 Choose the part and octave used by the 3D keyboard to audition notes and see playback feedback for that part. Notes outside the visible key range still play. The display curve is a visual indication of the beat.
 
@@ -36,7 +38,7 @@ Choose the part and octave used by the 3D keyboard to audition notes and see pla
 
 Autosave belongs to the current browser. Regularly click **保存工程 (Save Project)** to download an `.op16.json` file. **打开工程 (Open Project)** reads v1, v2 and v3 project formats, preserving the original notes in older projects.
 
-Blank-project WAV export supports 1–32 bars; classic arrangements support their full length, looping the current complete phrase as needed. Output is 44.1 kHz, 16-bit stereo, with an additional 1.8-second audio tail. The default 24-bar boss-battle export lasts about 40.2 seconds. Audio rendering takes time; the browser downloads the file when it is ready.
+Blank-project WAV export supports 1–32 bars; classic arrangements support their full length, looping the current complete phrase as needed. Output is 44.1 kHz, 16-bit stereo, with an additional 1.8-second audio tail. The default 24-bar boss-battle export lasts about 40.2 seconds. Export shows progress for voice preparation, stereo rendering and WAV encoding. Cancel discards the pending export while preserving the project. Voice synthesis runs in a dedicated worker; the browser downloads the file when ready.
 
 Keep downloaded backups. The web app does not sync projects across devices or provide a cloud project library. Background playback and mobile behavior depend on the browser and operating system.
 

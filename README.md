@@ -32,12 +32,13 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 | --- | --- |
 | Six musical parts | Arrange kick, snare, hi-hat, bass, lead, and either chords or an independent countermelody |
 | Complete phrases | Use 16 steps per bar; the boss-battle demo has 24 bars and 384 steps, the complete classic arrangements have 74 / 44 / 35 / 48 / 88 / 37 bars |
+| Playback navigation | First-screen sticky player; pause/continue, bar jump, play from the selected bar and rewind |
 | Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
 | Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
 | Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
 | Interactive 3D | Rotate the device, switch to a top view, enable auto-rotation, and watch note-driven key feedback |
 | Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
-| Audio export | Export complete classic arrangements, or 1–32 bars for blank projects, as 44.1 kHz, 16-bit stereo WAV |
+| Audio export | Export complete classic arrangements, or 1–32 bars for blank projects, as 44.1 kHz, 16-bit stereo WAV, with progress and cancellation |
 
 ![Six-part arrangement and piano roll — version 2.2.1 interface reference](docs/images/sequencer-readable.jpg)
 
