@@ -6,7 +6,9 @@
 
 The local Windows distribution synchronized with the website on 2026-10-16: complete classics, three keyboards, fixed top view, playback navigation, voice Worker and current layout. Its version remains 2.2.1. The project-opening limit increased from 1 MB to 4 MB so the complete 88-bar River City Ransom project can reopen.
 
-This repository provides desktop host source, **without a downloadable EXE release at present**. [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) immediately or build it below.
+**[Download the Windows x64 release](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**, extract the ZIP and open `OP16电子步进音序器.exe`. Keep the folder together; use the attached SHA256 file to verify the download. The app is not code-signed; verify the source if Windows displays an unknown-publisher prompt.
+
+You can also [play online](https://op16-field-sequencer.breezysquid.chatgpt.site/). The build steps below are for developers; users of the ZIP need no development tools.
 
 ## Build and start
 

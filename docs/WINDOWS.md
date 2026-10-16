@@ -6,7 +6,9 @@
 
 本地正式版于2026-10-16同步网站功能：完整曲库、三层键盘、固定俯视、播放导航、后台音源和最新布局。版本号仍为2.2.1；工程打开上限由1MB提高至4MB，完整热血物语88小节工程可重新打开。
 
-本仓库提供桌面宿主源码，**目前没有可直接下载的EXE发行包**。网页版可[直接体验](https://op16-field-sequencer.breezysquid.chatgpt.site/)，自行构建方法如下。
+**[下载Windows x64正式版](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**，解压后双击 `OP16电子步进音序器.exe`。请保留整个文件夹；同页的SHA256校验文件可核对下载完整性。首次运行若系统提示未知发布者，请先核对下载来源；程序尚未进行代码签名。
+
+网页版可[直接体验](https://op16-field-sequencer.breezysquid.chatgpt.site/)。下方构建步骤仅供开发者，使用下载包无需安装开发环境。
 
 ## 构建与启动
 

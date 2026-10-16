@@ -30,7 +30,7 @@ The six-part grid controls drums, bass, lead and countermelody/chords with align
 
 Save editable JSON or export 44.1 kHz, 16-bit stereo WAV. Export shows progress and can be cancelled; long pieces still take time. Synthesis runs locally, with a voice Worker reducing UI-thread work.
 
-The web app needs no account and requires network for first load. Packaged Windows resources run offline. Projects do not automatically sync between them; transfer JSON files. This repository provides desktop source and build instructions, without a downloadable EXE release at present.
+The web app needs no account and requires network for first load. Packaged Windows resources run offline. Projects do not automatically sync between them; transfer JSON files. This repository provides a [Windows desktop download](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1) and source build instructions.
 
 ## Where it fits
 

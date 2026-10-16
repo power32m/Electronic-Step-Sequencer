@@ -67,12 +67,12 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 
 | | Web app | Windows desktop |
 | --- | --- | --- |
-| Start | [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) | Build from source; [instructions](docs/WINDOWS.en.md) |
+| Start | [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [Download Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1) · [Instructions](docs/WINDOWS.en.md) |
 | Network | First load needs network; no complete offline cache/PWA | Packaged resources run offline; installed WebView2 Runtime required |
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **This repository contains source and documentation; it currently has no downloadable EXE release.** Keep all files together when publishing a desktop build.
+The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 
 Autosave does not sync across browsers, devices, web and desktop. Download JSON backups before clearing browser data or replacing a project. Background playback depends on the OS/browser. A modern browser with WebGL2 is required for the instrument; desktop use is recommended for detailed editing.
 

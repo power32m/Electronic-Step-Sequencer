@@ -67,12 +67,12 @@ OP·16 是一款轻量电子乐器和步进音序器。三层键盘同时显示�
 
 | | 网页版 | Windows桌面版 |
 | --- | --- | --- |
-| 启动 | [直接在线体验](https://op16-field-sequencer.breezysquid.chatgpt.site/) | 从源码构建，见[桌面版说明](docs/WINDOWS.md) |
+| 启动 | [直接在线体验](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [下载Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1) · [使用说明](docs/WINDOWS.md) |
 | 网络 | 首次加载需联网，尚无完整离线缓存／PWA | 资源随包可离线运行，须已安装WebView2运行时 |
 | 自动保存 | 当前浏览器配置和站点 | 原本机 `OP16/WebView` 配置目录 |
 | 工程迁移 | 保存／打开JSON | 保存／打开JSON |
 
-本地Windows正式版于**2026-10-16**同步，包括大工程重新打开修复。**本仓库目前提供源码和文档，没有可直接下载的EXE发行包。** 自行构建时，请保留整个发布目录。
+本地Windows正式版于**2026-10-16**同步，包括大工程重新打开修复。**[下载Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**，解压后运行 `OP16电子步进音序器.exe`，同页附SHA-256校验文件。 自行构建时，请保留整个发布目录。
 
 自动保存不在浏览器、设备和桌面版之间同步。清理浏览器数据或替换工程前，请先下载JSON备份。后台播放受系统和浏览器限制，乐器展示需要支持WebGL2的现代浏览器，精细编曲建议使用桌面端。
 

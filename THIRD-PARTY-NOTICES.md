@@ -9,7 +9,7 @@
 
 ## 初始音乐案例
 
-《Shadow of the Ninja / 赤影战士》Boss Theme，原作游戏 Natsume（1990）。本案例根据用户指定的 MIDI 文件重建，文件标注 Arranged By Herr Dethnout 2017，来源：https://www.vgmusic.com/file/967564181be77d05ae63be4fe47ed6e8.html 。原始MIDI保留于项目素材目录及正式版音乐来源目录，版权归相应权利人；程序组件许可不改变音乐的权利归属。
+《Shadow of the Ninja / 赤影战士》Boss Theme，原作游戏 Natsume（1990）。本案例根据用户指定的 MIDI 文件重建，文件标注 Arranged By Herr Dethnout 2017，来源：https://www.vgmusic.com/file/967564181be77d05ae63be4fe47ed6e8.html 。该MIDI作为内置程序编配的制作来源，版权归相应权利人；程序组件许可不改变音乐的权利归属。
 
 
 ## Classic library sources / 经典曲库来源
