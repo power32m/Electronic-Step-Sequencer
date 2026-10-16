@@ -1,7 +1,7 @@
 [
   {
     "id": "super-c",
-    "name": "超级魂斗罗 · 第一关",
+    "name": "超级魂斗罗",
     "bpm": 150,
     "phraseBars": 74,
     "url": "https://www.vgmusic.com/music/console/nintendo/nes/Level_1.mid",
@@ -17,7 +17,7 @@
   },
   {
     "id": "double-dragon-2",
-    "name": "双截龙Ⅱ · 第一关",
+    "name": "双截龙Ⅱ",
     "bpm": 80,
     "phraseBars": 44,
     "url": "https://www.vgmusic.com/music/console/nintendo/nes/dd2-mission1.mid",
@@ -33,7 +33,7 @@
   },
   {
     "id": "jackal",
-    "name": "赤色要塞 · 第一关",
+    "name": "赤色要塞",
     "bpm": 80,
     "phraseBars": 35,
     "url": "https://www.vgmusic.com/music/console/nintendo/nes/jackal.mid",
@@ -60,6 +60,38 @@
       2,
       3,
       6
+    ]
+  },
+  {
+    "id": "river-city-ransom",
+    "name": "热血物语 · 街头主题",
+    "bpm": 100,
+    "phraseBars": 88,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/rcrstreets.mid",
+    "author": "Stockman",
+    "events": 4858,
+    "sha256": "a6dc545c2850524a89d3011424529bd7464515cc5a9f0d1314e60e1c5a70ad0a",
+    "sourceTracks": [
+      2,
+      3,
+      1,
+      4
+    ]
+  },
+  {
+    "id": "super-mario",
+    "name": "超级马里奥 · 地面主题",
+    "bpm": 105,
+    "phraseBars": 37,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Smbtheme.mid",
+    "author": "PJ Barnes",
+    "events": 1279,
+    "sha256": "ac059157543099d4a04ee1655001a5596358d7dbbdef88c86ec12bc6325dc0bb",
+    "sourceTracks": [
+      1,
+      2,
+      3,
+      4
     ]
   }
 ]

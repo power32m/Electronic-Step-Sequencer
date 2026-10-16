@@ -1,5 +1,5 @@
 import {stepEvents,editEvent,removeEvent} from './events.js';
-import {copy,names,noteName,eventNotes,inScale,nearestPitch} from './project.js';
+import {MIN_NOTE,copy,names,noteName,eventNotes,inScale,nearestPitch} from './project.js';
 export function createPiano(host,api){
  host.innerHTML=`<div class="piano-heading"><div><span class="eyebrow">PIANO ROLL / 音符编辑</span><strong id="piano-title">主旋律</strong></div><p>点击空白处写音符 · 拖动移调/换位置 · 拖动右端改变音长 · 右键删除</p></div><div class="piano-ruler"><span>音高</span><div>${Array.from({length:16},(_,i)=>`<b>${i+1}</b>`).join('')}</div></div><div class="piano-scroll"><div class="piano-body"><div class="piano-keys"></div><div class="piano-grid" role="grid" aria-label="钢琴卷帘"><div class="piano-rows"></div><div class="piano-notes"></div><div class="piano-playhead"></div></div></div></div><div class="piano-foot">和弦轨的三个音共同移动，拖动任一音即可调整和弦根音；跨小节音符显示为延续。</div>`;
  const scroll=host.querySelector('.piano-scroll'),grid=host.querySelector('.piano-grid'),keys=host.querySelector('.piano-keys'),rows=host.querySelector('.piano-rows'),layer=host.querySelector('.piano-notes'),head=host.querySelector('.piano-playhead');
@@ -11,7 +11,7 @@ export function createPiano(host,api){
   if(e.button!==0)return;e.preventDefault();grid.focus();
   const el=e.target.closest('.roll-note'),p=api.get();
   if(el){const index=+el.dataset.index;const event=+el.dataset.event;choose(index,event);drag={index,event,x:e.clientX,y:e.clientY,pitch:+el.dataset.pitch,resize:!!e.target.closest('.roll-handle'),steps:copy(p.tracks[ti].steps),begun:false};grid.setPointerCapture(e.pointerId);}
-  else {const pt=point(e),index=bar*16+pt.step,note=nearestPitch(p,pt.pitch,24,96);choose(index);api.change(q=>q.tracks[ti].steps[index]={on:true,note,velocity:.8,length:ti===5?4:1.8});api.preview(note,api.get().tracks[ti].steps[index],ti);}
+  else {const pt=point(e),index=bar*16+pt.step,note=nearestPitch(p,pt.pitch,MIN_NOTE,96);choose(index);api.change(q=>q.tracks[ti].steps[index]={on:true,note,velocity:.8,length:ti===5?4:1.8});api.preview(note,api.get().tracks[ti].steps[index],ti);}
  });
  grid.addEventListener('pointermove',e=>{
   if(!drag)return;const rect=grid.getBoundingClientRect(),dx=e.clientX-drag.x,dy=e.clientY-drag.y;
@@ -21,7 +21,7 @@ export function createPiano(host,api){
   const index=drag.resize?drag.index:Math.max(0,Math.min(drag.steps.length-1,drag.index+move));
   selected={track:ti,step:index,event:drag.event};api.select(ti,index,false,drag.event);
   api.change(p=>{const steps=copy(drag.steps);if(drag.resize){editEvent(steps[index],drag.event).length=Math.max(.25,Math.min(32,Math.round((original.length+dx/rect.width*16)*4)/4));}
-   else{const moved={...copy(original),note:nearestPitch(p,original.note+pitchDelta,24,96)};delete moved.extra;
+   else{const moved={...copy(original),note:nearestPitch(p,original.note+pitchDelta,MIN_NOTE,96)};delete moved.extra;
 if(index===drag.index)Object.assign(editEvent(steps[index],drag.event),moved);
 else{removeEvent(steps[drag.index],drag.event);if(steps[index].on){(steps[index].extra??=[]).push(moved);selected.event=steps[index].extra.length;}else{steps[index]={...moved,on:true};selected.event=0;}api.select(ti,index,false,selected.event);}}p.tracks[ti].steps=steps;},false);
  });
@@ -33,7 +33,7 @@ else{removeEvent(steps[drag.index],drag.event);if(steps[index].on){(steps[index]
  return {
   render(track,measure,selection,current){
    ti=track;bar=measure;selected=selection;host.hidden=track<3;if(track<3)return;
-   low=24;high=track===3?72:96;
+   low=MIN_NOTE;high=track===3?72:96;
    const range=low+':'+high,p=api.get();
    host.querySelector('.piano-foot').textContent=track===5&&p.tracks[5].mode==='single'?'本轨为独立副旋律，每个音符可单独编辑，保留连奏与三连音时序。':'和弦轨的三个音共同移动；跨小节音符显示为延续。';
    host.querySelector('#piano-title').textContent=(track===5&&p.tracks[5].mode==='single'?'副旋律':names[track])+' · 第 '+(bar+1)+' 小节';

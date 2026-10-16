@@ -18,7 +18,7 @@ Warm off-white surfaces, dark panels and persimmon-orange accents give the instr
 
 The default demo is a synthesized rendition of a MIDI arrangement of the boss-battle music from *Shadow of the Ninja*: 150 BPM, 24 bars, 384 steps and a phrase lasting about 38.4 seconds. Two melodies, bass and drums play together, making it easy to explore how separate parts form a piece of music.
 
-Solo the lead, then bring back the bass and drums to compare. Change a few notes and listen to the effect on rhythm and mood. The classic library provides complete MIDI arrangements of Super C, Double Dragon II, Jackal and Castlevania: 74, 44, 35 and 48 bars respectively, with full-length playback and export. The Blank Project button below Play starts an empty four-bar arrangement; add or set bars up to a maximum of 32.
+Solo the lead, then bring back the bass and drums to compare. Change a few notes and listen to the effect on rhythm and mood. The classic library provides complete MIDI arrangements of Super C, Double Dragon II, Jackal, Castlevania, River City Ransom and Super Mario Bros.: 74, 44, 35, 48, 88 and 37 bars respectively, with full-length playback and export. The Blank Project button below Play starts an empty four-bar arrangement; add or set bars up to a maximum of 32.
 
 ## Direct editing, with results you can keep
 
