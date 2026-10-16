@@ -50,3 +50,5 @@ Click **空白工程 (Blank Project)** below Play to create an empty four-bar pr
 The piano roll preserves triplets and short notes within a step. Select, edit or delete each note individually.
 
 Top view locks both rotation and zoom, keeping the complete keyboards visible for precise clicks. Switch to 3D to rotate and zoom the instrument.
+
+Layout: the three-part color legend sits below the instrument. Copy, Paste, Clear and Rhythm Variation are directly below the four-bar navigation. Track sound, volume and M/S controls use aligned columns.
