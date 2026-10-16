@@ -1,3 +1,5 @@
+[English](USER_GUIDE.en.md) | **简体中文** | [中文首页](../README.zh-CN.md)
+
 # 使用指南
 
 ## 🌐 [打开网页版](https://op16-field-sequencer.breezysquid.chatgpt.site/)

@@ -1,70 +1,72 @@
+**English** | [简体中文](README.zh-CN.md)
+
 <div align="center">
 
-# OP·16 · 电子步进音序器
+# OP·16 · Electronic Step Sequencer
 
-**让节奏，有形可见。**
+**See your rhythm take shape.**
 
-六声部编曲 · 钢琴卷帘 · 浏览器合成音源 · 交互式 3D 乐器
+Six-part composition · Piano roll · Browser synthesis · Interactive 3D instrument
 
-## 🌐 [立即打开网页版，无需安装](https://op16-field-sequencer.breezysquid.chatgpt.site/)
+## 🌐 [Try the web app — no installation needed](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-**[在线体验 →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　｜　[使用指南](docs/USER_GUIDE.md)　｜　[产品介绍](docs/PRODUCT.md)**
+**[Play online →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　|　[User guide](docs/USER_GUIDE.en.md)　|　[Product overview](docs/PRODUCT.en.md)**
 
-作者：**无痛穿耳**　·　创作日期：**2026.10.15**　·　版本：**2.1**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.1**
 
 </div>
 
-> **第一次使用？** 打开上方网页版，点击“播放”，即可听到完整的 Boss 战示例。可以直接改音符、换音色，再把自己的作品下载为 WAV 或工程文件。
+> **New here?** Open the web app and click **播放 (Play)** to hear the complete boss-battle demo. Edit its notes, change the sounds, then download your work as a WAV file or an editable project. The app interface is currently in Chinese; this repository provides English documentation.
 
-![OP·16 桌面版2.1界面参考](docs/images/device.png)
+![OP·16 desktop version 2.1 — interface reference](docs/images/device.png)
 
-## 这是什么
+## What is OP·16?
 
-OP·16 是一款把编曲与乐器外观放在同一界面中的步进音序器。你可以像操作一台实体电子乐器一样，调整旋钮、按下琴键、观察声部播放，也可以进入钢琴卷帘，逐个修改旋律音符。
+OP·16 combines a step sequencer with an interactive 3D electronic instrument. Turn knobs, press keys and watch the selected part play, or open the piano roll to edit individual melody notes.
 
-它适合电子音乐入门、节奏与旋律练习、芯片音乐实验，以及声音和交互设计演示。打开网页版就能开始，不需要账号、音源插件或音乐工作站。
+It is designed for learning electronic music, exploring rhythm and melody, experimenting with chiptune sounds, and demonstrating sound and interaction design. Start in your browser without an account, audio plugins or a music workstation.
 
-## 能做什么
+## Features
 
-| 功能 | 使用方式 |
+| Feature | What you can do |
 | --- | --- |
-| 六声部编排 | 底鼓、军鼓、镲片、贝斯、主旋律，以及和弦或独立副旋律 |
-| 完整乐句 | 每小节16步；内置 Boss 战案例为24小节、384步，其他预设为四小节 |
-| 钢琴卷帘 | 点击写入，拖动移调或换位置，拖动右端改变音长，右键删除 |
-| 旋律与和声 | 主音、音阶约束、和弦级数、本地规则旋律生成与变奏 |
-| 合成音色 | 方波、三角波、电钢琴、拨弦、合成低音与铺底等音色 |
-| 交互式3D | 旋转、俯视、结构拆解、外壳透视、配色；按实际音符反馈琴键 |
-| 作品管理 | 浏览器自动保存、JSON工程导入导出、撤销重做、小节复制粘贴 |
-| 音频导出 | 44.1kHz、16-bit、立体声WAV，支持1–32小节 |
+| Six musical parts | Arrange kick, snare, hi-hat, bass, lead, and either chords or an independent countermelody |
+| Complete phrases | Use 16 steps per bar; the boss-battle demo has 24 bars and 384 steps, while the other presets have four bars |
+| Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
+| Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
+| Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
+| Interactive 3D | Rotate the device, switch to a top view, separate its layers, see through the enclosure, change colors and watch note-driven key feedback |
+| Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
+| Audio export | Export 1–32 bars as 44.1 kHz, 16-bit stereo WAV |
 
-![六轨编排与钢琴卷帘，桌面版2.1界面参考](docs/images/sequencer.png)
+![Six-part arrangement and piano roll — desktop version 2.1 interface reference](docs/images/sequencer.png)
 
-## 三步开始
+## Get started in three steps
 
-1. **打开网页版，点击播放。** 浏览器需要这次点击来启用声音。
-2. **选一个声部或小节，修改音符。** 主旋律和贝斯可在钢琴卷帘中编辑；24小节案例用左右箭头翻页，每页四小节。
-3. **保存作品。** 下载工程文件以便以后继续编辑，或导出WAV音频。
+1. **Open the web app and click 播放 (Play).** This click enables browser audio.
+2. **Choose a part or bar and edit notes.** Edit bass and melody parts in the piano roll. Use the left/right arrows to navigate the 24-bar demo, four bars at a time.
+3. **Save your work.** Download a project file to continue editing later, or export a WAV file.
 
-想重新听原始示例，在预设列表选择“赤影战士 · Boss 战”。也可以选择“日光旋律”“夜航微光”“轻快漫步”或空白工程。
+Select **赤影战士 · Boss 战 (Shadow of the Ninja · Boss Battle)** in the preset list to restore the original demo. Other starting points include **日光旋律 (Daylight Melody)**, **夜航微光 (Nightflight Glow)**, **轻快漫步 (Lighthearted Walk)** and a blank project. English names here are translations of the Chinese labels shown in the app.
 
-## 数据与使用边界
+## Storage and limitations
 
-声音在访问者自己的浏览器中合成，工程自动保存在当前浏览器；不同用户互不影响。自动保存不会跨设备同步，清除浏览器数据可能丢失它，请下载JSON工程备份。
+Audio is synthesized in each visitor's browser. Projects are autosaved in that browser, independently of other users. Autosave does not sync across devices and may be lost when browser data is cleared. Download a JSON project as a backup.
 
-网页版首次加载需要网络，当前没有完整离线缓存或PWA安装功能。后台播放取决于浏览器和操作系统；建议前台使用。3D展示需要WebGL2，移动端与专业声卡延迟尚未做全面验收。
+The first page load requires a network connection. Full offline caching and PWA installation are not currently available. Background playback depends on the browser and operating system; foreground use is recommended. The 3D view requires WebGL2. Mobile behavior and professional audio-interface latency have not been comprehensively validated.
 
-当前不支持通用MIDI导入/输出、VST、歌词演唱或完整DAW工程。旋律轨每个起始步保存一个音符事件；普通和弦模式由根音组成三和弦，不是任意多音符钢琴编辑器。
+General MIDI import/export, VST plugins, sung vocals and complete DAW projects are not supported. Melody tracks store one note event per starting step. Standard chord mode creates triads from a root note; the piano roll does not provide unrestricted polyphonic editing.
 
-## 在本机运行源码
+## Run locally
 
-需要 Node.js **22.12或更高版本**。
+Use **Node.js 22.12 or later**.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-打开终端显示的本机网址。构建和检查：
+Open the local URL shown in your terminal. To check and build the project:
 
 ```bash
 npm test
@@ -72,36 +74,36 @@ npm run build
 npm run preview
 ```
 
-构建结果在 `dist/`，可部署到支持HTTPS的静态网站托管服务。资源使用相对路径，也适合部署在子目录中。在线体验目前由独立站点托管，**不是GitHub仓库自动托管的页面**。
+The production output is written to `dist/` and can be deployed to static hosting with HTTPS. Assets use relative paths, including when hosted in a subdirectory. The live demo is hosted separately; **this repository does not automatically serve it through GitHub Pages**.
 
-### 可选：构建Windows桌面版
+### Optional: build the Windows desktop app
 
-在Windows上准备 .NET 8 SDK，先完成网页构建，再运行：
+On Windows, install the .NET 8 SDK, build the web app first, then run:
 
 ```powershell
 dotnet publish desktop/OP16.Desktop.csproj -c Release -r win-x64 --self-contained true -o release
 ```
 
-桌面版使用系统的 Microsoft Edge WebView2 运行时；请保留发布目录全部文件。网页版与桌面版的工程保存位置不同，可通过JSON文件交换作品。
+The desktop app requires Microsoft Edge WebView2 Runtime. Keep all files in the publish directory together. Web and desktop projects use different storage locations; transfer work between them with JSON project files.
 
-## 技术与目录
+## Technology and layout
 
-前端使用原生JavaScript、Vite和Three.js；音频通过Web Audio合成，Worker配合音频时钟调度。模型由程序生成，不依赖外部模型文件。可选Windows宿主使用 .NET 8、WPF与WebView2。
+The frontend uses vanilla JavaScript, Vite and Three.js. Web Audio synthesizes the sounds, with a Worker and the audio clock handling scheduling. The 3D model is generated in code and needs no external model files. The optional Windows host uses .NET 8, WPF and WebView2.
 
 ```text
-src/          界面、编曲数据、音源、3D设备和钢琴卷帘
-public/       图标等静态资源
-desktop/      可选Windows桌面宿主源码
-docs/         产品介绍、使用指南及界面参考图
-tests/        内置案例与工程数据检查
+src/          UI, arrangement data, synthesis, 3D device and piano roll
+public/       Icons and other static assets
+desktop/      Optional Windows desktop host source
+docs/         Product overview, guides and interface reference images
+tests/        Demo score and project data checks
 ```
 
-## 示例音乐与第三方组件
+## Demo music and third-party components
 
-内置“赤影战士 · Boss 战”根据 Herr Dethnout 2017 的 MIDI 编曲重建，用于展示双旋律、低音和鼓组编排；它不是FC原声录音或硬件逐周期仿真。音乐与相关游戏权利归相应权利人，不能因程序源码公开而视作获得音乐的商业使用授权。
+The **Shadow of the Ninja · Boss Battle** demo reconstructs Herr Dethnout's 2017 MIDI arrangement to demonstrate two melodies, bass and drums. It is a synthesized rendition, rather than an FC/NES soundtrack recording or a cycle-accurate hardware emulation. Music and game rights belong to their respective rights holders. Public availability of the application source does not grant commercial rights to the music.
 
-组件版本、音乐来源和许可说明见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。本仓库尚未为应用自有代码指定开源许可证。
+See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) for component versions, music attribution and license notices. No open-source license has been designated for the application's own code.
 
-## 反馈
+## Feedback
 
-欢迎通过仓库 Issues 反馈。请附上浏览器与系统、复现步骤，以及出现问题的小节或操作；涉及个人创作的工程文件，请自行决定是否分享。
+Please use this repository's Issues to report problems. Include your browser and operating system, steps to reproduce, and the affected bar or action. Share projects containing your own creative work only if you wish to make them public.

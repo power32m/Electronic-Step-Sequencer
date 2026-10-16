@@ -1,3 +1,5 @@
+[English](PRODUCT.en.md) | **简体中文**
+
 # OP·16 产品介绍
 
 ## 🌐 [直接体验网页版](https://op16-field-sequencer.breezysquid.chatgpt.site/)
@@ -32,4 +34,4 @@ OP·16 把六声部步进音序器与一台可交互的3D乐器放在一起。�
 
 OP·16 当前侧重轻量编排与交互体验。它不提供完整音乐工作站的录音、插件、任意复音编辑或专业音频延迟保证。建议使用支持WebGL2的现代桌面浏览器体验。
 
-更多操作见 [使用指南](USER_GUIDE.md)，源码与技术说明见 [仓库首页](../README.md)。
+更多操作见 [使用指南](USER_GUIDE.md)，源码与技术说明见 [中文首页](../README.zh-CN.md)。
