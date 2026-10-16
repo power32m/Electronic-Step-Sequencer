@@ -18,11 +18,11 @@ public partial class MainWindow : Window
         var env=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,smoke?"TestWebViewClassics22":"WebView"),opts);await Web.EnsureCoreWebView2Async(env);
         Web.CoreWebView2.SetVirtualHostNameToFolderMapping("op16.local",root,CoreWebView2HostResourceAccessKind.DenyCors);
         Web.CoreWebView2.Settings.IsStatusBarEnabled=false;Web.CoreWebView2.Settings.AreDefaultContextMenusEnabled=false;Web.CoreWebView2.Settings.AreDevToolsEnabled=false;
-        'Web.CoreWebView2.NewWindowRequested+=(_,a)=>{
+        Web.CoreWebView2.NewWindowRequested+=(_,a)=>{
           a.Handled=true;
           if(Uri.TryCreate(a.Uri,UriKind.Absolute,out var link)&&link.Scheme=="https"&&link.Host=="github.com"&&(link.AbsolutePath=="/power32m/Electronic-Step-Sequencer"||link.AbsolutePath.StartsWith("/power32m/Electronic-Step-Sequencer/",StringComparison.Ordinal)))
             try{System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(link.AbsoluteUri){UseShellExecute=true});}catch{SendStatus("无法打开浏览器，请手动访问GitHub仓库。");}
-        };'
+        };
         Web.CoreWebView2.ProcessFailed+=(_,a)=>{Loading.Visibility=Visibility.Visible;Status.Text="界面进程已停止，请关闭程序后重新打开。自动保存的工程会保留。\n"+a.ProcessFailedKind;};
         Web.CoreWebView2.WebMessageReceived+=OpenMessage;Web.CoreWebView2.DownloadStarting+=SaveDownload;
         Web.CoreWebView2.PermissionRequested+=(_,a)=>{if(a.PermissionKind==CoreWebView2PermissionKind.MultipleAutomaticDownloads&&Uri.TryCreate(a.Uri,UriKind.Absolute,out var uri)&&uri.Host=="op16.local"){a.State=CoreWebView2PermissionState.Allow;a.SavesInProfile=false;a.Handled=true;}};
