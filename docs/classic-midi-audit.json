@@ -1,0 +1,65 @@
+[
+  {
+    "id": "super-c",
+    "name": "超级魂斗罗 · 第一关",
+    "bpm": 150,
+    "phraseBars": 74,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Level_1.mid",
+    "author": "VGMusic contributor (not listed in index)",
+    "events": 2756,
+    "sha256": "ebfc36bbc6ff1417216086c6f36cd1857639ec74ae9fab8950ae0d885523be44",
+    "sourceTracks": [
+      1,
+      2,
+      8,
+      10
+    ]
+  },
+  {
+    "id": "double-dragon-2",
+    "name": "双截龙Ⅱ · 第一关",
+    "bpm": 80,
+    "phraseBars": 44,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/dd2-mission1.mid",
+    "author": "Stockman",
+    "events": 2654,
+    "sha256": "1823a297cd092ceab5754165c65f6c2ee9014f5a0b2a70a9c1e9fa0f94674e9d",
+    "sourceTracks": [
+      2,
+      4,
+      1,
+      5
+    ]
+  },
+  {
+    "id": "jackal",
+    "name": "赤色要塞 · 第一关",
+    "bpm": 80,
+    "phraseBars": 35,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/jackal.mid",
+    "author": "Stevenm9; edited and updated by Keio",
+    "events": 1956,
+    "sha256": "36d886b188c04baab079660ea1e0d7e068fa66ff2e9696771a36b35e1237cee5",
+    "sourceTracks": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "id": "castlevania",
+    "name": "恶魔城 · Vampire Killer",
+    "bpm": 127,
+    "phraseBars": 48,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/CV1-_Vampire_Killer.mid",
+    "author": "Jorge D. Fuentes",
+    "events": 1692,
+    "sha256": "4a86feb188d9034ec51e0c9aa3a23fac6ca14433a570e6d4cdadf0654096ffb5",
+    "sourceTracks": [
+      1,
+      2,
+      3,
+      6
+    ]
+  }
+]

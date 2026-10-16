@@ -36,11 +36,11 @@ test('拒绝错误音高、长度、声部与乐句结构',()=>{
 import {classicScores} from '../src/classic-scores.js';
 import {stepEvents,removeEvent} from '../src/events.js';
 import {resizePhrase} from '../src/project.js';
-for(const score of classicScores)test('32-bar MIDI events preserved: '+score.id,()=>{
- const p=preset(score.name);assert.equal(p.phraseBars,32);assert.equal(p.bars,32);assert.equal(p.bpm,score.bpm);assert(!p.scaleLock);
+for(const score of classicScores)test('Complete MIDI events preserved: '+score.id,()=>{
+ const p=preset(score.name);assert.equal(p.phraseBars,score.phraseBars);assert.equal(p.bars,score.phraseBars);assert.equal(p.bpm,score.bpm);assert(!p.scaleLock);
  for(let ti=0;ti<6;ti++){
  const actual=p.tracks[ti].steps.flatMap((s,i)=>stepEvents(s).map(e=>[+(i+(e.offset??0)).toFixed(6),e.length,e.note,e.velocity]));
- assert.deepEqual(actual,score.score[ti]);assert(actual.every(e=>e[0]<512&&e[0]+e[1]<=512.000001));
+ assert.deepEqual(actual,score.score[ti]);assert(actual.every(e=>e[0]<score.phraseBars*16&&e[0]+e[1]<=score.phraseBars*16+.000001));
  }
  assert.deepEqual(validate(p),p);
 });
@@ -63,3 +63,18 @@ test('removed appearance controls reset legacy settings without changing music',
  const p=preset();p.display.explode=85;p.display.xray=70;p.display.color='石板蓝';p.display.top=true;
  const restored=validate(p);assert.equal(restored.display.explode,0);assert.equal(restored.display.xray,0);assert.equal(restored.display.color,'柿橙');assert(restored.display.top);assert.deepEqual(restored.tracks,p.tracks);
 });
+
+import {projectBarLimit,upgradeClassicExcerpt} from '../src/project.js';
+test('complete arrangements match original MIDI event totals and include final sections',()=>{
+ const counts={'super-c':2756,'double-dragon-2':2654,jackal:1956,castlevania:1692};
+ for(const data of classicScores){const p=preset(data.name);assert.equal(data.score.flat().length,counts[data.id]);assert(data.score.flat().some(e=>e[0]>=512));assert.equal(projectBarLimit(p),data.phraseBars);assert.throws(()=>resizePhrase(p,data.phraseBars+1));assert(JSON.stringify(p,null,2).length<4*1024*1024);}
+});
+function oldExcerpt(name){const p=preset(name),full=copy(p);delete p.classicVersion;resizePhrase(p,32);p.tracks.forEach((t,ti)=>t.steps.forEach((s,i)=>stepEvents(s).forEach((e,j)=>e.length=Math.min(stepEvents(full.tracks[ti].steps[i])[j].length,512-i-(e.offset??0)))));return p;}
+test('untouched old excerpts are upgraded; edited notes are preserved',()=>{
+ for(const data of classicScores){
+  const p=oldExcerpt(data.name);p.master=.6;assert(upgradeClassicExcerpt(p));assert.equal(p.phraseBars,data.phraseBars);assert.equal(p.bars,data.phraseBars);assert.equal(p.master,.6);assert.deepEqual(validate(p),p);
+  const edited=oldExcerpt(data.name);const s=edited.tracks[4].steps.find(s=>s.on);s.note=s.note===96?95:s.note+1;const before=copy(edited);assert(!upgradeClassicExcerpt(edited));assert.deepEqual(edited,before);
+ }
+});
+
+test('intentionally shortened full arrangements are never auto-expanded',()=>{const p=preset(classicScores[0].name);resizePhrase(p,32);assert.equal(validate(p).classicVersion,2);assert(!upgradeClassicExcerpt(p));assert.equal(p.phraseBars,32);});
