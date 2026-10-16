@@ -1,22 +1,45 @@
 import {scaleNote,nearestPitch} from './project.js';
 
+// Each family has two arrangements; repeated generation stays in the selected style.
 const grooves=[
- {name:'流行律动',kick:[0,6,8,10],snare:[4,12],hat:[0,2,4,6,8,10,12,14],bass:[0,6,8,14],chord:[0,8]},
- {name:'切分放克',kick:[0,3,7,10],snare:[4,12],hat:[0,2,3,6,8,10,11,14],bass:[0,3,6,10,14],chord:[2,7,10,14]},
- {name:'四拍舞曲',kick:[0,4,8,12],snare:[4,12],hat:[2,6,10,14],bass:[0,2,4,6,8,10,12,14],chord:[2,6,10,14]},
- {name:'半拍节奏',kick:[0,7,11],snare:[8],hat:[0,2,4,6,8,10,12,14,15],bass:[0,7,11],chord:[0,10]},
- {name:'轻盈切分',kick:[0,6,10],snare:[4,12],hat:[0,2,4,6,8,10,12,14],bass:[0,6,8,14],chord:[0,3,6,10,13]}
+ {id:'pop',name:'流行',patterns:[
+  [[0,6,8,10],[4,12],[0,2,4,6,8,10,12,14],[0,6,8,14],[0,8]],
+  [[0,7,8,14],[4,12],[0,2,4,6,8,10,12,14],[0,4,7,8,12],[0,6,12]]]},
+ {id:'rock',name:'摇滚',patterns:[
+  [[0,2,8,10],[4,12],[0,2,4,6,8,10,12,14],[0,2,4,6,8,10,12,14],[0,4,8,12]],
+  [[0,3,6,8,11],[4,12],[0,2,4,6,8,10,12,14],[0,3,4,8,11,12,14],[0,6,8,14]]]},
+ {id:'funk',name:'放克',patterns:[
+  [[0,3,7,10],[4,12],[0,2,3,6,8,10,11,14],[0,3,6,10,14],[2,7,10,14]],
+  [[0,6,9,14],[4,12],[0,2,5,6,8,10,13,14],[0,3,6,9,12,14],[3,6,11,14]]]},
+ {id:'dance',name:'电子舞曲',patterns:[
+  [[0,4,8,12],[4,12],[2,6,10,14],[0,2,4,6,8,10,12,14],[2,6,10,14]],
+  [[0,4,8,12],[4,12],[2,6,10,14,15],[2,6,10,14],[0,3,6,8,11,14]]]},
+ {id:'hiphop',name:'嘻哈',patterns:[
+  [[0,7,11],[8],[0,2,4,6,8,10,12,14,15],[0,7,11],[0,10]],
+  [[0,3,10,14],[8],[0,2,4,6,7,8,10,12,14],[0,3,10,14],[0,6,12]]]},
+ {id:'latin',name:'拉丁',patterns:[
+  [[0,6,10],[4,12],[0,2,4,6,8,10,12,14],[0,6,8,14],[0,3,6,10,13]],
+  [[0,7,10,14],[4,11],[0,2,4,6,8,10,12,14],[0,6,10,14],[0,3,7,10,14]]]},
+ {id:'chip',name:'FC 芯片',patterns:[
+  [[0,6,8,14],[4,12],[0,2,4,6,8,10,12,14],[0,2,4,6,8,10,12,14],[0,4,8,12]],
+  [[0,3,8,11],[4,12],[0,2,4,6,8,10,12,14,15],[0,3,4,7,8,11,12,15],[0,3,6,8,11,14]]]}
 ];
 
 // Generate a whole accompaniment while preserving the lead, harmony and mixer.
-export function generateAccompaniment(p){
+export function generateAccompaniment(p,style=p.accompanimentStyle??'auto'){
  if(p.source)throw Error('请先新建空白工程，再生成随机伴奏。');
+ if(style!=='auto'&&!grooves.some(g=>g.id===style))throw Error('不支持的伴奏风格。');
+ p.accompanimentStyle=style;
  p.seed=(p.seed+7919)%2147483647;
  let state=p.seed>>>0;
  const random=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};
- const groove=grooves[Math.floor(p.seed/7919)%grooves.length],count=p.phraseBars*16;
+ const turn=Math.floor(p.seed/7919),family=style==='auto'?grooves[turn%grooves.length]:grooves.find(g=>g.id===style);
+ const [kick,snare,hat,bass,chord]=family.patterns[turn%family.patterns.length];
+ const groove={kick,snare,hat,bass,chord},count=p.phraseBars*16;
  for(const ti of [0,1,2,3,5])p.tracks[ti].steps=Array.from({length:count},()=>({on:false,note:ti===3?36:ti===5?48:42,velocity:.76,length:1}));
  p.tracks[3].mode='single';p.tracks[5].mode='triad';
+ p.tracks[3].sound=family.id==='chip'?'triangle':'bass';
+ p.tracks[5].sound={pop:'keys',rock:'pluck',funk:'keys',dance:'pluck',hiphop:'pad',latin:'keys',chip:'pulse'}[family.id];
  function put(ti,index,note,length,velocity){
   p.tracks[ti].steps[index]={on:true,note,length:Math.min(length,count-index),velocity:Math.max(.15,Math.min(1,velocity))};
  }
@@ -38,5 +61,5 @@ export function generateAccompaniment(p){
    put(5,base+i,note,Math.max(.5,gap*(groove.chord.length>2?.6:.85)),.5+random()*.16);
   });
  }
- return groove.name;
+ return family.name;
 }

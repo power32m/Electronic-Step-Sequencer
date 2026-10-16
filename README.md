@@ -110,4 +110,4 @@ Please use this repository's Issues to report problems. Include your browser and
 
 ### Random accompaniment
 
-Create a **Blank project**, then click **随机伴奏 (Random accompaniment)** beside the sound controls. Each click generates a different drum, bass and chord arrangement across all project bars (up to 32), preserving your lead melody, harmony progression, tempo and mixer. Five rhythm families rotate with randomized velocities and bass details. Undo restores the previous arrangement. The action is disabled for classic scores.
+Create a **Blank project**, then click **随机伴奏 (Random accompaniment)** beside the sound controls. Each click generates a different drum, bass and chord arrangement across all project bars (up to 32), preserving your lead melody, harmony progression, tempo and mixer. Choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin or FC Chiptune in the style selector, or keep Random Style. Repeated clicks produce variations within the selected style; the selection is saved with the project. Chiptune uses FC triangle bass and pulse chords. Undo restores the previous arrangement. The action is disabled for classic scores.
