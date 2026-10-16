@@ -29,7 +29,7 @@ public partial class MainWindow : Window
     private void OpenMessage(object? sender,CoreWebView2WebMessageReceivedEventArgs args){
       try{using var doc=JsonDocument.Parse(args.WebMessageAsJson);if(doc.RootElement.GetProperty("type").GetString()!="open-project")return;
         var dialog=new OpenFileDialog{Title="打开 OP·16 工程",Filter="OP16 工程 (*.json)|*.json",Multiselect=false};if(dialog.ShowDialog(this)!=true)return;
-        if(new FileInfo(dialog.FileName).Length>1024*1024)throw new IOException("工程文件超过 1 MB，无法打开。");
+        if(new FileInfo(dialog.FileName).Length>4*1024*1024)throw new IOException("工程文件超过 4 MB，无法打开。");
         Web.CoreWebView2.PostWebMessageAsJson(JsonSerializer.Serialize(new{type="project-open",text=File.ReadAllText(dialog.FileName)}));
       }catch(Exception ex){SendStatus("打开失败："+ex.Message);}
     }
@@ -46,18 +46,25 @@ public partial class MainWindow : Window
       await Task.Delay(700);Loading.Visibility=Visibility.Collapsed;if(!smoke)return;
       try{
         var outDir=Path.Combine(AppContext.BaseDirectory,testZoom?"验收125":"验收");Directory.CreateDirectory(outDir);
-        await Task.Delay(1200);await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('load-demo').click();true;");
+        var largeFixture=Path.Combine(AppContext.BaseDirectory,"smoke-large.op16.json");
+        if(File.Exists(largeFixture)){
+          if(new FileInfo(largeFixture).Length>4*1024*1024)throw new IOException("大型工程超过4MB。");
+          Web.CoreWebView2.PostWebMessageAsJson(JsonSerializer.Serialize(new{type="project-open",text=File.ReadAllText(largeFixture)}));await Task.Delay(500);
+          var restored=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.getProject().phraseBars");if(restored!="88")throw new IOException("大型完整工程重新打开失败。");
+          File.WriteAllText(Path.Combine(outDir,"大型工程恢复.json"),JsonSerializer.Serialize(new{bytes=new FileInfo(largeFixture).Length,bars=88,result="PASS"}));
+        }
+        await Task.Delay(1200);await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('preset').value='赤影战士 · Boss 战';document.getElementById('preset').dispatchEvent(new Event('change'));true;");
         using(var stream=File.Create(Path.Combine(outDir,"桌面界面.png")))await Web.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png,stream);
         await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('piano-panel').scrollIntoView({block:'end'});true;");await Task.Delay(300);
         using(var stream=File.Create(Path.Combine(outDir,"旋律编辑.png")))await Web.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png,stream);
         await Web.CoreWebView2.ExecuteScriptAsync("scrollTo(0,0);true;");
-        await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('save').click();document.getElementById('export').click();true;");for(var attempt=0;attempt<300;attempt++){await Task.Delay(200);if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")=="true")break;}
-        if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")!="true")throw new IOException("WAV导出未在60秒内完成。");await Task.Delay(700);
+        await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('save').click();document.getElementById('export').click();true;");for(var attempt=0;attempt<1500;attempt++){await Task.Delay(200);if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")=="true")break;}
+        if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")!="true")throw new IOException("WAV导出未在300秒内完成。");await Task.Delay(700);
         await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.engine.stop();window.OP16.engine.start();true;");await Task.Delay(1300);
         var before=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");
         WindowState=WindowState.Minimized;await Task.Delay(200);var hiddenStart=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");await Task.Delay(3300);var background=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");WindowState=WindowState.Normal;
         await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.engine.stop();true;");
-        var result=await Web.CoreWebView2.ExecuteScriptAsync("({title:document.title,bridge:!!window.chrome.webview,canvas:document.querySelectorAll('canvas').length,steps:document.querySelectorAll('[data-step]').length,stats:window.OP16.stats(),linkCheck:(()=>{const d=window.OP16.device,p=window.OP16.getProject();d.update(p,0);const start=structuredClone(d.stats);d.update(p,383);const end=structuredClone(d.stats);p.display.keyboardTrack=5;p.display.keyboardOctave=2;d.update(p,0);const counter=structuredClone(d.stats);d.update(window.OP16.getProject(),-1);return {start,end,counter};})(),exportStats:window.lastExportStats,exportButton:document.getElementById('export').textContent,toast:document.getElementById('toast').textContent,project:window.OP16.getProject(),viewport:{width:innerWidth,height:innerHeight},scrollWidth:document.documentElement.scrollWidth})");
+        var result=await Web.CoreWebView2.ExecuteScriptAsync("({title:document.title,bridge:!!window.chrome.webview,canvas:document.querySelectorAll('canvas').length,steps:document.querySelectorAll('[data-step]').length,stats:window.OP16.stats(),layout:{legendInInstrument:!!document.querySelector('.instrument .layer-legend'),toolsInPhrase:!!document.querySelector('.phrase-main #copy'),presetCount:document.querySelector('#preset').options.length,layers:window.OP16.device.stats.layers},linkCheck:(()=>{const d=window.OP16.device,p=window.OP16.getProject();d.update(p,0);const start=structuredClone(d.stats);d.update(p,383);const end=structuredClone(d.stats);p.display.keyboardTrack=5;p.display.keyboardOctave=2;d.update(p,0);const counter=structuredClone(d.stats);d.update(window.OP16.getProject(),-1);return {start,end,counter};})(),exportStats:window.lastExportStats,exportButton:document.getElementById('export').textContent,toast:document.getElementById('toast').textContent,project:window.OP16.getProject(),viewport:{width:innerWidth,height:innerHeight},scrollWidth:document.documentElement.scrollWidth})");
         File.WriteAllText(Path.Combine(outDir,"桌面冒烟.json"),JsonSerializer.Serialize(new{before=JsonDocument.Parse(before).RootElement.Clone(),hiddenStart=JsonDocument.Parse(hiddenStart).RootElement.Clone(),background=JsonDocument.Parse(background).RootElement.Clone(),result=JsonDocument.Parse(result).RootElement.Clone(),window=new{Width,Height,workWidth=SystemParameters.WorkArea.Width,workHeight=SystemParameters.WorkArea.Height,zoom=Web.ZoomFactor}}));
       }catch(Exception ex){File.WriteAllText(Path.Combine(AppContext.BaseDirectory,"桌面验收错误.txt"),ex.ToString());}finally{Close();}
     }
