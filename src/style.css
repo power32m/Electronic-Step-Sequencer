@@ -9,3 +9,5 @@
 
 .bar-paging{display:flex;align-items:center;gap:9px;margin-top:9px}.bar-paging button{padding:3px 9px}.bar-paging span{font:10px Consolas;color:#737d68}#score-size{font:inherit}.project-name input{width:235px}
 .brand-credit{display:flex;flex-direction:column;gap:3px;margin-left:10px;padding-left:20px;border-left:1px solid #d5d9ce;color:#747d6c;font-size:11px;line-height:1.5;letter-spacing:.3px;white-space:nowrap}@media(max-width:650px){header{flex-wrap:wrap;gap:16px}.brand{flex-wrap:wrap}.brand-credit{margin-left:0;padding-left:12px}.header-right{margin-left:auto}}
+
+.transport .transport-action{display:block;width:100%;height:48px;padding:0 8px;font-size:14px;white-space:nowrap}.transport .new-project{margin-top:8px;background:#fafaf6;color:#40473b;border-color:#cdd2c5;box-shadow:0 2px 6px #252b2010}.transport .new-project span{margin-right:5px}.tonality #phrase-length{width:52px;border:1px solid #cdd2c5;border-radius:4px;padding:5px;background:#fafaf6}.tonality #add-bar{font-size:10px;padding:6px 8px}

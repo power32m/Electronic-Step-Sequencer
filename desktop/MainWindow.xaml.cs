@@ -15,7 +15,7 @@ public partial class MainWindow : Window
         Directory.CreateDirectory(data);var root=Path.Combine(AppContext.BaseDirectory,"wwwroot");
         if(!File.Exists(Path.Combine(root,"index.html")))throw new IOException("网页资源缺失，请保留正式版目录的所有文件后重试。");
         var opts=new CoreWebView2EnvironmentOptions("--disable-background-timer-throttling --disable-renderer-backgrounding --autoplay-policy=no-user-gesture-required");
-        var env=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,smoke?"TestWebViewBoss21":"WebView"),opts);await Web.EnsureCoreWebView2Async(env);
+        var env=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,smoke?"TestWebViewClassics22":"WebView"),opts);await Web.EnsureCoreWebView2Async(env);
         Web.CoreWebView2.SetVirtualHostNameToFolderMapping("op16.local",root,CoreWebView2HostResourceAccessKind.DenyCors);
         Web.CoreWebView2.Settings.IsStatusBarEnabled=false;Web.CoreWebView2.Settings.AreDefaultContextMenusEnabled=false;Web.CoreWebView2.Settings.AreDevToolsEnabled=false;
         Web.CoreWebView2.NewWindowRequested+=(_,a)=>a.Handled=true;
@@ -53,7 +53,7 @@ public partial class MainWindow : Window
         await Web.CoreWebView2.ExecuteScriptAsync("scrollTo(0,0);true;");
         await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('save').click();document.getElementById('export').click();true;");for(var attempt=0;attempt<300;attempt++){await Task.Delay(200);if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")=="true")break;}
         if(await Web.CoreWebView2.ExecuteScriptAsync("!!window.lastExportStats")!="true")throw new IOException("WAV导出未在60秒内完成。");await Task.Delay(700);
-        await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('play').click();true;");await Task.Delay(1300);
+        await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.engine.stop();window.OP16.engine.start();true;");await Task.Delay(1300);
         var before=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");
         WindowState=WindowState.Minimized;await Task.Delay(200);var hiddenStart=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");await Task.Delay(3300);var background=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.stats()");WindowState=WindowState.Normal;
         await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.engine.stop();true;");

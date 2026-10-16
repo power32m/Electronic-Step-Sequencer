@@ -12,7 +12,7 @@ Six-part composition · Piano roll · Browser synthesis · Interactive 3D instru
 
 **[Play online →](https://op16-field-sequencer.breezysquid.chatgpt.site/)　|　[User guide](docs/USER_GUIDE.en.md)　|　[Product overview](docs/PRODUCT.en.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.1**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2**
 
 </div>
 
@@ -31,7 +31,7 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 | Feature | What you can do |
 | --- | --- |
 | Six musical parts | Arrange kick, snare, hi-hat, bass, lead, and either chords or an independent countermelody |
-| Complete phrases | Use 16 steps per bar; the boss-battle demo has 24 bars and 384 steps, while the other presets have four bars |
+| Complete phrases | Use 16 steps per bar; the boss-battle demo has 24 bars and 384 steps, the four classic-library excerpts each have 32 bars |
 | Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
 | Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
 | Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
@@ -47,7 +47,7 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 2. **Choose a part or bar and edit notes.** Edit bass and melody parts in the piano roll. Use the left/right arrows to navigate the 24-bar demo, four bars at a time.
 3. **Save your work.** Download a project file to continue editing later, or export a WAV file.
 
-Select **赤影战士 · Boss 战 (Shadow of the Ninja · Boss Battle)** in the preset list to restore the original demo. Other starting points include **日光旋律 (Daylight Melody)**, **夜航微光 (Nightflight Glow)**, **轻快漫步 (Lighthearted Walk)** and a blank project. English names here are translations of the Chinese labels shown in the app.
+Select **赤影战士 · Boss 战 (Shadow of the Ninja · Boss Battle)** in the preset list to restore the original demo. The classic library also includes **超级魂斗罗 · 第一关 (Super C · Stage 1)**, **双截龙Ⅱ · 第一关 (Double Dragon II · Mission 1)**, **赤色要塞 · 第一关 (Jackal · Stage 1)** and **恶魔城 · Vampire Killer (Castlevania)**, each arranged as a 32-bar excerpt. Click **空白工程 (Blank Project)** below Play to start from scratch. Set the project length or add bars, up to 32. See the [classic library notes](docs/CLASSIC_LIBRARY.md).
 
 ## Storage and limitations
 
@@ -55,7 +55,7 @@ Audio is synthesized in each visitor's browser. Projects are autosaved in that b
 
 The first page load requires a network connection. Full offline caching and PWA installation are not currently available. Background playback depends on the browser and operating system; foreground use is recommended. The 3D view requires WebGL2. Mobile behavior and professional audio-interface latency have not been comprehensively validated.
 
-General MIDI import/export, VST plugins, sung vocals and complete DAW projects are not supported. Melody tracks store one note event per starting step. Standard chord mode creates triads from a root note; the piano roll does not provide unrestricted polyphonic editing.
+General MIDI import/export, VST plugins, sung vocals and complete DAW projects are not supported. Melody tracks preserve independently timed notes within a step, including triplets. Standard chord mode creates triads from a root note; the piano roll remains a lightweight editor rather than a full DAW.
 
 ## Run locally
 

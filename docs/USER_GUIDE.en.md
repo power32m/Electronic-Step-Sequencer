@@ -39,3 +39,10 @@ Autosave belongs to the current browser. Regularly click **保存工程 (Save Pr
 WAV export supports 1–32 bars, looping the current complete phrase as needed. Output is 44.1 kHz, 16-bit stereo, with an additional 1.8-second audio tail. The default 24-bar boss-battle export lasts about 40.2 seconds. Audio rendering takes time; the browser downloads the file when it is ready.
 
 Keep downloaded backups. The web app does not sync projects across devices or provide a cloud project library. Background playback and mobile behavior depend on the browser and operating system.
+
+
+## Project length and classic library
+
+Click **空白工程 (Blank Project)** below Play to create an empty four-bar project. Set **工程小节 (Project Bars)** or click **＋ 小节 (Add Bar)** to use 1–32 bars. Add Bar is disabled at 32. Shortening removes the final bars; Undo restores them. Resizing also sets the default export length. Each of the four new classic tracks is a 32-bar excerpt; the default Shadow of the Ninja demo remains 24 bars.
+
+The piano roll preserves triplets and short notes within a step. Select, edit or delete each note individually.

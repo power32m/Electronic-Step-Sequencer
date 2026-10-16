@@ -6,7 +6,7 @@
 
 No installation needed. Open the app and click **播放 (Play)** to hear the built-in demo and start editing. The app interface is currently in Chinese; English documentation is available here.
 
-**Created by 无痛穿耳 · Created 2026.10.15 · Version 2.1**
+**Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2**
 
 ## An electronic instrument you can see, hear and edit
 
@@ -18,7 +18,7 @@ Warm off-white surfaces, dark panels and persimmon-orange accents give the instr
 
 The default demo is a synthesized rendition of a MIDI arrangement of the boss-battle music from *Shadow of the Ninja*: 150 BPM, 24 bars, 384 steps and a phrase lasting about 38.4 seconds. Two melodies, bass and drums play together, making it easy to explore how separate parts form a piece of music.
 
-Solo the lead, then bring back the bass and drums to compare. Change a few notes and listen to the effect on rhythm and mood. Three other melody presets and a blank project offer starting points for electric piano, plucked sounds and synthesizers.
+Solo the lead, then bring back the bass and drums to compare. Change a few notes and listen to the effect on rhythm and mood. The classic library adds 32-bar excerpts from Super C, Double Dragon II, Jackal and Castlevania. The Blank Project button below Play starts an empty four-bar arrangement; add or set bars up to a maximum of 32.
 
 ## Direct editing, with results you can keep
 
