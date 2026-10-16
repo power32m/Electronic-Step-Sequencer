@@ -35,7 +35,7 @@ It is designed for learning electronic music, exploring rhythm and melody, exper
 | Piano roll | Click to add notes, drag to change pitch or position, resize the right edge for duration, and right-click to delete |
 | Melody and harmony | Set the root and scale, constrain notes to the scale, edit chord degrees, and generate or vary melodies with local rules |
 | Synthesized sounds | Choose square wave, triangle wave, electric piano, plucked sounds, synth bass, pads and more |
-| Interactive 3D | Rotate the device, switch to a top view, enable auto-rotation or part labels, and watch note-driven key feedback |
+| Interactive 3D | Rotate the device, switch to a top view, enable auto-rotation, and watch note-driven key feedback |
 | Project management | Use browser autosave, JSON import/export, undo/redo, and bar copy/paste |
 | Audio export | Export 1–32 bars as 44.1 kHz, 16-bit stereo WAV |
 
