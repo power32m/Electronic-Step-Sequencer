@@ -48,6 +48,7 @@ function renderStep(){
  piano?.setPlayhead(current,viewBar);
 }
 function render(){
+ document.querySelector('.stage-caption span:last-child').textContent=project.display.top?'视角已锁定 · 滚轮缩放 · 点击琴键试听':'拖动旋转 · 滚轮缩放 · 点击琴键试听';
  viewBar=Math.min(viewBar,project.phraseBars-1);selected.step=Math.min(selected.step,project.phraseBars*16-1);selected.event=Math.min(selected.event??0,project.tracks[selected.track].steps[selected.step].extra?.length??0);
  setValue('accompaniment-style',project.accompanimentStyle??'auto');$('accompaniment-style').disabled=!!project.source;$('random-accompaniment').disabled=!!project.source;$('accompaniment-hint').textContent=project.source?'空白工程可用':'鼓组 · 贝斯 · 和弦';
  const barLimit=projectBarLimit(project);$('phrase-length').max=barLimit;setValue('phrase-length',project.phraseBars);$('add-bar').disabled=project.phraseBars>=barLimit;
