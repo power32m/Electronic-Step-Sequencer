@@ -1,6 +1,6 @@
 import {GROOVE_STYLES} from './groove-styles.js';
 import {generateAccompaniment} from './accompaniment.js';
-import {editEvent,stepEvents} from './events.js';
+import {editEvent} from './events.js';
 import './style.css';
 import {MIN_NOTE,projectBarLimit,presetName,preset,load,validate,copy,STORE,names,noteName,PRESETS,ROOTS,SOUNDS,chordName,inScale,nearestPitch,transposeProject,setHarmony,generateMelody,loadNotice,PREVIOUS_STORE,LEGACY_STORE,resizePhrase} from './project.js';
 import {Engine,renderWav} from './audio.js';
@@ -8,7 +8,7 @@ import {createDevice} from './device.js';
 import {createPiano} from './piano.js';
 let project=load(),undo=[],redo=[],clipboard=null,selected={track:4,step:0},playing=false,current=-1,exporting=false,viewBar=0,follow=true,notice=loadNotice;
 project.display.top=true;project.display.auto=false;project.display.labels=false;
-const $=id=>document.getElementById(id),h=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
 document.querySelector('#app').innerHTML=`<main>
 <header><div class="brand"><span class="brand-icon">◧</span><div><h1>OP<span>·</span>16</h1><p>旋律步进音序器 <b>CLASSICS EDITION · 2.2.1</b></p></div><div class="brand-credit"><span>作者：无痛穿耳</span><time datetime="2026-10-15">时间：2026.10.15</time></div></div><div class="header-right"><span class="local-dot"></span><span>本地 · 离线乐器</span><button id="jump-score" class="text-button">编曲区 ↓</button><button id="help" class="text-button">使用指南 ↗</button><a class="github-entry" href="https://github.com/power32m/Electronic-Step-Sequencer" target="_blank" rel="noopener noreferrer" aria-label="在新窗口打开GitHub源码与Star页面">☆ GitHub / Star ↗</a></div></header>
 <div class="player-anchor" aria-hidden="true"></div><section class="player-bar" aria-label="播放与曲库"><div class="transport"><span class="eyebrow">TRANSPORT / 播放</span><button id="play" class="play transport-action"><span>▶</span> 播放</button><button id="new-project" class="transport-action new-project"><span>＋</span> 空白工程</button><p>固定 4/4 拍</p></div><div class="player-library"><span class="eyebrow">CLASSICS / 经典曲库</span><select id="preset" aria-label="音乐预设"><option value="">选择经典曲目…</option>${PRESETS.map(s=>`<option>${s}</option>`).join('')}</select><small>空格键播放 / 暂停 · 工程自动保存于本机</small></div><div class="player-navigation"><span class="eyebrow">POSITION / 播放定位</span><div class="seek-row"><label>小节 <input id="seek-bar" aria-label="跳转到小节" type="number" min="1" step="1" value="1"> / <output id="total-bars"></output></label><button id="rewind" title="停止并回到开头">↤ 回到开头</button></div><button id="play-from-bar">从当前小节播放</button></div></section><section class="instrument"><div class="section-bar"><div><span class="eyebrow">01 / INSTRUMENT</span><h2>让节奏，有形可见。</h2></div><div class="view-buttons"><button id="view3">立体 3D</button><button id="view2" class="active">俯视 2D</button><button id="auto">自动旋转</button><button id="reset-view" title="恢复默认角度">↺</button></div></div><div class="stage-wrap"><div id="device"></div><div class="stage-caption"><span>MODEL OP–16</span><span>拖动旋转 · 滚轮缩放 · 点击琴键试听</span></div></div><div class="instrument-meta"><span class="layer-legend"><i style="--layer:#e76338"></i>主旋律 <i style="--layer:#739780"></i>副旋律 / 和弦 <i style="--layer:#698fa8"></i>贝斯</span><small>三层同步亮键 · 自动适配全曲音域</small></div></section>

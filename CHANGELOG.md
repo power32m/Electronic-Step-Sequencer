@@ -6,6 +6,15 @@ Version **2.2.1** · Web and local Windows synchronized **2026-10-16**. Historic
 
 ## 2.2.1 — 2026-10-16 · Current / 当前
 
+### Source maintenance — 2026-10-17 / 源码维护
+
+- Remove 62 obsolete CSS selectors, unused imports, an unused single-keyboard helper and five unreferenced screenshots; reuse the keyboard hit-test helper.
+  删除62条失效样式选择器、无用引用、旧单层键盘辅助函数及5张无引用旧截图，复用琴键点击检测逻辑。
+- Verified 35 tests, production build and four viewport layouts, plus all seven presets, three manuals, styled accompaniment, playback/pause and WAV export. Product behavior is unchanged; the published v2.2.1 binary remains available.
+  已验证35项测试、生产构建和4种屏幕布局，以及7首曲库、三层键盘、风格伴奏、播放暂停与WAV导出。产品行为保持一致，已发布的v2.2.1安装包继续保留。
+
+### Features / 功能
+
 - Three stacked keyboards: simultaneous lead, countermelody/chords and bass, complete-score ranges, chord tones and per-layer audition.
   三层键盘同步显示主旋律、副旋律／和弦与贝斯，自动覆盖全曲音域，支持和弦多音和各层独立试听。
 - Fixed 2D locks rotation and zoom; 3D retains camera controls. Instrument legend and aligned tracks share part colors.

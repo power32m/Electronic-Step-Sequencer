@@ -70,7 +70,7 @@ function bossPreset(p){
 export let loadNotice='';
 export function load(){try{const value=localStorage.getItem(STORE);if(value){const p=validate(JSON.parse(value)),data=classicScores.find(s=>'classic-'+s.id===p.source);if(data&&p.classicVersion!==2&&p.phraseBars===32&&data.phraseBars>32)loadNotice=upgradeClassicExcerpt(p)?'已补齐当前经典曲目的完整版，原速度、音色和混音设置已保留。':'已保留你的32小节修改；点击载入完整版可重新载入完整曲谱。';return p;}if(localStorage.getItem(PREVIOUS_STORE)||localStorage.getItem(LEGACY_STORE))loadNotice='已载入新的 Boss 战初始案例，旧版自动保存仍保留，可点击恢复。';}catch{loadNotice='自动保存读取失败，已保留恢复副本并载入 Boss 战案例。';try{localStorage.setItem(STORE+'-recovery-'+Date.now(),localStorage.getItem(STORE)||'');}catch{}}return preset();}
 
-export const keyboardBase=p=>24+p.display.keyboardOctave*12+(p.source==='boss-midi-herr-dethnout-2017'?({4:-1,5:4}[p.display.keyboardTrack]??0):0);
+
 
 export function presetName(p){if(p.source==='boss-midi-herr-dethnout-2017')return PRESETS[0];return classicScores.find(s=>'classic-'+s.id===p.source)?.name??'';}
 

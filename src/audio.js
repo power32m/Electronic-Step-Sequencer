@@ -1,5 +1,5 @@
 import {stepEvents} from './events.js';
-import {copy,stepDuration,audible,eventNotes} from './project.js';
+import {copy,stepDuration,audible} from './project.js';
 import {VoiceBank} from './voice-bank.js';
 export {voice} from './voice.js';
 function chain(ctx,p){
