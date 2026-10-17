@@ -8,6 +8,9 @@ Version **2.2.1** · Web and local Windows synchronized **2026-10-16**. Historic
 
 ### Source maintenance — 2026-10-17 / 源码维护
 
+- Fix rapid sticky-player flicker near the scroll threshold by reserving the expanded toolbar's document space. Verified stable scrolling at five viewport widths, repeated threshold crossings, resizing and play/pause while sticky.
+  修复吸顶播放栏在滚动临界区域剧烈抖动：保留展开工具栏的页面占位，避免高度变化引发反复切换。已验证5种宽度、反复跨越临界点、窗口调整与吸顶状态下播放暂停。
+
 - Remove 62 obsolete CSS selectors, unused imports, an unused single-keyboard helper and five unreferenced screenshots; reuse the keyboard hit-test helper.
   删除62条失效样式选择器、无用引用、旧单层键盘辅助函数及5张无引用旧截图，复用琴键点击检测逻辑。
 - Verified 35 tests, production build and four viewport layouts, plus all seven presets, three manuals, styled accompaniment, playback/pause and WAV export. Product behavior is unchanged; the published v2.2.1 binary remains available.
