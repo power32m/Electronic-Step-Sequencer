@@ -91,7 +91,7 @@ $('seek-bar').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();e.currentTarg
 createStickyPlayer(document.querySelector('.player-frame'),document.querySelector('.player-bar'),document.querySelector('.player-anchor'));
 
 $('accompaniment-style').onchange=()=>change(p=>p.accompanimentStyle=$('accompaniment-style').value);
-$('random-accompaniment').onclick=()=>{if(project.source)return;engine.stop();let style;change(p=>{style=generateAccompaniment(p);});toast('已生成「'+style+'」伴奏 · '+project.phraseBars+' 小节，可撤销；再次点击生成同风格变化。');};
+$('random-accompaniment').onclick=()=>{if(project.source)return;engine.stop();let style;change(p=>{style=generateAccompaniment(p);});toast('已本地编配「'+style+'」伴奏 · '+project.phraseBars+' 小节，可撤销；再次点击生成不同编配。');};
 $('phrase-length').onchange=()=>{const n=Number($('phrase-length').value);if(!Number.isInteger(n)||n<1||n>projectBarLimit(project)){toast('工程小节数须为1–'+projectBarLimit(project)+'。');render();return;}engine.stop();change(p=>resizePhrase(p,n));toast('工程已调整为 '+n+' 小节，可撤销。');};
 $('add-bar').onclick=()=>{if(project.phraseBars>=projectBarLimit(project)){toast('工程已达到当前小节上限。');return;}engine.stop();change(p=>resizePhrase(p,p.phraseBars+1));};
 for(const id of ['bpm','swing','cutoff','master'])$(id).onchange=()=>{const el=$(id),v=Number(el.value);if(!Number.isFinite(v)||v<+el.min||v>+el.max){el.value=project[id];toast('请输入 '+el.min+' 至 '+el.max+' 的数值');return;}change(p=>p[id]=id==='bpm'?Math.round(v):v);};

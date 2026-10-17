@@ -12,7 +12,7 @@ Three stacked keyboards · Six-part sequencing · Piano roll · FC/NES classics
 
 **[User guide](docs/USER_GUIDE.en.md) · [Product overview](docs/PRODUCT.en.md) · [Windows desktop](docs/WINDOWS.en.md) · [What's new](CHANGELOG.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.5** · Updated **2026.10.18**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.3.0** · Updated **2026.10.18**
 
 </div>
 
@@ -36,7 +36,7 @@ OP·16 is a lightweight electronic instrument and step sequencer. Three keyboard
 | Playback | Sticky player, pause/continue, bar jump, playback from the editing bar and rewind |
 | Editing | Piano roll, pitch, velocity, duration, independently timed notes within a step, undo/redo and bar copy/paste |
 | Composition | Root, scale constraints, chord degrees, local-rule melody generation and variations |
-| Accompaniment | Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin and FC Chiptune, plus Random Style; repeat for variations in blank projects |
+| Accompaniment | Seven local style grammars, two-bar themes, phrase development, melody-aware spacing and six-candidate selection; no composition API or model download. [How it works](docs/LOCAL_COMPOSER.md) |
 | Audio | Dedicated voice Worker, reusable cached buffers, WAV export with progress and cancellation |
 | Projects | Local autosave, JSON import/export, v1/v2/v3 compatibility; 4 MB import limit on web and updated Windows builds |
 
@@ -76,9 +76,9 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The website, source and local Windows build are now **2.2.5 (2026-10-18)**, including a gently smoothed, stabilized live audio oscilloscope, version-linked release dates and the preceding rendering cleanup. Playback, pause/resume, silence, track switching and key audition were checked in a real browser, alongside 44 automated checks.
+The website, source and local Windows build are now **2.3.0 (2026-10-18)**, including the [local accompaniment composer](docs/LOCAL_COMPOSER.md), a gently smoothed, stabilized live audio oscilloscope, version-linked release dates and the preceding rendering cleanup. Playback, pause/resume, silence, track switching and key audition were checked in a real browser, alongside 51 automated checks.
 
-The **published Windows ZIP remains v2.2.2** with the ten-song library; it predates the live oscilloscope. Build the current source for 2.2.5.
+The **published Windows ZIP remains v2.2.2** with the ten-song library; it predates the live oscilloscope. Build the current source for 2.3.0.
 
  **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 

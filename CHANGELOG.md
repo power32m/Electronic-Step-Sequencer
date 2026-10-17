@@ -1,10 +1,21 @@
 # Changelog / 更新记录
 
-Version **2.2.5** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
+Version **2.3.0** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
 
-版本 **2.2.5** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
+版本 **2.3.0** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
 
-## 2.2.5 — 2026-10-18 · Current / 当前
+## 2.3.0 — 2026-10-18 · Current / 当前
+
+- Replace the two-pattern accompaniment switch with local style grammars, two-bar motifs, four/eight-bar development, bass/kick coordination, phrase fills and a final cadence. FC uses chord-tone pulse arpeggios and triangle bass.
+  两套固定伴奏升级为本地风格规则、两小节主题、四／八小节发展、贝斯与底鼓呼应、过门和收尾；FC采用脉冲波分解和弦与三角波贝斯。
+- Consider existing lead attacks, held notes and timed events; reduce chord density/strength for busy leads. Rank six candidates for density, register movement, close clashes and similarity to the previous accompaniment.
+  分析已有主旋律攻击点、长音和步内音符；密集旋律减少和弦密度及力度，每次比较六套候选的密度、音区跳跃、贴近音冲突和与上次的相似度。
+- Preserve lead, harmony progression, tempo, key, scale and mixer; regeneration replaces drums, bass and countermelody/chords and supports Undo/Redo. Chord-degree editing preserves FC arpeggio intervals.
+  保留主旋律、和弦进行、速度、调性及混音；重写鼓组、贝斯和副旋律／和弦，支持撤销重做；修改和弦级数保留FC分解和弦形态。
+- Verify 51 automated checks, 70 distinct style arrangements, offline generation, playback, seven non-silent WAV renders and desktop generation. The composer uses local rules, not a trained neural model or remote API. See [details](docs/LOCAL_COMPOSER.md).
+  验证51项自动检查、70套不同风格编排、断网生成、播放、七种非静音WAV及桌面生成。采用本地规则，不依赖训练模型或在线API，见[说明](docs/LOCAL_COMPOSER.md)。
+
+## 2.2.5 — 2026-10-18
 
 - Regroup the sound console into playback status, four evenly spaced sound controls and accompaniment generation. Align knob labels and numeric values, with a separate accompaniment row for narrower windows and stacked groups on phones. Existing musical controls are preserved.
   控制台重排为播放状态、四个等距声音控件和伴奏生成三组，统一旋钮文字及数值对齐；较窄窗口伴奏独立成行，手机纵向排列，保留原有音乐功能。

@@ -4,13 +4,13 @@
 
 ## Current status
 
-Current source/local build: version 2.2.5 (2026-10-18); published download: v2.2.2 contains the ten selected examples and stable sticky player. Jackal has no silent lead-in. The 4 MB project-opening limit supports the 113-bar Mega Man II arrangement; retired examples remain importable as personal projects.
+Current source/local build: version 2.3.0 (2026-10-18); published download: v2.2.2 contains the ten selected examples and stable sticky player. Jackal has no silent lead-in. The 4 MB project-opening limit supports the 113-bar Mega Man II arrangement; retired examples remain importable as personal projects.
 
 **[Download the Windows x64 release](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract the ZIP and open `OP16电子步进音序器.exe`. Keep the folder together; use the attached SHA256 file to verify the download. The app is not code-signed; verify the source if Windows displays an unknown-publisher prompt.
 
 You can also [play online](https://op16-field-sequencer.breezysquid.chatgpt.site/). The build steps below are for developers; users of the ZIP need no development tools.
 
-The current source/local build includes the live audio oscilloscope and version-linked release dates, plus the preceding rendering cleanup. The hosted website is also updated. The existing v2.2.2 download predates these changes; build the current source for 2.2.5.
+The current source/local build includes the live audio oscilloscope and version-linked release dates, plus the preceding rendering cleanup. The hosted website is also updated. The existing v2.2.2 download predates these changes; build the current source for 2.3.0.
 
 ## Build and start
 

@@ -1,65 +1,134 @@
-import {scaleNote,nearestPitch} from './project.js';
+import {scaleNote,nearestPitch,triadNotes} from './project.js';
+import {stepEvents} from './events.js';
+import {ACCOMPANIMENT_STYLES} from './accompaniment-styles.js';
 
-// Each family has two arrangements; repeated generation stays in the selected style.
-const grooves=[
- {id:'pop',name:'流行',patterns:[
-  [[0,6,8,10],[4,12],[0,2,4,6,8,10,12,14],[0,6,8,14],[0,8]],
-  [[0,7,8,14],[4,12],[0,2,4,6,8,10,12,14],[0,4,7,8,12],[0,6,12]]]},
- {id:'rock',name:'摇滚',patterns:[
-  [[0,2,8,10],[4,12],[0,2,4,6,8,10,12,14],[0,2,4,6,8,10,12,14],[0,4,8,12]],
-  [[0,3,6,8,11],[4,12],[0,2,4,6,8,10,12,14],[0,3,4,8,11,12,14],[0,6,8,14]]]},
- {id:'funk',name:'放克',patterns:[
-  [[0,3,7,10],[4,12],[0,2,3,6,8,10,11,14],[0,3,6,10,14],[2,7,10,14]],
-  [[0,6,9,14],[4,12],[0,2,5,6,8,10,13,14],[0,3,6,9,12,14],[3,6,11,14]]]},
- {id:'dance',name:'电子舞曲',patterns:[
-  [[0,4,8,12],[4,12],[2,6,10,14],[0,2,4,6,8,10,12,14],[2,6,10,14]],
-  [[0,4,8,12],[4,12],[2,6,10,14,15],[2,6,10,14],[0,3,6,8,11,14]]]},
- {id:'hiphop',name:'嘻哈',patterns:[
-  [[0,7,11],[8],[0,2,4,6,8,10,12,14,15],[0,7,11],[0,10]],
-  [[0,3,10,14],[8],[0,2,4,6,7,8,10,12,14],[0,3,10,14],[0,6,12]]]},
- {id:'latin',name:'拉丁',patterns:[
-  [[0,6,10],[4,12],[0,2,4,6,8,10,12,14],[0,6,8,14],[0,3,6,10,13]],
-  [[0,7,10,14],[4,11],[0,2,4,6,8,10,12,14],[0,6,10,14],[0,3,7,10,14]]]},
- {id:'chip',name:'FC 芯片',patterns:[
-  [[0,6,8,14],[4,12],[0,2,4,6,8,10,12,14],[0,2,4,6,8,10,12,14],[0,4,8,12]],
-  [[0,3,8,11],[4,12],[0,2,4,6,8,10,12,14,15],[0,3,4,7,8,11,12,15],[0,3,6,8,11,14]]]}
-];
-
-// Generate a whole accompaniment while preserving the lead, harmony and mixer.
+const PARTS=[0,1,2,3,5],clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const sorted=values=>[...new Set(values)].sort((a,b)=>a-b);
+function randomSource(seed){let state=seed>>>0;return ()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};}
+const pick=(values,r)=>values[Math.floor(r()*values.length)];
+function sample(values,count,r){const pool=[...values],out=[];while(pool.length&&out.length<count)out.push(pool.splice(Math.floor(r()*pool.length),1)[0]);return out;}
+function melodyContext(p){
+ const bars=Array.from({length:p.phraseBars},()=>({attacks:[],pitches:[],busy:0})),active=Array.from({length:p.phraseBars*16},()=>[]);
+ p.tracks[4].steps.forEach((s,index)=>{for(const event of stepEvents(s)){
+  const start=index+(event.offset??0),bar=bars[Math.floor(start/16)];
+  const notes=p.tracks[4].mode==='triad'?triadNotes(p,event.note):[event.note];
+  bar.attacks.push(start%16);bar.pitches.push(...notes);
+  for(let i=Math.floor(start);i<Math.min(active.length,Math.ceil(start+event.length));i++)active[i].push(...notes);
+ }});
+ for(const bar of bars)bar.busy=clamp(bar.attacks.length/10,0,1);
+ return {bars,active};
+}
+function theme(style,r){
+ const kick=sorted([...style.kick,...sample(style.extra,style.extras[0]+Math.floor(r()*(style.extras[1]-style.extras[0]+1)),r)]);
+ return {kick,snare:[...style.snare],hat:[...pick(style.hats,r)],bass:[...pick(style.bass,r)],chord:[...pick(style.chords,r)],bassFigure:sample([0,2,4,7],4,r),arp:pick([[0,2,4,2],[0,4,2,7],[0,2,4,7],[7,4,2,0]],r)};
+}
+function register(p,degree,low,high,previous){
+ const pc=((scaleNote(p,degree)%12)+12)%12,notes=[];
+ for(let note=low;note<=high;note++)if(note%12===pc)notes.push(note);
+ return notes.sort((a,b)=>Math.abs(a-previous)-Math.abs(b-previous))[0]??nearestPitch(p,scaleNote(p,degree,36),low,high,true);
+}
+function evolve(positions,anchors,extras,r,amount){
+ const keep=positions.filter(i=>anchors.includes(i)||r()>amount*.36);
+ if(r()<amount&&extras.length)keep.push(pick(extras,r));
+ return sorted([...anchors,...keep]);
+}
+function candidate(p,style,context,seed){
+ const r=randomSource(seed),count=p.phraseBars*16;
+ const tracks=p.tracks.map((t,ti)=>PARTS.includes(ti)?{...t,steps:Array.from({length:count},()=>({on:false,note:ti===3?36:ti===5?48:42,velocity:.76,length:1}))}:t);
+ tracks[3].mode='single';tracks[5].mode=style.id==='chip'?'single':'triad';
+ tracks[3].sound=style.id==='chip'?'triangle':'bass';tracks[5].sound=style.sound;
+ const themes=[theme(style,r),theme(style,r)],energy=.88+r()*.24;
+ let bassPrevious=36+p.key,chordPrevious=48+p.key;
+ const put=(ti,index,note,length,velocity)=>{tracks[ti].steps[index]={on:true,note,length:clamp(length,.25,count-index),velocity:clamp(velocity,.15,.98)};};
+ for(let bar=0;bar<p.phraseBars;bar++){
+  const base=bar*16,degree=p.progression[bar],lead=context.bars[bar],motif=themes[bar%2];
+  const last=bar===p.phraseBars-1,phraseEnd=(bar+1)%4===0,section=Math.floor(bar/8)%4;
+  const development=p.phraseBars<8?1:section===0?.86:section===1?1.05:section===2?.76:1.12;
+  const level=energy*development,variation=bar%4===0?.16:bar%4===2?.28:.52;
+  const kick=evolve(motif.kick,style.kick,style.extra,r,variation).filter(i=>!last||i<14||style.kick.includes(i));
+  let snare=[...motif.snare];
+  let hat=evolve(motif.hat,style.id==='dance'?[2,6,10,14]:[0,8],[1,3,7,11,15],r,style.ornament*level);
+  if(level<.85)hat=hat.filter((i,j)=>j%2===0||i%4===0||style.id==='dance'&&i%4===2);
+  if(r()<style.ornament*.6&&!last)snare.push(pick(style.ghost,r));
+  // Fills vary and are reserved for phrase boundaries. Genre anchors survive.
+  if(phraseEnd&&!last&&(bar%8===7||r()<.72)){
+   snare.push(...pick([[14,15],[13,14,15],[12,14],[10,13,15]],r));hat.push(15);
+  }
+  if(last){snare=style.snare;hat=hat.filter(i=>i<14);}
+  for(const i of kick)put(0,base+i,36,1,(i%8===0?.88:.74)*level+(r()-.5)*.1);
+  for(const i of sorted(snare))put(1,base+i,38,1,(style.snare.includes(i)?.76:.35+r()*.13)*level);
+  for(const i of sorted(hat)){
+   const open=!last&&i%4===2&&r()<(style.id==='dance'?.28:.07);
+   put(2,base+i,open?46:42,1,(i%4===0?.47:i%2===0?.36:.25)*level+(r()-.5)*.08);
+   if(open)tracks[2].steps[base+i].hits=[46];
+  }
+  // A repeated two-bar bass figure grows responses and follows kick accents.
+  let bass=[...motif.bass];
+  if(r()<.55)bass.push(pick(kick,r));
+  if(bar%2===1&&r()<.55)bass.push(pick([6,10,14],r));
+  bass=sorted(bass).filter((i,j)=>j===0||!(last&&i>=14)&&(level>=.85||j%2===0)).slice(0,9);
+  bass.forEach((i,j)=>{
+   const strong=i%8===0||j===0;
+   let interval=strong?0:motif.bassFigure[(j+Math.floor(bar/4))%motif.bassFigure.length];
+   if(!strong&&bar%2===1&&r()<.35)interval=4;
+   if(!last&&i>=14&&lead.busy<.5&&r()<.35)interval=p.progression[bar+1]-degree+(r()<.5?-1:1);
+   const note=register(p,degree+interval,28,55,bassPrevious),gap=(bass[j+1]??16)-i;
+   put(3,base+i,note,Math.max(.4,gap*style.bassGate),(.66+(kick.includes(i)?.1:0)+(r()-.5)*.09)*level);
+   bassPrevious=note;
+  });
+  // Leave rhythmic space for busy leads. FC uses single-note chord arpeggios.
+  let chord=[...motif.chord];
+  if(style.id!=='chip'&&lead.busy>.4)chord=chord.filter((i,j)=>j===0||!lead.attacks.some(a=>Math.abs(a-i)<1.5));
+  if(lead.busy>.7)chord=chord.filter((i,j)=>j===0||j%2===0);
+  if(bar%2===1&&lead.busy<.4&&r()<.6)chord.push(pick(style.id==='chip'?[3,7,11,15]:[6,10,14],r));
+  chord=sorted(chord).filter((i,j)=>j===0||!(last&&i>=12)&&(level>=.85||j%2===0));
+  const median=lead.pitches.length?[...lead.pitches].sort((a,b)=>a-b)[Math.floor(lead.pitches.length/2)]:76;
+  const root=register(p,degree,45,clamp(median-9,57,64),chordPrevious);chordPrevious=root;
+  chord.forEach((i,j)=>{
+   const gap=(chord[j+1]??16)-i;
+   const note=style.id==='chip'?register(p,degree+motif.arp[j%motif.arp.length],48,79,root+12):root;
+   const length=last&&j===chord.length-1?16-i-.2:gap*style.gate;
+   put(5,base+i,note,Math.max(.4,length),(.55+(r()-.5)*.1)*level*(1-lead.busy*.3));
+  });
+ }
+ return tracks;
+}
+// Rank coordination, register movement, lead clashes and similarity to the
+// previous accompaniment. Heuristic scores cannot guarantee musical quality.
+function quality(p,tracks,context){
+ let score=0,matches=0,total=0,lastBass=null;
+ for(let bar=0;bar<p.phraseBars;bar++){
+  const base=bar*16,counts=PARTS.map(t=>tracks[t].steps.slice(base,base+16).filter(s=>s.on).length);
+  if(counts.some(n=>n===0)||counts[0]+counts[1]+counts[2]>28)return -Infinity;
+  score+=3;score-=Math.max(0,counts[0]+counts[1]+counts[2]-23)*.6;
+  const lead=context.bars[bar];let soundingChord=[],chordEnd=base;
+  for(let i=0;i<16;i++){
+   const bass=tracks[3].steps[base+i],chord=tracks[5].steps[base+i];
+   if(bass.on){if(tracks[0].steps[base+i].on)score+=.35;if(lastBass!==null)score-=Math.max(0,Math.abs(bass.note-lastBass)-7)*.14;lastBass=bass.note;}
+   if(chord.on){
+    if(lead.busy>.4&&lead.attacks.some(a=>Math.abs(a-i)<1))score-=.7*lead.busy;
+    soundingChord=tracks[5].mode==='triad'?triadNotes(p,chord.note):[chord.note];chordEnd=base+i+chord.length;
+   }
+   if(base+i<chordEnd)for(const n of context.active[base+i])if(soundingChord.some(v=>Math.abs(v-n)===1))score-=.2;
+   for(const ti of PARTS){const s=tracks[ti].steps[base+i],old=p.tracks[ti].steps[base+i];if(s.on||old.on){total++;if(s.on===old.on&&(!s.on||s.note===old.note))matches++;}}
+  }
+ }
+ if(total)score-=p.phraseBars*8*(matches/total)**3;
+ return score;
+}
 export function generateAccompaniment(p,style=p.accompanimentStyle??'auto'){
  if(p.source)throw Error('请先新建空白工程，再生成随机伴奏。');
- if(style!=='auto'&&!grooves.some(g=>g.id===style))throw Error('不支持的伴奏风格。');
- p.accompanimentStyle=style;
- p.seed=(p.seed+7919)%2147483647;
- let state=p.seed>>>0;
- const random=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};
- const turn=Math.floor(p.seed/7919),family=style==='auto'?grooves[turn%grooves.length]:grooves.find(g=>g.id===style);
- const [kick,snare,hat,bass,chord]=family.patterns[turn%family.patterns.length];
- const groove={kick,snare,hat,bass,chord},count=p.phraseBars*16;
- for(const ti of [0,1,2,3,5])p.tracks[ti].steps=Array.from({length:count},()=>({on:false,note:ti===3?36:ti===5?48:42,velocity:.76,length:1}));
- p.tracks[3].mode='single';p.tracks[5].mode='triad';
- p.tracks[3].sound=family.id==='chip'?'triangle':'bass';
- p.tracks[5].sound={pop:'keys',rock:'pluck',funk:'keys',dance:'pluck',hiphop:'pad',latin:'keys',chip:'pulse'}[family.id];
- function put(ti,index,note,length,velocity){
-  p.tracks[ti].steps[index]={on:true,note,length:Math.min(length,count-index),velocity:Math.max(.15,Math.min(1,velocity))};
+ if(style!=='auto'&&!ACCOMPANIMENT_STYLES.some(s=>s.id===style))throw Error('不支持的伴奏风格。');
+ const seed=(p.seed+7919)%2147483647,turn=Math.floor(seed/7919);
+ const family=style==='auto'?ACCOMPANIMENT_STYLES[turn%ACCOMPANIMENT_STYLES.length]:ACCOMPANIMENT_STYLES.find(s=>s.id===style);
+ const context=melodyContext(p);let best,bestScore=-Infinity;
+ for(let i=0;i<6;i++){
+  const tracks=candidate(p,family,context,(seed^Math.imul(i+1,0x9e3779b1))>>>0),score=quality(p,tracks,context);
+  if(score>bestScore){bestScore=score;best=tracks;}
  }
- for(let bar=0;bar<p.phraseBars;bar++){
-  const base=bar*16,degree=p.progression[bar];
-  for(const [ti,positions,note,level] of [[0,groove.kick,36,.85],[1,groove.snare,38,.69],[2,groove.hat,42,.44]])
-   for(const i of positions)put(ti,base+i,note,1,level+(random()-.5)*.14-(ti===2&&i%4!==0?.09:0));
-  // A short fill marks each four-bar phrase without breaking the chosen groove.
-  if((bar+1)%4===0){put(1,base+14,38,1,.48+random()*.12);put(2,base+15,42,1,.4);}
-  const bass=groove.bass;
-  bass.forEach((i,j)=>{
-   const interval=j===0?0:random()<.55?0:random()<.5?4:2;
-   const note=nearestPitch(p,scaleNote(p,degree+interval,36),28,55,true);
-   put(3,base+i,note,Math.max(.5,(bass[j+1]??16)-i-.25),.7+random()*.14);
-  });
-  groove.chord.forEach((i,j)=>{
-   const note=nearestPitch(p,scaleNote(p,degree,48),45,64,true);
-   const gap=(groove.chord[j+1]??16)-i;
-   put(5,base+i,note,Math.max(.5,gap*(groove.chord.length>2?.6:.85)),.5+random()*.16);
-  });
- }
+ if(!best)throw Error('本次编配未通过检查，请再试一次。');
+ // Commit atomically after a complete candidate has passed generation/ranking.
+ for(const ti of PARTS)p.tracks[ti]=best[ti];
+ p.seed=seed;p.accompanimentStyle=style;
  return family.name;
 }

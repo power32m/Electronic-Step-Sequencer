@@ -50,6 +50,13 @@ public partial class MainWindow : Window
       await Task.Delay(700);Loading.Visibility=Visibility.Collapsed;if(!smoke)return;
       try{
         var outDir=Path.Combine(AppContext.BaseDirectory,testZoom?"验收125":"验收");Directory.CreateDirectory(outDir);
+        var accompaniment=await Web.CoreWebView2.ExecuteScriptAsync("(()=>{document.getElementById('new-project').click();const results=[];for(const style of ['pop','rock','funk','dance','hiphop','latin','chip']){const select=document.getElementById('accompaniment-style');select.value=style;select.dispatchEvent(new Event('change'));const start=performance.now();document.getElementById('random-accompaniment').click();const p=window.OP16.getProject();window.OP16.validate(p);results.push({style,ms:performance.now()-start,active:[0,1,2,3,5].map(t=>p.tracks[t].steps.filter(s=>s.on).length),mode:p.tracks[5].mode,lead:p.tracks[4].steps.some(s=>s.on)});}return {version:document.querySelector('header .brand').textContent,results};})()");
+        using(var checks=JsonDocument.Parse(accompaniment)){
+          var rows=checks.RootElement.GetProperty("results");
+          if(rows.GetArrayLength()!=7||!checks.RootElement.GetProperty("version").GetString()!.Contains(typeof(MainWindow).Assembly.GetName().Version!.ToString(3)))throw new IOException("本地伴奏版本或风格检查失败。");
+          foreach(var row in rows.EnumerateArray())if(row.GetProperty("lead").GetBoolean()||row.GetProperty("active").EnumerateArray().Any(n=>n.GetInt32()==0))throw new IOException("本地伴奏声部检查失败。");
+        }
+        File.WriteAllText(Path.Combine(outDir,"本地伴奏验收.json"),accompaniment);
         var largeFixture=Path.Combine(AppContext.BaseDirectory,"smoke-large.op16.json");
         if(File.Exists(largeFixture)){
           if(new FileInfo(largeFixture).Length>4*1024*1024)throw new IOException("大型工程超过4MB。");

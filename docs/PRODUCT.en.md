@@ -6,7 +6,7 @@
 
 **Watch the parts on three keyboards. Edit the music on six tracks.** Click **播放 (Play)** to start with a complete arrangement. The interface is Chinese.
 
-Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.5 · Updated 2026.10.18
+Created by 无痛穿耳 · Created 2026.10.15 · Version 2.3.0 · Updated 2026.10.18
 
 ![Current three-keyboard instrument](images/instrument-current.png)
 
@@ -27,6 +27,8 @@ Ten complete examples cover Shadow of the Ninja, Castlevania, Super Mario Bros.,
 Solo the lead, then bring back bass, harmony and drums to compare their roles. Change notes, sounds or tempo and observe the feedback. The sticky player provides pause/continue, bar jumps, playback from the editing bar and rewind while scrolling.
 
 Blank projects start at four bars and support up to 32. Choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin or FC Chiptune and generate an accompaniment. Repeated clicks vary the style while preserving the lead. Local-rule melody generation provides another starting point. No AI music service is required.
+
+The local accompaniment composer develops two-bar themes into phrases, adapts chord density to written lead activity and ranks six candidates before committing. Repeated generation varies rhythm and pitch rather than just velocity. It runs on the device with no composition API or downloaded neural model; [generation details](LOCAL_COMPOSER.md) describe its rules and limits.
 
 ## Direct editing and portable results
 
