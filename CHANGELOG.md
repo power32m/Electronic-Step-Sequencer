@@ -1,10 +1,17 @@
 # Changelog / 更新记录
 
-Version **2.2.3** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
+Version **2.2.4** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
 
-版本 **2.2.3** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
+版本 **2.2.4** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
 
-## 2.2.3 — 2026-10-18 · Current / 当前
+## 2.2.4 — 2026-10-18 · Current / 当前
+
+- Add gentle display-only smoothing, fractional rising-crossing alignment and correlation with the preceding trace to reduce waveform jumping. A short 25 ms display response preserves musical dynamics; pause freezes and silence clears the trace. Audio synthesis and WAV output are unchanged.
+  增加轻微显示平滑、精细过零定位和前后波形匹配，减轻跳动；约25毫秒的显示响应保留音乐动态，暂停冻结、静音清零，不改变音源或WAV输出。
+- All 44 automated checks pass, including phase stability, amplitude changes, pulse-edge rounding, pause and clearing; real-browser checks cover playback, audition and responsive layouts.
+  44项自动检查通过，新增相位稳定、强弱变化、边缘平滑、暂停与清零验证，并复查真实浏览器播放、试听和响应式界面。
+
+## 2.2.3 — 2026-10-18
 
 - Replace the decorative sine curve with live output samples after filtering and master volume. The trace follows playback and key audition, freezes on pause and returns to a flat line after stopping or silence. Sampling is capped at approximately 30 fps and skips offscreen instruments; WAV export keeps its existing signal path.
   示意正弦曲线改为读取滤波、主音量之后的实际输出，跟随播放和琴键试听，暂停冻结，停止／静音归为水平线；每秒最多约30次采样，乐器不在可视区域时跳过，WAV导出保持原音频路径。

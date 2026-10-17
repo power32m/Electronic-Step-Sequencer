@@ -4,7 +4,7 @@
 
 ## 🌐 [Open the web app](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-Version 2.2.3, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
+Version 2.2.4, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
 
 For version and delivery details, see the [changelog](../CHANGELOG.md) and [Windows build status](WINDOWS.en.md). Autosaves and personal projects are preserved by the local maintenance; JSON backups remain the way to transfer work between web and desktop.
 
@@ -32,7 +32,7 @@ The player compacts and stays at the top while scrolling. Space plays/pauses, ex
 | Middle | Independent countermelody or triad chords | Green |
 | Lower | Bass | Blue |
 
-All three respond together, each covering its full score range automatically. Chords illuminate all component notes. Click a key to audition that layer's sound. Muted tracks and tracks excluded by another solo do not illuminate. The display traces the actual synthesized output after filtering and master volume, updating at up to 30 frames per second. Pause freezes the trace; resume continues it; stopping or silence returns it to a flat line. Key audition also drives the display. The header shows the installed version and its release date, rather than the date you opened the app.
+All three respond together, each covering its full score range automatically. Chords illuminate all component notes. Click a key to audition that layer's sound. Muted tracks and tracks excluded by another solo do not illuminate. The display traces the actual synthesized output after filtering and master volume, updating at up to 30 frames per second. Pause freezes the trace; resume continues it; stopping or silence returns it to a flat line. Key audition also drives the display. Light visual smoothing and stable waveform alignment reduce jumping without changing the audio. The header shows the installed version and its release date, rather than the date you opened the app.
 
 **俯视2D (Top View)** defaults to locked rotation and zoom. **立体3D (3D View)** allows drag rotation, scroll zoom and auto-rotation. **↺** restores fixed top view. Drag the model's sound knobs to change parameters. The legend below the instrument matches the track colors.
 

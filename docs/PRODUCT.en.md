@@ -6,7 +6,7 @@
 
 **Watch the parts on three keyboards. Edit the music on six tracks.** Click **播放 (Play)** to start with a complete arrangement. The interface is Chinese.
 
-Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.3 · Updated 2026.10.18
+Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.4 · Updated 2026.10.18
 
 ![Current three-keyboard instrument](images/instrument-current.png)
 
