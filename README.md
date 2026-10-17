@@ -12,7 +12,7 @@ Three stacked keyboards · Six-part sequencing · Piano roll · FC/NES classics
 
 **[User guide](docs/USER_GUIDE.en.md) · [Product overview](docs/PRODUCT.en.md) · [Windows desktop](docs/WINDOWS.en.md) · [What's new](CHANGELOG.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.1** · Updated **2026.10.16**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.2** · Updated **2026.10.17**
 
 </div>
 
@@ -48,14 +48,16 @@ Complete **six-part adaptations of the listed MIDI arrangements**, preserving th
 
 | In-app name | Game / piece | Bars | BPM |
 | --- | --- | ---: | ---: |
-| 赤影战士 · Boss 战 | Shadow of the Ninja · Boss Battle | 24 | 150 |
-| 超级魂斗罗 | Super C | 74 | 150 |
-| 双截龙Ⅱ | Double Dragon II | 44 | 80 |
-| 赤色要塞 | Jackal | 35 | 80 |
-| 恶魔城 · Vampire Killer | Castlevania · Vampire Killer | 48 | 127 |
-| 热血物语 · 街头主题 | River City Ransom · Street Theme | 88 | 100 |
-| 超级马里奥 · 地面主题 | Super Mario Bros. · Overworld | 37 | 105 |
-
+| 赤影战士 | Shadow of the Ninja · Boss Battle | 24 | 150 |
+| 恶魔城 | Castlevania · Vampire Killer | 48 | 127 |
+| 超级马里奥 | Super Mario Bros. · Overworld | 37 | 105 |
+| 赤色要塞 | Jackal | 34 | 80 |
+| 魂斗罗 | Contra | 46 | 110 |
+| 洛克人Ⅱ | Mega Man II · Wily Fortress | 113 | 180 |
+| 忍者龙剑传 | Ninja Gaiden · Act IV Stage 2 | 84 | 150 |
+| 塞尔达传说 | The Legend of Zelda · Overworld | 24 | 148 |
+| 沙罗曼蛇 | Life Force / Salamander | 38 | 142 |
+| 最终幻想6 | Final Fantasy VI · The Decisive Battle | 110 | 205 |
 First launch defaults to the boss battle; later launches can restore autosave. Classics support full-length playback, editing and export. Blank projects begin with four bars and support 1–32 bars. See [sources and arrangement notes](docs/CLASSIC_LIBRARY.md).
 
 ## Start listening or composing
@@ -69,12 +71,12 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 
 | | Web app | Windows desktop |
 | --- | --- | --- |
-| Start | [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [Download Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1) · [Instructions](docs/WINDOWS.en.md) |
+| Start | [Play online](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [Download Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2) · [Instructions](docs/WINDOWS.en.md) |
 | Network | First load needs network; no complete offline cache/PWA | Packaged resources run offline; installed WebView2 Runtime required |
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
+The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 
 Autosave does not sync across browsers, devices, web and desktop. Download JSON backups before clearing browser data or replacing a project. Background playback depends on the OS/browser. A modern browser with WebGL2 is required for the instrument; desktop use is recommended for detailed editing.
 

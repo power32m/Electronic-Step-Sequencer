@@ -4,9 +4,9 @@
 
 ## Current status
 
-The local Windows distribution synchronized with the website on 2026-10-16: complete classics, three keyboards, fixed top view, playback navigation, voice Worker and current layout. Its version remains 2.2.1. The project-opening limit increased from 1 MB to 4 MB so the complete 88-bar River City Ransom project can reopen.
+Version 2.2.2 (2026-10-17) contains the ten selected examples and stable sticky player. Jackal has no silent lead-in. The 4 MB project-opening limit supports the 113-bar Mega Man II arrangement; retired examples remain importable as personal projects.
 
-**[Download the Windows x64 release](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**, extract the ZIP and open `OP16电子步进音序器.exe`. Keep the folder together; use the attached SHA256 file to verify the download. The app is not code-signed; verify the source if Windows displays an unknown-publisher prompt.
+**[Download the Windows x64 release](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract the ZIP and open `OP16电子步进音序器.exe`. Keep the folder together; use the attached SHA256 file to verify the download. The app is not code-signed; verify the source if Windows displays an unknown-publisher prompt.
 
 You can also [play online](https://op16-field-sequencer.breezysquid.chatgpt.site/). The build steps below are for developers; users of the ZIP need no development tools.
 
@@ -35,7 +35,7 @@ To update, save JSON and exit the old app, back up its whole program folder, the
 
 ## Desktop checks completed
 
-The 2026-10-16 local distribution passed startup, JSON save/restore, complete 40.2-second boss-battle WAV export and background playback at normal and 125% display scaling. Large-project restoration used the roughly 1.2 MB, 88-bar River City Ransom project.
+The 2026-10-16 local distribution passed startup, JSON save/restore, complete 40.2-second boss-battle WAV export and background playback at normal and 125% display scaling. Large-project restoration used the roughly 1.7 MB, 113-bar Mega Man II project.
 
 Developers can run `OP16电子步进音序器.exe --smoke-test` in a temporary publish copy, adding `--smoke-125` for 125% scaling. It uses a separate profile, writes verification files in the app directory, then exits. Keep these separate from personal projects.
 

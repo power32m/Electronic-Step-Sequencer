@@ -12,7 +12,7 @@
 
 **[使用指南](docs/USER_GUIDE.md) · [产品介绍](docs/PRODUCT.md) · [Windows桌面版](docs/WINDOWS.md) · [更新记录](CHANGELOG.md)**
 
-作者：**无痛穿耳** · 创作日期：**2026.10.15** · 版本：**2.2.1** · 更新日期：**2026.10.16**
+作者：**无痛穿耳** · 创作日期：**2026.10.15** · 版本：**2.2.2** · 更新日期：**2026.10.17**
 
 </div>
 
@@ -46,16 +46,18 @@ OP·16 是一款轻量电子乐器和步进音序器。三层键盘同时显示�
 
 以下是**所列MIDI的完整六声部改编**，保留选定声部的原时间线及已有重复段落；为合成演奏，不是游戏原声录音。
 
-| 曲目 | 小节 | 速度 |
+| 案例 | 小节 | BPM |
 | --- | ---: | ---: |
-| 赤影战士 · Boss 战 | 24 | 150 BPM |
-| 超级魂斗罗 | 74 | 150 BPM |
-| 双截龙Ⅱ | 44 | 80 BPM |
-| 赤色要塞 | 35 | 80 BPM |
-| 恶魔城 · Vampire Killer | 48 | 127 BPM |
-| 热血物语 · 街头主题 | 88 | 100 BPM |
-| 超级马里奥 · 地面主题 | 37 | 105 BPM |
-
+| 赤影战士 | 24 | 150 |
+| 恶魔城 | 48 | 127 |
+| 超级马里奥 | 37 | 105 |
+| 赤色要塞 | 34 | 80 |
+| 魂斗罗 | 46 | 110 |
+| 洛克人Ⅱ | 113 | 180 |
+| 忍者龙剑传 | 84 | 150 |
+| 塞尔达传说 | 24 | 148 |
+| 沙罗曼蛇 | 38 | 142 |
+| 最终幻想6 | 110 | 205 |
 首次启动默认载入Boss案例，后续可恢复自动保存。经典曲目支持完整播放、编辑和导出。空白工程从4小节起步，可调整为1–32小节。来源与编配取舍见[曲库说明](docs/CLASSIC_LIBRARY.md)。
 
 ## 开始使用
@@ -69,12 +71,12 @@ OP·16 是一款轻量电子乐器和步进音序器。三层键盘同时显示�
 
 | | 网页版 | Windows桌面版 |
 | --- | --- | --- |
-| 启动 | [直接在线体验](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [下载Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1) · [使用说明](docs/WINDOWS.md) |
+| 启动 | [直接在线体验](https://op16-field-sequencer.breezysquid.chatgpt.site/) | [下载Windows x64](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2) · [使用说明](docs/WINDOWS.md) |
 | 网络 | 首次加载需联网，尚无完整离线缓存／PWA | 资源随包可离线运行，须已安装WebView2运行时 |
 | 自动保存 | 当前浏览器配置和站点 | 原本机 `OP16/WebView` 配置目录 |
 | 工程迁移 | 保存／打开JSON | 保存／打开JSON |
 
-本地Windows正式版于**2026-10-16**同步，包括大工程重新打开修复。**[下载Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.1)**，解压后运行 `OP16电子步进音序器.exe`，同页附SHA-256校验文件。 自行构建时，请保留整个发布目录。
+本地Windows正式版于**2026-10-16**同步，包括大工程重新打开修复。**[下载Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**，解压后运行 `OP16电子步进音序器.exe`，同页附SHA-256校验文件。 自行构建时，请保留整个发布目录。
 
 自动保存不在浏览器、设备和桌面版之间同步。清理浏览器数据或替换工程前，请先下载JSON备份。后台播放受系统和浏览器限制，乐器展示需要支持WebGL2的现代浏览器，精细编曲建议使用桌面端。
 

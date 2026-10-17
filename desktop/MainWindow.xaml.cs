@@ -54,10 +54,10 @@ public partial class MainWindow : Window
         if(File.Exists(largeFixture)){
           if(new FileInfo(largeFixture).Length>4*1024*1024)throw new IOException("大型工程超过4MB。");
           Web.CoreWebView2.PostWebMessageAsJson(JsonSerializer.Serialize(new{type="project-open",text=File.ReadAllText(largeFixture)}));await Task.Delay(500);
-          var restored=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.getProject().phraseBars");if(restored!="88")throw new IOException("大型完整工程重新打开失败。");
-          File.WriteAllText(Path.Combine(outDir,"大型工程恢复.json"),JsonSerializer.Serialize(new{bytes=new FileInfo(largeFixture).Length,bars=88,result="PASS"}));
+          var restored=await Web.CoreWebView2.ExecuteScriptAsync("window.OP16.getProject().phraseBars");if(restored!="113")throw new IOException("大型完整工程重新打开失败。");
+          File.WriteAllText(Path.Combine(outDir,"大型工程恢复.json"),JsonSerializer.Serialize(new{bytes=new FileInfo(largeFixture).Length,bars=113,result="PASS"}));
         }
-        await Task.Delay(1200);await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('preset').value='赤影战士 · Boss 战';document.getElementById('preset').dispatchEvent(new Event('change'));true;");
+        await Task.Delay(1200);await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('preset').value='赤影战士';document.getElementById('preset').dispatchEvent(new Event('change'));true;");
         using(var stream=File.Create(Path.Combine(outDir,"桌面界面.png")))await Web.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png,stream);
         await Web.CoreWebView2.ExecuteScriptAsync("document.getElementById('piano-panel').scrollIntoView({block:'end'});true;");await Task.Delay(300);
         using(var stream=File.Create(Path.Combine(outDir,"旋律编辑.png")))await Web.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png,stream);

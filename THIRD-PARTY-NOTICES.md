@@ -14,4 +14,4 @@
 
 ## Classic library sources / 经典曲库来源
 
-See [docs/CLASSIC_LIBRARY.md](docs/CLASSIC_LIBRARY.md) for the six classic MIDI sources, known arrangers, complete selected timelines and omitted duplicate layers. The boss-battle source is credited above. Music rights remain with the respective rights holders.
+See [docs/CLASSIC_LIBRARY.md](docs/CLASSIC_LIBRARY.md) for the nine selected classic MIDI sources, known arrangers, complete selected timelines and omitted duplicate layers. The boss-battle source is credited above. Music rights remain with the respective rights holders.

@@ -1,97 +1,268 @@
 [
   {
-    "id": "super-c",
-    "name": "超级魂斗罗",
-    "bpm": 150,
-    "phraseBars": 74,
-    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Level_1.mid",
-    "author": "VGMusic contributor (not listed in index)",
-    "events": 2756,
-    "sha256": "ebfc36bbc6ff1417216086c6f36cd1857639ec74ae9fab8950ae0d885523be44",
-    "sourceTracks": [
-      1,
-      2,
-      8,
-      10
-    ]
+    "id": "castlevania",
+    "name": "恶魔城",
+    "bpm": 127,
+    "phraseBars": 48,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/CV1-_Vampire_Killer.mid",
+    "author": "Jorge D. Fuentes",
+    "aliases": [
+      "恶魔城 · Vampire Killer",
+      "恶魔城 · Vampire Killer · 第一关"
+    ],
+    "events": 1692,
+    "firstStep": 0.0
   },
   {
-    "id": "double-dragon-2",
-    "name": "双截龙Ⅱ",
-    "bpm": 80,
-    "phraseBars": 44,
-    "url": "https://www.vgmusic.com/music/console/nintendo/nes/dd2-mission1.mid",
-    "author": "Stockman",
-    "events": 2654,
-    "sha256": "1823a297cd092ceab5754165c65f6c2ee9014f5a0b2a70a9c1e9fa0f94674e9d",
-    "sourceTracks": [
-      2,
-      4,
-      1,
-      5
-    ]
+    "id": "super-mario",
+    "name": "超级马里奥",
+    "bpm": 105,
+    "phraseBars": 37,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Smbtheme.mid",
+    "author": "PJ Barnes",
+    "aliases": [
+      "超级马里奥 · 地面主题",
+      "超级马里奥 · 地面主题 · 第一关"
+    ],
+    "events": 1279,
+    "firstStep": 0.0
   },
   {
     "id": "jackal",
     "name": "赤色要塞",
     "bpm": 80,
-    "phraseBars": 35,
+    "phraseBars": 34,
     "url": "https://www.vgmusic.com/music/console/nintendo/nes/jackal.mid",
     "author": "Stevenm9; edited and updated by Keio",
+    "aliases": [
+      "赤色要塞",
+      "赤色要塞 · 第一关"
+    ],
+    "introTrimSteps": 13.875,
+    "previousPhraseBars": 35,
     "events": 1956,
-    "sha256": "36d886b188c04baab079660ea1e0d7e068fa66ff2e9696771a36b35e1237cee5",
-    "sourceTracks": [
-      1,
-      2,
-      3
-    ]
+    "firstStep": 0.0
   },
   {
-    "id": "castlevania",
-    "name": "恶魔城 · Vampire Killer",
-    "bpm": 127,
-    "phraseBars": 48,
-    "url": "https://www.vgmusic.com/music/console/nintendo/nes/CV1-_Vampire_Killer.mid",
-    "author": "Jorge D. Fuentes",
-    "events": 1692,
-    "sha256": "4a86feb188d9034ec51e0c9aa3a23fac6ca14433a570e6d4cdadf0654096ffb5",
-    "sourceTracks": [
-      1,
+    "id": "contra",
+    "name": "魂斗罗",
+    "bpm": 110,
+    "phraseBars": 46,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Contra-Snowfield.mid",
+    "author": "Jedi Questmaster",
+    "sourceFile": "魂斗罗.mid",
+    "selectedSourceTracks": [
       2,
       3,
+      8,
+      1,
+      5
+    ],
+    "omittedSourceTracks": [
+      4,
+      6,
+      7,
+      9
+    ],
+    "sha256": "8cea1bae17d48b20292e9f586b573ce3df62244b15be6d1b2938bede274c2b43",
+    "sourceNotes": 5253,
+    "selectedNotes": 3461,
+    "splitLongNotes": 0,
+    "deduplicatedEvents": 0,
+    "events": 3461,
+    "trackEvents": [
+      580,
+      117,
+      1462,
+      490,
+      430,
+      382
+    ],
+    "firstStep": 0.0
+  },
+  {
+    "id": "mega-man-2",
+    "name": "洛克人Ⅱ",
+    "bpm": 180,
+    "phraseBars": 113,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/wil_castle.mid",
+    "author": "En Sabah Nur",
+    "sourceFile": "洛克人Ⅱ.mid",
+    "selectedSourceTracks": [
+      2,
+      6,
+      10,
+      1,
+      3,
+      4,
+      8,
+      9,
+      11,
+      12,
+      13
+    ],
+    "omittedSourceTracks": [
+      5,
+      7
+    ],
+    "sha256": "13eaa06e9f5002c4416ade16487bbfeb48e853d411a9df6f412873a86c67bbca",
+    "sourceNotes": 6857,
+    "selectedNotes": 6047,
+    "splitLongNotes": 32,
+    "deduplicatedEvents": 52,
+    "events": 6027,
+    "trackEvents": [
+      331,
+      241,
+      902,
+      1169,
+      742,
+      2642
+    ],
+    "firstStep": 0.0
+  },
+  {
+    "id": "ninja-gaiden",
+    "name": "忍者龙剑传",
+    "bpm": 150,
+    "phraseBars": 84,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/ng1_4-2.mid",
+    "author": "Deuce",
+    "sourceFile": "忍者龙剑传 -.mid",
+    "selectedSourceTracks": [
+      2,
+      7,
+      9,
+      10,
+      11,
+      3,
+      8,
+      4,
+      5,
       6
-    ]
+    ],
+    "omittedSourceTracks": [],
+    "sha256": "eb58ddb5b651920329c4a3bdf8789ae8c0f439473f936d727e9d167fdfa95881",
+    "sourceNotes": 4056,
+    "selectedNotes": 4056,
+    "splitLongNotes": 0,
+    "deduplicatedEvents": 182,
+    "events": 3874,
+    "trackEvents": [
+      145,
+      294,
+      1150,
+      666,
+      797,
+      822
+    ],
+    "firstStep": 0.0
   },
   {
-    "id": "river-city-ransom",
-    "name": "热血物语 · 街头主题",
-    "bpm": 100,
-    "phraseBars": 88,
-    "url": "https://www.vgmusic.com/music/console/nintendo/nes/rcrstreets.mid",
-    "author": "Stockman",
-    "events": 4858,
-    "sha256": "a6dc545c2850524a89d3011424529bd7464515cc5a9f0d1314e60e1c5a70ad0a",
-    "sourceTracks": [
+    "id": "zelda",
+    "name": "塞尔达传说",
+    "bpm": 148,
+    "phraseBars": 24,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/z1overw.mid",
+    "author": "Jeffrey M Colletti",
+    "sourceFile": "塞尔达传说.mid",
+    "selectedSourceTracks": [
+      1,
       2,
       3,
-      1,
       4
-    ]
+    ],
+    "omittedSourceTracks": [],
+    "sha256": "b5de859e03b715e86e63dcb0ccf71521c95c4928adc2839b4e8d24fa9f47da34",
+    "sourceNotes": 592,
+    "selectedNotes": 592,
+    "splitLongNotes": 0,
+    "deduplicatedEvents": 0,
+    "events": 592,
+    "trackEvents": [
+      0,
+      137,
+      0,
+      159,
+      128,
+      168
+    ],
+    "firstStep": 0.0
   },
   {
-    "id": "super-mario",
-    "name": "超级马里奥 · 地面主题",
-    "bpm": 105,
-    "phraseBars": 37,
-    "url": "https://www.vgmusic.com/music/console/nintendo/nes/Smbtheme.mid",
-    "author": "PJ Barnes",
-    "events": 1279,
-    "sha256": "ac059157543099d4a04ee1655001a5596358d7dbbdef88c86ec12bc6325dc0bb",
-    "sourceTracks": [
-      1,
+    "id": "life-force",
+    "name": "沙罗曼蛇",
+    "bpm": 142,
+    "phraseBars": 38,
+    "url": "https://www.vgmusic.com/music/console/nintendo/nes/lf-xfire.mid",
+    "author": "",
+    "sourceFile": "沙罗曼蛇.mid",
+    "selectedSourceTracks": [
+      4,
       2,
+      6,
+      1
+    ],
+    "omittedSourceTracks": [
       3,
+      5,
+      7
+    ],
+    "sha256": "de0bbcf78b93674f7b4519b1eb6bd4ad9b9f8547e9fdb44549e9fee7cf262ba7",
+    "sourceNotes": 2310,
+    "selectedNotes": 1421,
+    "splitLongNotes": 0,
+    "deduplicatedEvents": 0,
+    "events": 1421,
+    "trackEvents": [
+      126,
+      160,
+      246,
+      438,
+      229,
+      222
+    ],
+    "firstStep": 0.0
+  },
+  {
+    "id": "final-fantasy-6",
+    "name": "最终幻想6",
+    "bpm": 205,
+    "phraseBars": 110,
+    "url": "https://www.vgmusic.com/music/console/nintendo/snes/FF6_Decisive_Battle-KM.mid",
+    "author": "King Meteor",
+    "sourceFile": "最终幻想6.mid",
+    "selectedSourceTracks": [
+      1,
+      3,
+      13,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      10
+    ],
+    "omittedSourceTracks": [
+      2,
       4
-    ]
+    ],
+    "sha256": "08f3d3931ddcbf1f7af50106b118eec4d0106b85d5c589d8f239e88b62b1c880",
+    "sourceNotes": 5343,
+    "selectedNotes": 4657,
+    "splitLongNotes": 0,
+    "deduplicatedEvents": 94,
+    "events": 4563,
+    "trackEvents": [
+      494,
+      346,
+      740,
+      301,
+      545,
+      2137
+    ],
+    "firstStep": 0.0
   }
 ]

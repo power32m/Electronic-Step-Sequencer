@@ -18,7 +18,7 @@ The default 2D top view locks angle and zoom for precise clicks. Switch to 3D to
 
 ## Listen first, then make your own version
 
-Seven complete examples include Shadow of the Ninja's boss battle, Super C, Double Dragon II, Jackal, Castlevania's Vampire Killer, River City Ransom and Super Mario Bros. These are synthesized six-part adaptations of specific MIDI arrangements, ranging from 24 to 88 bars, not original soundtrack recordings.
+Ten complete examples cover Shadow of the Ninja, Castlevania, Super Mario Bros., Jackal, Contra, Mega Man II, Ninja Gaiden, Zelda, Life Force and Final Fantasy VI. These are synthesized six-part adaptations, ranging from 24 to 113 bars. Jackal starts immediately after its silent lead-in is removed; Final Fantasy VI uses the app synthesizer rather than original SFC samples.
 
 Solo the lead, then bring back bass, harmony and drums to compare their roles. Change notes, sounds or tempo and observe the feedback. The sticky player provides pause/continue, bar jumps, playback from the editing bar and rewind while scrolling.
 

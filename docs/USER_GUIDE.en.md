@@ -4,11 +4,11 @@
 
 ## 🌐 [Open the web app](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-Version 2.2.1, synchronized 2026-10-16. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
+Version 2.2.2, updated 2026-10-17. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
 
 ## 1. Playback and navigation
 
-First launch defaults to **赤影战士 · Boss 战 (Shadow of the Ninja · Boss Battle)**; later launches can restore autosave. Select a piece and click **播放 (Play)**, click again to pause, then **继续 (Continue)** to resume. Pause preserves the audio clock and held-note state.
+First launch defaults to **赤影战士 (Shadow of the Ninja · Boss Battle)**; later launches can restore autosave. Select a piece and click **播放 (Play)**, click again to pause, then **继续 (Continue)** to resume. Pause preserves the audio clock and held-note state.
 
 | Control | Behavior |
 | --- | --- |
@@ -36,16 +36,18 @@ All three respond together, each covering its full score range automatically. Ch
 
 ## 3. Classics and blank projects
 
-| In-app piece | Bars | BPM |
-| --- | ---: | ---: |
-| 赤影战士 · Boss 战 — Shadow of the Ninja | 24 | 150 |
-| 超级魂斗罗 — Super C | 74 | 150 |
-| 双截龙Ⅱ — Double Dragon II | 44 | 80 |
-| 赤色要塞 — Jackal | 35 | 80 |
-| 恶魔城 · Vampire Killer — Castlevania | 48 | 127 |
-| 热血物语 · 街头主题 — River City Ransom | 88 | 100 |
-| 超级马里奥 · 地面主题 — Super Mario Bros. | 37 | 105 |
-
+| In-app name | Game / piece | Bars | BPM |
+| --- | --- | ---: | ---: |
+| 赤影战士 | Shadow of the Ninja · Boss Battle | 24 | 150 |
+| 恶魔城 | Castlevania · Vampire Killer | 48 | 127 |
+| 超级马里奥 | Super Mario Bros. · Overworld | 37 | 105 |
+| 赤色要塞 | Jackal | 34 | 80 |
+| 魂斗罗 | Contra | 46 | 110 |
+| 洛克人Ⅱ | Mega Man II · Wily Fortress | 113 | 180 |
+| 忍者龙剑传 | Ninja Gaiden · Act IV Stage 2 | 84 | 150 |
+| 塞尔达传说 | The Legend of Zelda · Overworld | 24 | 148 |
+| 沙罗曼蛇 | Life Force / Salamander | 38 | 142 |
+| 最终幻想6 | Final Fantasy VI · The Decisive Battle | 110 | 205 |
 All support full-length playback, editing and export; see [sources](CLASSIC_LIBRARY.md). Selecting a preset replaces the workspace, with Undo available. Save important edits first.
 
 **空白工程 (Blank Project)** below Play starts an empty four-bar project. Set **工程小节 (Project Bars)** or use **＋ 小节 (Add Bar)** for 1–32 bars. Shortening removes trailing bars; Undo restores them. Resizing also updates the default export length. Complete classics retain their full lengths beyond the blank-project limit.
@@ -79,7 +81,7 @@ Copy, Paste, Clear and Rhythm Variation are below four-bar navigation. Copy/Past
 
 ## 6. Save, open and transfer
 
-**保存工程 (Save Project)** downloads `.op16.json`; **打开工程 (Open Project)** reads v1/v2/v3. Web and updated Windows builds accept up to 4 MB, including the roughly 1.2 MB, 88-bar River City Ransom project.
+**保存工程 (Save Project)** downloads `.op16.json`; **打开工程 (Open Project)** reads v1/v2/v3. Web and updated Windows builds accept up to 4 MB, including the roughly 1.7 MB, 113-bar Mega Man II project.
 
 Autosave belongs to the current browser or desktop profile. It does not sync between devices, browsers, web and desktop. Transfer via saved JSON; also back up before clearing browser data. **恢复旧版工程 (Restore Old Project)** reads old v1/v2 autosaves, replacing the workspace with Undo available.
 

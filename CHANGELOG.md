@@ -1,10 +1,19 @@
 # Changelog / 更新记录
 
-Version **2.2.1** · Web and local Windows synchronized **2026-10-16**. Historical excerpt notes below do not describe the current full library.
+Version **2.2.2** · Web and local Windows synchronized **2026-10-17**. Historical excerpt notes below do not describe the current full library.
 
-版本 **2.2.1** · 网站与本地Windows版于 **2026-10-16**同步。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
+版本 **2.2.2** · 网站与本地Windows版于 **2026-10-17**同步。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
 
-## 2.2.1 — 2026-10-16 · Current / 当前
+## 2.2.2 — 2026-10-17 · Current / 当前
+
+- Keep and shorten names to 赤影战士, 恶魔城 and 超级马里奥; remove Super C, Double Dragon II and River City Ransom from the menu.
+  保留并简化三个案例名称，移除超级魂斗罗、双截龙Ⅱ和热血物语菜单项。
+- Remove Jackal's 2.6-second silent lead-in without removing notes; edited older projects remain intact.
+  赤色要塞去除约2.6秒开头静音，保留音符及已编辑旧工程。
+- Add six user-selected complete MIDI adaptations: Contra, Mega Man II, Ninja Gaiden, Zelda, Life Force and Final Fantasy VI. The library now has ten examples.
+  新增用户所选6首完整案例，当前曲库共10首。
+
+## 2.2.1 — 2026-10-16
 
 ### Source maintenance — 2026-10-17 / 源码维护
 
