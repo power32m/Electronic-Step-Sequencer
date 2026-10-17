@@ -1,3 +1,4 @@
+import {stepEvents} from '../src/events.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {preset,resizePhrase,copy,validate,inScale,scaleNote,triadNotes,setHarmony} from '../src/project.js';
@@ -17,7 +18,7 @@ test('style anchors, tonal roots, registers and note boundaries survive many see
    for(const t of parts)assert(p.tracks[t].steps.slice(base,base+16).some(s=>s.on));
    const bass=p.tracks[3].steps.slice(base,base+16).find(s=>s.on);assert.equal(pc(bass.note),root);
    const chordPcs=triadNotes(p,scaleNote(p,p.progression[bar],48)).map(pc);
-   for(const ti of [3,5])p.tracks[ti].steps.slice(base,base+16).forEach((s,i)=>{if(s.on){assert(inScale(p,s.note));assert(s.length>0&&s.length<=16-i);assert(s.note>=(ti===3?28:45)&&s.note<=(ti===3?55:79));assert(s.velocity>0&&s.velocity<=1);if(ti===5)assert(style.id==='chip'?chordPcs.includes(pc(s.note)):pc(s.note)===root);}});
+   for(const ti of [3,5])p.tracks[ti].steps.slice(base,base+16).forEach((s,i)=>{if(s.on){assert(inScale(p,s.note));assert(s.length>0&&s.length<=16-i);assert(s.note>=(ti===3?28:45)&&s.note<=(ti===3?55:79));assert(s.velocity>0&&s.velocity<=1);if(ti===5)assert(stepEvents(s).every(e=>chordPcs.includes(pc(e.note))&&e.length<=16-i&&inScale(p,e.note)));}});
   }
  }
 });
@@ -30,7 +31,7 @@ test('ten successive arrangements per style differ beyond velocity, with reprodu
 });
 test('lead notes including held and timed events, harmony, tempo and all mixer settings remain unchanged',()=>{
  for(const style of ACCOMPANIMENT_STYLES){
-  const p=preset('空白工程');resizePhrase(p,8);p.bpm=133;p.swing=19;p.master=.62;p.cutoff=7600;
+  const p=preset('空白工程');resizePhrase(p,8);p.harmonyPlan.locked.fill(true);p.bpm=133;p.swing=19;p.master=.62;p.cutoff=7600;
   p.tracks[4].steps[0]={on:true,note:64,velocity:.72,length:20,extra:[{note:67,velocity:.6,length:1,offset:.5}]};
   p.tracks.forEach((t,i)=>{t.volume=.2+i*.1;t.mute=i===1;t.solo=i===4;});
   const before=copy(p);generateAccompaniment(p,style.id);
@@ -53,19 +54,19 @@ test('dense written melody reduces chord attacks and accompaniment strength',()=
   assert(denseCount<sparseCount*.8,style.id+' density');assert(denseLevel<sparseLevel*.9,style.id+' strength');
  }
 });
-test('long arrangements develop energy, vary bar rhythms and finish with a bounded cadence',()=>{
+test('long arrangements develop energy, vary bar rhythms and keep loop tails active and bounded',()=>{
  for(const style of ACCOMPANIMENT_STYLES){
   const p=preset('空白工程');resizePhrase(p,32);generateAccompaniment(p,style.id);
   const level=from=>Array.from({length:8},(_,b)=>p.tracks[0].steps[(from+b)*16].velocity).reduce((a,b)=>a+b)/8;
   assert(level(16)<level(8),style.id+' breakdown');assert(level(24)>level(16),style.id+' lift');
   const rhythms=new Set(Array.from({length:32},(_,b)=>JSON.stringify(parts.map(t=>p.tracks[t].steps.slice(b*16,b*16+16).map(s=>s.on)))));
   assert(rhythms.size>=8,style.id+' bar variety');
-  assert(p.tracks[5].steps.slice(-16).some(s=>s.on&&s.length>2));
-  assert(p.tracks[5].steps.slice(-4).every(s=>!s.on));
+  assert(p.tracks[5].steps.slice(-8).some(s=>s.on));
+  p.tracks[5].steps.forEach((s,i)=>{for(const e of stepEvents(s))assert(i+e.length<=p.phraseBars*16);});
  }
 });
-test('FC uses chord-tone arpeggios; other styles retain triad accompaniment',()=>{
- for(const style of ACCOMPANIMENT_STYLES){const p=preset('空白工程');generateAccompaniment(p,style.id);assert.equal(p.tracks[5].mode,style.id==='chip'?'single':'triad');if(style.id==='chip'){assert.equal(p.tracks[3].sound,'triangle');assert.equal(p.tracks[5].sound,'pulse');assert(new Set(p.tracks[5].steps.filter(s=>s.on).map(s=>s.note)).size>=3);}}
+test('generated harmony stores explicit notes for all styles and FC remains monophonic',()=>{
+ for(const style of ACCOMPANIMENT_STYLES){const p=preset('空白工程');generateAccompaniment(p,style.id);assert.equal(p.tracks[5].mode,'single');assert(p.harmonyPlan.voiced);if(style.id==='chip'){assert.equal(p.tracks[3].sound,'triangle');assert.equal(p.tracks[5].sound,'pulse');assert(new Set(p.tracks[5].steps.filter(s=>s.on).map(s=>s.note)).size>=3);}}
 });
 test('editing the harmony keeps generated FC arpeggio intervals and rhythm',()=>{
  const p=preset('空白工程');generateAccompaniment(p,'chip');

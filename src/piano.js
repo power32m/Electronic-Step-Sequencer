@@ -35,8 +35,8 @@ else{removeEvent(steps[drag.index],drag.event);if(steps[index].on){(steps[index]
    ti=track;bar=measure;selected=selection;host.hidden=track<3;if(track<3)return;
    low=MIN_NOTE;high=track===3?72:96;
    const range=low+':'+high,p=api.get();
-   host.querySelector('.piano-foot').textContent=track===5&&p.tracks[5].mode==='single'?'本轨为独立副旋律，每个音符可单独编辑，保留连奏与三连音时序。':'和弦轨的三个音共同移动；跨小节音符显示为延续。';
-   host.querySelector('#piano-title').textContent=(track===5&&p.tracks[5].mode==='single'?'副旋律':names[track])+' · 第 '+(bar+1)+' 小节';
+   host.querySelector('.piano-foot').textContent=track===5&&p.tracks[5].mode==='single'?(p.harmonyPlan?.voiced?'本轨为独立和声音符，可分别修改转位、音高与音长。':'本轨为独立副旋律，每个音符可单独编辑，保留连奏与三连音时序。'):'和弦轨的三个音共同移动；跨小节音符显示为延续。';
+   host.querySelector('#piano-title').textContent=(track===5&&p.tracks[5].mode==='single'&&!p.harmonyPlan?.voiced?'副旋律':names[track])+' · 第 '+(bar+1)+' 小节';
    if(range!==lastRange){lastRange=range;grid.style.height=((high-low+1)*rowHeight)+'px';keys.innerHTML=Array.from({length:high-low+1},(_,i)=>{const n=high-i;return `<div class="${[1,3,6,8,10].includes(n%12)?'black-key':'white-key'}">${noteName(n)}</div>`;}).join('');scroll.scrollTop=track===3?140:176;}
    rows.innerHTML=Array.from({length:high-low+1},(_,i)=>`<div class="piano-row ${inScale(p,high-i)?'in-scale':'outside-scale'}" style="height:${rowHeight}px"></div>`).join('');
    const from=bar*16,to=from+16;let html='';

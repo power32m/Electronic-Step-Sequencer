@@ -41,7 +41,7 @@ export function createDevice(host,callbacks){
  });
  function configure(project){
   for(const layer of layers){
-   const range=keyboardRange(project,layer.track),signature=range.min+':'+range.max+':'+project.tracks[layer.track].mode;
+   const range=keyboardRange(project,layer.track),signature=range.min+':'+range.max+':'+project.tracks[layer.track].mode+':'+!!project.harmonyPlan?.voiced;
    if(signature===layer.signature)continue;layer.signature=signature;layer.range=range;
    for(const key of layer.keys){clearTimeout(key.userData.previewTimer);layer.group.remove(key);keys.splice(keys.indexOf(key),1);clickables.splice(clickables.indexOf(key),1);key.geometry.dispose();key.material.dispose();}layer.keys=[];
    const whites=[];for(let n=range.min;n<=range.max;n++)if(!isBlackKey(n))whites.push(n);
@@ -51,7 +51,7 @@ export function createDevice(host,callbacks){
     const add=(note,blackKey,x)=>{const key=box(layer.group,width*(blackKey?.58:.92),blackKey?.18:.20,blackKey?.57:1.12,x,blackKey?1.49:1.32,blackKey?-.025:.25,(blackKey?black:ivory).clone(),Math.min(.035,width*.12));Object.assign(key.userData,{homeY:key.position.y,action:'key',note,track:layer.track,color:layer.color,blackKey});keys.push(key);layer.keys.push(key);clickables.push(key);};
     add(note,false,x);if(note<range.max&&isBlackKey(note+1))add(note+1,true,x+width/2);
    }
-   const ctx=layer.canvas.getContext('2d');ctx.clearRect(0,0,512,256);ctx.fillStyle='#'+layer.color.toString(16).padStart(6,'0');ctx.font='bold 64px "Microsoft YaHei",sans-serif';ctx.fillText(layer.track===5?(project.tracks[5].mode==='single'?'副旋律':'和弦'):layer.label,18,80);ctx.fillStyle='#d0d4c9';ctx.font='40px monospace';ctx.fillText(layer.english,18,132);ctx.fillStyle='#939f90';ctx.font='42px monospace';ctx.fillText(noteName(range.min)+' - '+noteName(range.max),18,187);layer.texture.needsUpdate=true;
+   const ctx=layer.canvas.getContext('2d');ctx.clearRect(0,0,512,256);ctx.fillStyle='#'+layer.color.toString(16).padStart(6,'0');ctx.font='bold 64px "Microsoft YaHei",sans-serif';ctx.fillText(layer.track===5?(project.tracks[5].mode==='single'&&!project.harmonyPlan?.voiced?'副旋律':'和弦'):layer.label,18,80);ctx.fillStyle='#d0d4c9';ctx.font='40px monospace';ctx.fillText(layer.english,18,132);ctx.fillStyle='#939f90';ctx.font='42px monospace';ctx.fillText(noteName(range.min)+' - '+noteName(range.max),18,187);layer.texture.needsUpdate=true;
   }
   dirty=true;
  }

@@ -5,7 +5,7 @@ import {generateAccompaniment} from '../src/accompaniment.js';
 
 test('random accompaniment covers 1–32 bars and preserves lead, harmony and settings',()=>{
  for(const bars of [1,4,17,32]){
-  const p=preset('空白工程');resizePhrase(p,bars);p.key=7;p.scale='minor';p.bpm=124;
+  const p=preset('空白工程');resizePhrase(p,bars);p.harmonyPlan.locked.fill(true);p.key=7;p.scale='minor';p.bpm=124;
   p.tracks[4].steps[0]={on:true,note:67,length:2,velocity:.8};
   const before=copy(p);generateAccompaniment(p);
   assert.deepEqual(p.tracks[4],before.tracks[4]);assert.deepEqual(p.progression,before.progression);

@@ -1,3 +1,9 @@
+# 2.3.1 — 2026-10-18
+
+- Style-aware automatic harmonic loops, melody-weighted selection and recent-progression memory.
+- Explicit inversions, block/split/arpeggiated harmony; editable and consistent across keyboard, piano roll and WAV.
+- Manual chord degrees and legacy-project harmony remain protected. Loop endings retain rhythmic flow.
+
 # Changelog / 更新记录
 
 Version **2.3.0** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.

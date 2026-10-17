@@ -12,7 +12,7 @@ Three stacked keyboards · Six-part sequencing · Piano roll · FC/NES classics
 
 **[User guide](docs/USER_GUIDE.en.md) · [Product overview](docs/PRODUCT.en.md) · [Windows desktop](docs/WINDOWS.en.md) · [What's new](CHANGELOG.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.3.0** · Updated **2026.10.18**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.3.1** · Updated **2026.10.18**
 
 </div>
 
@@ -76,9 +76,9 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The website, source and local Windows build are now **2.3.0 (2026-10-18)**, including the [local accompaniment composer](docs/LOCAL_COMPOSER.md), a gently smoothed, stabilized live audio oscilloscope, version-linked release dates and the preceding rendering cleanup. Playback, pause/resume, silence, track switching and key audition were checked in a real browser, alongside 51 automated checks.
+The website, source and local Windows build are now **2.3.1 (2026-10-18)**, including the [local accompaniment composer](docs/LOCAL_COMPOSER.md), a gently smoothed, stabilized live audio oscilloscope, version-linked release dates and the preceding rendering cleanup. Playback, pause/resume, silence, track switching and key audition were checked in a real browser, alongside 56 automated checks.
 
-The **published Windows ZIP remains v2.2.2** with the ten-song library; it predates the live oscilloscope. Build the current source for 2.3.0.
+The **published Windows ZIP remains v2.2.2** with the ten-song library; it predates the live oscilloscope. Build the current source for 2.3.1.
 
  **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 

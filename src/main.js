@@ -35,7 +35,7 @@ const engine=new Engine(()=>project,s=>{
  else renderStep();
  device?.update(project,s);
 },(v,state,error)=>{device?.setPlaying(v);if(error)toast('播放失败：'+error.message);playing=v;$('play').innerHTML=state==='preparing'?'声音准备中…':v?'<span>Ⅱ</span> 暂停':state==='paused'?'<span>▶</span> 继续':'<span>▶</span> 播放';$('play').disabled=state==='preparing';$('play').classList.toggle('running',v);$('run-state').textContent=state==='paused'?'PAUSED':v?'PLAYING':state==='preparing'?'PREPARING':'READY';});
-function selectStep(t,index,draw=true,event=0){selected={track:t,step:index,event};follow=false;if(t>=3){project.display.keyboardTrack=t;project.display.keyboardOctave=t===3?0:t===5?(project.tracks[5].mode==='single'?2:1):3;}if(draw)render();}
+function selectStep(t,index,draw=true,event=0){selected={track:t,step:index,event};follow=false;if(t>=3){project.display.keyboardTrack=t;project.display.keyboardOctave=t===3?0:t===5?((project.tracks[5].mode==='single'&&!project.harmonyPlan?.voiced)?2:1):3;}if(draw)render();}
 piano=createPiano($('piano-panel'),{get:()=>project,select:selectStep,change,begin:remember,preview:(n,s,t)=>engine.preview(n,s,t).catch(e=>toast(e.message))});
 try{device=createDevice($('device'),{waveform:buffer=>engine.readWaveform(buffer),preview:(n,track)=>engine.preview(n,{},track).catch(e=>toast(e.message)),play:()=>toggle(),knob:(i,delta,begin)=>{if(begin)remember();const id=['bpm','swing','cutoff','master'][i],el=$(id),inc=id==='cutoff'?150:id==='master'?.004:1;change(p=>p[id]=Math.round(Math.max(+el.min,Math.min(+el.max,p[id]+delta*inc))/+el.step)*+el.step,false);}});}catch(e){$('device').innerHTML='<div class="webgl-error"><b>立体展示未能加载</b><p>请检查显卡驱动或系统硬件加速。编曲和声音功能仍可正常使用。</p></div>';console.error(e);}
 async function toggle(){try{if(playing)await engine.pause();else await engine.start();}catch(e){toast('音频启动失败：'+e.message);}}
@@ -53,7 +53,7 @@ function renderStep(){
 function render(){
  document.querySelector('.stage-caption span:last-child').textContent=project.display.top?'视角已锁定 · 点击琴键试听':'拖动旋转 · 滚轮缩放 · 点击琴键试听';
  viewBar=Math.min(viewBar,project.phraseBars-1);selected.step=Math.min(selected.step,project.phraseBars*16-1);selected.event=Math.min(selected.event??0,project.tracks[selected.track].steps[selected.step].extra?.length??0);
- setValue('accompaniment-style',project.accompanimentStyle??'auto');$('accompaniment-style').disabled=!!project.source;$('random-accompaniment').disabled=!!project.source;$('accompaniment-hint').textContent=project.source?'空白工程可用':'鼓组 · 贝斯 · 和弦';
+ setValue('accompaniment-style',project.accompanimentStyle??'auto');$('accompaniment-style').disabled=!!project.source;$('random-accompaniment').disabled=!!project.source;$('accompaniment-hint').textContent=project.source?'空白工程可用':(project.harmonyPlan?.locked.some(Boolean)?'保留手动和弦 · 可撤销':'自动和声 · 可撤销');
  const barLimit=projectBarLimit(project);$('phrase-length').max=barLimit;setValue('phrase-length',project.phraseBars);$('add-bar').disabled=project.phraseBars>=barLimit;
  if($('bars').dataset.limit!==String(barLimit)){$('bars').innerHTML=Array.from({length:barLimit},(_,i)=>`<option value="${i+1}">${i+1} 小节</option>`).join('');$('bars').dataset.limit=barLimit;}
  const pageStart=Math.floor(viewBar/4)*4;const tabs=document.querySelector('.bar-tabs');if(tabs.dataset.page!==pageStart+':'+project.phraseBars){tabs.dataset.page=pageStart+':'+project.phraseBars;tabs.innerHTML=Array.from({length:Math.min(4,project.phraseBars-pageStart)},(_,j)=>{const i=pageStart+j;return `<div class="bar-cell"><button data-bar="${i}" aria-label="编辑第${i+1}小节"><span>小节 ${String(i+1).padStart(2,'0')}</span><strong data-chord="${i}"></strong></button><select data-harmony="${i}" aria-label="第${i+1}小节和弦"></select></div>`;}).join('');}
@@ -65,16 +65,16 @@ function render(){
  for(const [id,active] of [['view3',!project.display.top],['view2',project.display.top],['auto',project.display.auto]])$(id).classList.toggle('active',active);
  $('lcd-bpm').innerHTML=project.bpm+'<small>BPM</small>';setValue('bars',project.bars);setValue('key',project.key);setValue('scale',project.scale);$('scale-lock').checked=project.scaleLock;$('follow').checked=follow;
  $('load-demo').textContent=presetName(project)?'载入完整版':'载入 Boss 案例';$('load-notice').hidden=!notice;$('load-notice-text').textContent=notice;
- document.querySelectorAll('[data-bar]').forEach(b=>{const i=+b.dataset.bar;b.classList.toggle('active',i===viewBar);b.setAttribute('aria-pressed',i===viewBar);document.querySelector(`[data-chord="${i}"]`).textContent=project.tracks[5].mode==='single'?'副旋律':chordName(project,project.progression[i]);});
- document.querySelectorAll('[data-harmony]').forEach(el=>{el.hidden=project.tracks[5].mode==='single';if(document.activeElement!==el){el.innerHTML=Array.from({length:7},(_,d)=>`<option value="${d}">${['I','II','III','IV','V','VI','VII'][d]} · ${chordName(project,d)}</option>`).join('');el.value=project.progression[+el.dataset.harmony];}});
+ document.querySelectorAll('[data-bar]').forEach(b=>{const i=+b.dataset.bar;b.classList.toggle('active',i===viewBar);b.setAttribute('aria-pressed',i===viewBar);document.querySelector(`[data-chord="${i}"]`).textContent=(project.tracks[5].mode==='single'&&!project.harmonyPlan?.voiced)?'副旋律':chordName(project,project.progression[i]);});
+ document.querySelectorAll('[data-harmony]').forEach(el=>{el.hidden=(project.tracks[5].mode==='single'&&!project.harmonyPlan?.voiced);if(document.activeElement!==el){el.innerHTML=Array.from({length:7},(_,d)=>`<option value="${d}">${['I','II','III','IV','V','VI','VII'][d]} · ${chordName(project,d)}</option>`).join('');el.value=project.progression[+el.dataset.harmony];}});
  project.tracks.forEach((t,ti)=>{
   document.querySelector(`[data-volume="${ti}"]`).value=t.volume;
-  const selector=document.querySelector(`[data-select-track="${ti}"]`);selector.classList.toggle('chosen',selected.track===ti);if(ti===5)selector.innerHTML='<em>Ⅵ</em> '+(t.mode==='single'?'副旋律':'和弦');
+  const selector=document.querySelector(`[data-select-track="${ti}"]`);selector.classList.toggle('chosen',selected.track===ti);if(ti===5)selector.innerHTML='<em>Ⅵ</em> '+(t.mode==='single'&&!project.harmonyPlan?.voiced?'副旋律':'和弦');
   if(ti>=3)document.querySelector(`[data-sound="${ti}"]`).value=t.sound;
   for(const mode of ['mute','solo']){const b=document.querySelector(`[data-${mode}="${ti}"]`);b.classList.toggle('active',t[mode]);b.setAttribute('aria-pressed',t[mode]);}
   document.querySelectorAll(`.steps [data-track="${ti}"]`).forEach((b,i)=>{const index=viewBar*16+i,s=t.steps[index];b.classList.toggle('enabled',s.on);b.classList.toggle('selected',selected.track===ti&&selected.step===index);b.setAttribute('aria-pressed',s.on);b.setAttribute('aria-label',names[ti]+'第'+(viewBar+1)+'小节第'+(i+1)+'步');b.style.setProperty('--velocity',s.velocity);b.querySelector('small').textContent=ti>=3?noteName(s.note):'·';});
  });
- const s=editEvent(project.tracks[selected.track].steps[selected.step],selected.event);$('selected-label').textContent=(selected.track===5&&project.tracks[5].mode==='single'?'副旋律':names[selected.track])+' / 小节 '+(Math.floor(selected.step/16)+1)+' · 第 '+String(selected.step%16+1).padStart(2,'0')+' 步';
+ const s=editEvent(project.tracks[selected.track].steps[selected.step],selected.event);$('selected-label').textContent=(selected.track===5&&(project.tracks[5].mode==='single'&&!project.harmonyPlan?.voiced)?'副旋律':names[selected.track])+' / 小节 '+(Math.floor(selected.step/16)+1)+' · 第 '+String(selected.step%16+1).padStart(2,'0')+' 步';
  setValue('velocity',s.velocity);$('velocity-value').value=Math.round(s.velocity*100)+'%';
  if(document.activeElement!==$('note')){$('note').innerHTML=Array.from({length:96-MIN_NOTE+1},(_,i)=>i+MIN_NOTE).filter(n=>!project.scaleLock||inScale(project,n)||n===s.note).map(n=>`<option value="${n}">${noteName(n)}</option>`).join('');$('note').value=s.note;}
  setValue('length',s.length);$('length-value').value=s.length.toFixed(2)+' 步';
@@ -117,7 +117,7 @@ function applyPreset(name){engine.stop();follow=true;change(p=>{const display=co
 $('preset').onchange=()=>{if($('preset').value)applyPreset($('preset').value);};$('load-demo').onclick=()=>applyPreset(presetName(project)||PRESETS[0]);
 $('clear').onclick=()=>change(p=>p.tracks.forEach(t=>t.steps.slice(viewBar*16,viewBar*16+16).forEach(s=>s.on=false)));
 $('copy').onclick=()=>{clipboard={steps:copy(project.tracks.map(t=>t.steps.slice(viewBar*16,viewBar*16+16))),degree:project.progression[viewBar]};render();toast('已复制第 '+(viewBar+1)+' 小节的六轨步骤。');};
-$('paste').onclick=()=>{if(clipboard)change(p=>{p.tracks.forEach((t,i)=>t.steps.splice(viewBar*16,16,...copy(clipboard.steps[i])));p.progression[viewBar]=clipboard.degree;});};
+$('paste').onclick=()=>{if(clipboard)change(p=>{p.tracks.forEach((t,i)=>t.steps.splice(viewBar*16,16,...copy(clipboard.steps[i])));p.progression[viewBar]=clipboard.degree;if(p.harmonyPlan)p.harmonyPlan.locked[viewBar]=true;});};
 $('variation').onclick=()=>change(p=>{p.seed=(p.seed+7919)%2147483647;for(let bar=0;bar<p.phraseBars;bar++)for(let ti=0;ti<4;ti++){const i=bar*16+(p.seed+ti*7+bar*3)%16;p.tracks[ti].steps[i].on=!p.tracks[ti].steps[i].on;}});
 function history(from,to){if(!from.length)return;to.push(copy(project));project=from.pop();saveLocal();engine.update();render();}
 $('undo').onclick=()=>history(undo,redo);$('redo').onclick=()=>history(redo,undo);$('bars').onchange=()=>change(p=>p.bars=+$('bars').value);

@@ -4,7 +4,7 @@
 
 ## 🌐 [Open the web app](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-Version 2.3.0, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
+Version 2.3.1, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
 
 For version and delivery details, see the [changelog](../CHANGELOG.md) and [Windows build status](WINDOWS.en.md). Autosaves and personal projects are preserved by the local maintenance; JSON backups remain the way to transfer work between web and desktop.
 
@@ -58,7 +58,7 @@ Untouched old 32-bar excerpts upgrade automatically. Edited excerpts remain inta
 
 ## 4. Accompaniment, melody and key
 
-In blank projects, choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin, FC Chiptune or Random Style, then click **随机伴奏 (Random Accompaniment)**. It generates drums, bass and chords across the project, preserving lead, chord progression, tempo and mixer. Repeat for variations; Undo restores the previous result. This is disabled for classics. The local composer builds two-bar themes, phrase variations and endings; six candidates are ranked for density, bass movement, lead clashes and similarity to the previous accompaniment. Busy written lead parts receive lighter chord support. FC Chiptune uses triangle bass and single-note pulse arpeggios. Generation replaces existing drum/bass/harmony edits, preserves the lead and mixer, and needs no online composition service or model download. It is rule-based, not a trained neural music model; see [details and limits](LOCAL_COMPOSER.md).
+In blank projects, choose Pop, Rock, Funk, Electronic Dance, Hip-hop, Latin, FC Chiptune or Random Style, then click **随机伴奏 (Random Accompaniment)**. It generates drums, bass and chords across the project, preserving lead, manually selected chord degrees, tempo and mixer. New blank projects vary automatic harmony; older projects preserve their progression. Repeat for variations; Undo restores the previous result. This is disabled for classics. The local composer builds two-bar themes, phrase variations and loop transitions; six candidates are ranked for density, bass movement, lead clashes and similarity to the previous accompaniment. Busy written lead parts receive lighter chord support. FC Chiptune uses triangle bass and single-note pulse arpeggios. Generation replaces existing drum/bass/harmony edits, preserves the lead and mixer, and needs no online composition service or model download. It is rule-based, not a trained neural music model; see [details and limits](LOCAL_COMPOSER.md).
 
 **生成旋律 (Generate Melody)** replaces the project's lead, preserving other tracks. **旋律变奏 (Melody Variation)** changes some pitches; **节奏变奏 (Rhythm Variation)** changes a few steps. These use local rules, without an AI music service.
 

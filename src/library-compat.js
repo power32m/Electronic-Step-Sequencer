@@ -19,5 +19,5 @@ export function trimUntouchedJackal(p,data,events){
   }
  });
  if(p.bars===p.phraseBars)p.bars=data.phraseBars;
- p.phraseBars=data.phraseBars;p.progression=p.progression.slice(0,data.phraseBars);return true;
+ if(p.harmonyPlan)p.harmonyPlan.locked=p.harmonyPlan.locked.slice(0,data.phraseBars);p.phraseBars=data.phraseBars;p.progression=p.progression.slice(0,data.phraseBars);return true;
 }
