@@ -4,7 +4,7 @@
 
 ## 🌐 [打开网页版](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-适用版本：2.2.4，2026-10-18更新版。Windows安装、离线使用及数据目录见[桌面版说明](WINDOWS.md)。
+适用版本：2.2.5，2026-10-18更新版。Windows安装、离线使用及数据目录见[桌面版说明](WINDOWS.md)。
 
 版本及交付范围见[更新记录](../CHANGELOG.md)和[Windows版状态](WINDOWS.md)。本地维护保留自动保存和个人工程；网页与桌面之间仍需用JSON文件迁移作品。
 

@@ -6,7 +6,7 @@
 
 **Watch the parts on three keyboards. Edit the music on six tracks.** Click **播放 (Play)** to start with a complete arrangement. The interface is Chinese.
 
-Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.4 · Updated 2026.10.18
+Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.5 · Updated 2026.10.18
 
 ![Current three-keyboard instrument](images/instrument-current.png)
 
@@ -15,6 +15,10 @@ Created by 无痛穿耳 · Created 2026.10.15 · Version 2.2.4 · Updated 2026.1
 OP·16 combines a step sequencer with three stacked keyboards. The upper orange layer shows lead, the middle green layer shows countermelody or chords, and the lower blue layer shows bass. All three respond together; chords illuminate their component notes, and each layer covers its full score range automatically.
 
 The default 2D top view locks angle and zoom for precise clicks. Switch to 3D to rotate, zoom or enable auto-rotation. Click a key to audition that layer's sound. Warm off-white surfaces, a metal enclosure and dark keybeds frame the instrument; matching colors identify the tracks below.
+
+The sound console separates playback status, four aligned sound knobs and accompaniment controls. On narrower windows the accompaniment moves onto its own row; phones use a vertical layout.
+
+![Grouped sound console](images/console-current.png)
 
 ## Listen first, then make your own version
 

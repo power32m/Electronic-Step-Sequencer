@@ -1,0 +1,69 @@
+/* Sound console: three bounded groups, independent of transport/bar tools. */
+.sequencer>.console{
+ display:grid;grid-template-columns:176px minmax(0,1fr) 218px;
+ grid-template-areas:'status sound groove';align-items:stretch;
+ gap:14px;padding:18px 24px;background:#eeefe7;
+}
+.console .status-panel,.console .sound-panel,.console .accompaniment-controls{
+ min-width:0;padding:14px;background:#f8f8f2;border:1px solid #dce0d3;border-radius:6px;
+}
+.console .status-panel{grid-area:status;}
+.console .status-panel>.eyebrow,.console .accompaniment-controls>.eyebrow{
+ font-size:10px;letter-spacing:.8px;margin:0 0 12px;color:#6c7963;
+}
+.console .status-panel .lcd{grid-area:auto;width:100%;padding:12px 11px;}
+.console .lcd>div:first-child{font-size:8px;letter-spacing:.5px;}
+.console .lcd strong{font-size:34px;line-height:1.35;}
+.console .lcd-bars{gap:3px;margin:6px 0 9px;}
+.console .lcd-bars i{height:11px;}
+.console .sound-panel{grid-area:sound;display:flex;align-items:center;}
+.console .sound-panel .sound-controls{
+ grid-area:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ width:100%;max-width:none;padding:0;gap:8px;
+}
+.console .sound-panel .knob-control{min-width:0;max-width:none;}
+.console .sound-panel .knob-control>.eyebrow{font-size:10px;letter-spacing:1px;color:#6c7963;}
+.console .sound-panel .knob{width:64px;height:64px;margin:12px auto 9px;}
+.console .sound-panel .knob i{width:4px;height:17px;left:30px;top:10px;transform-origin:2px 22px;}
+.console .sound-panel .knob-control label{font-size:14px;line-height:1.35;color:#46543d;}
+.console .sound-panel .knob-control input{
+ width:76px;max-width:100%;min-height:26px;margin:4px auto 0;padding:3px;
+ font:600 15px Consolas,monospace;font-variant-numeric:tabular-nums;border-radius:3px;
+}
+.console .accompaniment-controls{
+ grid-area:groove;display:flex;flex-direction:column;gap:9px;
+ width:100%;max-width:none;justify-self:stretch;border-left:1px solid #dce0d3;
+}
+.console .accompaniment-controls>.eyebrow{margin-bottom:3px;}
+.console .accompaniment-controls select,.console .accompaniment-controls button{
+ width:100%;min-width:0;height:40px;min-height:40px;font-size:14px;margin:0;
+}
+.console .accompaniment-controls small{margin:0;text-align:left;font-size:11px;line-height:1.5;}
+@media(max-width:1040px){
+ .sequencer>.console{grid-template-columns:160px minmax(0,1fr);grid-template-areas:'status sound' 'groove groove';}
+ .console .accompaniment-controls{display:grid;grid-template-columns:118px minmax(140px,1fr) 160px;align-items:center;gap:8px 14px;}
+ .console .accompaniment-controls>.eyebrow{grid-column:1;grid-row:1;margin:0;}
+ .console .accompaniment-controls select{grid-column:2;grid-row:1;}
+ .console .accompaniment-controls button{grid-column:3;grid-row:1;}
+ .console .accompaniment-controls small{grid-column:2/-1;}
+}
+@media(max-width:620px){
+ .sequencer>.console{grid-template-columns:minmax(0,1fr);grid-template-areas:'status' 'sound' 'groove';padding:14px;gap:10px;}
+ .console .status-panel{display:flex;align-items:center;gap:12px;padding:12px;}
+ .console .status-panel>.eyebrow{width:82px;flex-shrink:0;margin:0;line-height:1.8;}
+ .console .status-panel .lcd{min-width:0;flex:1;padding:10px 12px;}
+ .console .lcd strong{font-size:28px;}
+ .console .lcd-bars{margin:3px 0 6px;}
+ .console .lcd-bars i{height:7px;}
+ .console .sound-panel{padding:14px 8px;}
+ .console .sound-panel .sound-controls{gap:4px;}
+ .console .sound-panel .knob{width:58px;height:58px;}
+ .console .sound-panel .knob i{left:27px;top:9px;height:16px;transform-origin:2px 20px;}
+ .console .sound-panel .knob-control label{font-size:13px;}
+ .console .sound-panel .knob-control input{font-size:14px;width:65px;}
+ .console .accompaniment-controls{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:12px;gap:9px;}
+ .console .accompaniment-controls>.eyebrow{grid-column:1/-1;grid-row:1;}
+ .console .accompaniment-controls select{grid-column:1;grid-row:2;}
+ .console .accompaniment-controls button{grid-column:2;grid-row:2;}
+ .console .accompaniment-controls small{grid-column:1/-1;grid-row:3;}
+}

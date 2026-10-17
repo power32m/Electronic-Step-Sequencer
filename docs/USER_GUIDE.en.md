@@ -4,7 +4,7 @@
 
 ## 🌐 [Open the web app](https://op16-field-sequencer.breezysquid.chatgpt.site/)
 
-Version 2.2.4, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
+Version 2.2.5, updated 2026-10-18. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
 
 For version and delivery details, see the [changelog](../CHANGELOG.md) and [Windows build status](WINDOWS.en.md). Autosaves and personal projects are preserved by the local maintenance; JSON backups remain the way to transfer work between web and desktop.
 

@@ -1,10 +1,17 @@
 # Changelog / 更新记录
 
-Version **2.2.4** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
+Version **2.2.5** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
 
-版本 **2.2.4** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
+版本 **2.2.5** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
 
-## 2.2.4 — 2026-10-18 · Current / 当前
+## 2.2.5 — 2026-10-18 · Current / 当前
+
+- Regroup the sound console into playback status, four evenly spaced sound controls and accompaniment generation. Align knob labels and numeric values, with a separate accompaniment row for narrower windows and stacked groups on phones. Existing musical controls are preserved.
+  控制台重排为播放状态、四个等距声音控件和伴奏生成三组，统一旋钮文字及数值对齐；较窄窗口伴奏独立成行，手机纵向排列，保留原有音乐功能。
+- Verify six viewport widths, group containment, knob/value alignment, tempo entry and keyboard control, playback/pause and styled accompaniment, alongside 44 automated checks and the production build.
+  验证六种宽度、分组边界、旋钮／数值对齐、速度输入及键盘调节、播放暂停和风格伴奏，并通过44项自动检查和生产构建。
+
+## 2.2.4 — 2026-10-18
 
 - Add gentle display-only smoothing, fractional rising-crossing alignment and correlation with the preceding trace to reduce waveform jumping. A short 25 ms display response preserves musical dynamics; pause freezes and silence clears the trace. Audio synthesis and WAV output are unchanged.
   增加轻微显示平滑、精细过零定位和前后波形匹配，减轻跳动；约25毫秒的显示响应保留音乐动态，暂停冻结、静音清零，不改变音源或WAV输出。
