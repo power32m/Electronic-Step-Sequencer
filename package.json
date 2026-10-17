@@ -1,6 +1,6 @@
 {
   "name": "op16-sequencer",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,5 +18,6 @@
   "description": "交互式3D电子步进音序器：六轨编排、钢琴卷帘、浏览器音源与WAV导出",
   "engines": {
     "node": ">=22.12.0"
-  }
+  },
+  "releaseDate": "2026-10-18"
 }

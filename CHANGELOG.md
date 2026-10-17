@@ -1,10 +1,19 @@
 # Changelog / 更新记录
 
-Version **2.2.2** · Web and local Windows synchronized **2026-10-17**. Historical excerpt notes below do not describe the current full library.
+Version **2.2.3** · Web and local Windows synchronized **2026-10-18**. Public Windows download remains v2.2.2. Historical excerpt notes below do not describe the current full library.
 
-版本 **2.2.2** · 网站与本地Windows版于 **2026-10-17**同步。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
+版本 **2.2.3** · 网站与本地Windows版于 **2026-10-18**同步；公开Windows下载包仍为v2.2.2。旧版本选段说明为历史记录，当前曲库已补齐完整编配。
 
-## 2.2.2 — 2026-10-17 · Current / 当前
+## 2.2.3 — 2026-10-18 · Current / 当前
+
+- Replace the decorative sine curve with live output samples after filtering and master volume. The trace follows playback and key audition, freezes on pause and returns to a flat line after stopping or silence. Sampling is capped at approximately 30 fps and skips offscreen instruments; WAV export keeps its existing signal path.
+  示意正弦曲线改为读取滤波、主音量之后的实际输出，跟随播放和琴键试听，暂停冻结，停止／静音归为水平线；每秒最多约30次采样，乐器不在可视区域时跳过，WAV导出保持原音频路径。
+- Header version and update date read package.json metadata (version/releaseDate). This release is 2.2.3 / 2026.10.18; future iterations update those fields together.
+  页头版本和更新日期统一读取package.json中的version／releaseDate；本次为2.2.3／2026.10.18，后续发布同步更新这两个字段。
+- Verify real-browser audio, silence, pause/resume, rewind, song switching, three-layer audition and four screen widths, in addition to 42 automated checks and the production build.
+  除42项自动检查和生产构建外，验证真实浏览器音频、静音、暂停续播、回到开头、切歌、三层试听和四种屏幕宽度。
+
+## 2.2.2 — 2026-10-17
 
 ### Maintenance / 维护更新
 

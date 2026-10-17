@@ -12,7 +12,7 @@ Three stacked keyboards · Six-part sequencing · Piano roll · FC/NES classics
 
 **[User guide](docs/USER_GUIDE.en.md) · [Product overview](docs/PRODUCT.en.md) · [Windows desktop](docs/WINDOWS.en.md) · [What's new](CHANGELOG.md)**
 
-Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.2** · Updated **2026.10.17**
+Created by **无痛穿耳** · Created **2026.10.15** · Version **2.2.3** · Updated **2026.10.18**
 
 </div>
 
@@ -76,9 +76,11 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The local Windows formal build was updated on **2026-10-17**. It passed 42 automated checks, all ten library entries, 100%/125% desktop checks, 113-bar project restoration and a 40.2-second WAV export. The maintenance removes retired internal PCB rendering and unnecessary idle redraws in top view, while preserving the interface and music. See the [maintenance review](docs/CODE_AUDIT.md).
+The website, source and local Windows build are now **2.2.3 (2026-10-18)**, including a live audio oscilloscope, version-linked release dates and the preceding rendering cleanup. Playback, pause/resume, silence, track switching and key audition were checked in a real browser, alongside 42 automated checks.
 
-The **published v2.2.2 ZIP** contains the ten-song library. The subsequent local rendering cleanup is included in the current source; the existing downloadable ZIP and hosted website have not been rebuilt for that cleanup. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
+The **published Windows ZIP remains v2.2.2** with the ten-song library; it predates the live oscilloscope. Build the current source for 2.2.3.
+
+ **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 
 Autosave does not sync across browsers, devices, web and desktop. Download JSON backups before clearing browser data or replacing a project. Background playback depends on the OS/browser. A modern browser with WebGL2 is required for the instrument; desktop use is recommended for detailed editing.
 

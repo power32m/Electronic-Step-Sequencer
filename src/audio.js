@@ -2,14 +2,16 @@ import {stepEvents} from './events.js';
 import {copy,stepDuration,audible} from './project.js';
 import {VoiceBank} from './voice-bank.js';
 export {voice} from './voice.js';
-function chain(ctx,p){
+function chain(ctx,p,monitor=false){
  const filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=p.cutoff;filter.Q.value=.7;
  const gain=ctx.createGain();gain.gain.value=p.master*.42;
  const limiter=ctx.createWaveShaper();limiter.curve=Float32Array.from({length:8193},(_,i)=>.95*Math.tanh((i/8192*2-1)/.95));limiter.oversample='2x';
  const delay=ctx.createDelay(1),feedback=ctx.createGain(),wet=ctx.createGain();delay.delayTime.value=.22;feedback.gain.value=.18;wet.gain.value=p.source?0:.13;
  delay.connect(feedback);feedback.connect(delay);delay.connect(wet);wet.connect(filter);
  filter.connect(gain);gain.connect(limiter);limiter.connect(ctx.destination);
- return {filter,gain,limiter,delay,feedback,wet,dispose(){for(const n of [filter,gain,limiter,delay,feedback,wet])n.disconnect();}};
+ const analyser=monitor?ctx.createAnalyser():null;
+ if(analyser){analyser.fftSize=2048;analyser.smoothingTimeConstant=0;limiter.connect(analyser);}
+ return {filter,gain,limiter,delay,feedback,wet,analyser,dispose(){for(const n of [filter,gain,limiter,delay,feedback,wet,analyser])n?.disconnect();}};
 }
 function fireBuffer(ctx,bus,p,ti,s,time,sources,buffer){
  const track=p.tracks[ti],src=ctx.createBufferSource();src.buffer=buffer;
@@ -38,7 +40,7 @@ export class Engine {
    if(this.paused&&this.bus&&from===undefined){this.paused=false;this.playing=true;this.starting=false;this.emit();this.clock();void this.tick();return;}
    const p=this.get(),length=p.tracks[0].steps.length,index=Math.max(0,Math.min(length-1,Math.floor(from??this.position)));
    const prepared=await prepareStep(this.bank,this.ctx,p,index);if(token!==this.session)return;
-   this.bus=chain(this.ctx,p);this.next=this.ctx.currentTime+.12;this.index=index;this.queue=[];this.paused=false;this.playing=true;this.starting=false;
+   this.bus=chain(this.ctx,p,true);this.next=this.ctx.currentTime+.12;this.index=index;this.queue=[];this.paused=false;this.playing=true;this.starting=false;
    this.schedule(p,index,prepared);this.emit();this.clock();void this.tick();
   }catch(error){if(token===this.session)this.stop();throw error;}finally{if(token===this.session){this.starting=false;this.emit();}}
  }
@@ -64,12 +66,19 @@ export class Engine {
  }
  async seek(index){const running=this.playing;this.stop();this.position=Math.max(0,Math.min(this.get().tracks[0].steps.length-1,Math.floor(index)));this.step=this.position;this.onStep(this.position);if(running)await this.start(this.position);}
  update(){if(this.bus&&this.ctx){const p=this.get();this.bus.filter.frequency.setTargetAtTime(p.cutoff,this.ctx.currentTime,.025);this.bus.gain.gain.setTargetAtTime(p.master*.42,this.ctx.currentTime,.02);}}
+ readWaveform(target){
+  const preview=this.scopePreview;
+  if(preview&&performance.now()<preview.until&&!this.playing){preview.bus.analyser.getFloatTimeDomainData(target);return 'live';}
+  if(this.playing&&this.bus?.analyser){this.bus.analyser.getFloatTimeDomainData(target);return 'live';}
+  if(this.paused&&this.bus?.analyser){this.bus.analyser.getFloatTimeDomainData(target);return 'paused';}
+  target.fill(0);return 'idle';
+ }
  stop(){
   this.session++;this.starting=false;this.playing=false;this.paused=false;this.worker?.terminate();cancelAnimationFrame(this.visual);
   if(this.bus){const bus=this.bus;this.bus=null;bus.gain.gain.cancelScheduledValues(this.ctx.currentTime);bus.gain.gain.setTargetAtTime(0,this.ctx.currentTime,.006);for(const source of this.sources){try{source.stop(this.ctx.currentTime+.035);}catch{}}this.sources.clear();setTimeout(()=>bus.dispose(),90);}
   this.queue=[];this.position=0;this.step=-1;this.onStep(-1);this.emit();
  }
- async preview(note,params={},ti=4){let ctx;if(this.paused){ctx=this.previewCtx??=new AudioContext({latencyHint:'interactive'});await ctx.resume();}else{await this.ready();ctx=this.ctx;}const p=copy(this.get()),s={note,velocity:params.velocity??.8,length:params.length??2},buffer=await this.bank.get(ctx,p,ti,s,0),bus=chain(ctx,p);fireBuffer(ctx,bus,p,ti,s,ctx.currentTime+.01,undefined,buffer);setTimeout(()=>bus.dispose(),Math.ceil((buffer.duration+.9)*1000));}
+ async preview(note,params={},ti=4){let ctx;if(this.paused){ctx=this.previewCtx??=new AudioContext({latencyHint:'interactive'});await ctx.resume();}else{await this.ready();ctx=this.ctx;}const p=copy(this.get()),s={note,velocity:params.velocity??.8,length:params.length??2},buffer=await this.bank.get(ctx,p,ti,s,0),bus=chain(ctx,p,true);const scope={bus,until:performance.now()+(buffer.duration+.9)*1000};this.scopePreview=scope;fireBuffer(ctx,bus,p,ti,s,ctx.currentTime+.01,undefined,buffer);setTimeout(()=>{if(this.scopePreview===scope)this.scopePreview=null;bus.dispose();},Math.ceil((buffer.duration+.9)*1000));}
 }
 export async function renderWav(project,{signal,onProgress=()=>{}}={}){
  const p=copy(project),duration=p.bars*240/p.bpm,tail=1.8,ctx=new OfflineAudioContext(2,Math.ceil((duration+tail)*44100),44100),bus=chain(ctx,p),bank=new VoiceBank();
