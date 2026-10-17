@@ -1,5 +1,16 @@
 # Source maintenance review / 源码清理审核
 
+## Local maintenance / 本地维护 2026-10-17 · v2.2.2
+
+- Removed the retired internal PCB model (101 meshes), its two materials, explosion interpolation and X-ray material updates. The legacy JSON fields remain readable; the current interface and musical events are preserved.
+  移除已下线的内部电路板模型（101个网格）、两种材质、拆解插值及透视材质更新；保留旧工程字段的读取兼容，现有界面和音乐事件不变。
+- A top-down view with auto-rotation selected no longer renders continuously while idle. Actual playback and 3D auto-rotation still update normally.
+  俯视状态选择自动旋转后，空闲时不再持续重绘；播放联动与3D自动旋转照常工作。
+- All 42 automated checks and the production build pass. All ten library entries pass playback, project round trips, three-layer checks and responsive overflow checks at 1628, 1366, 700 and 390 px.
+  42项自动检查和生产构建通过；10首曲目播放、工程往返、三层键盘及四种宽度的页面溢出检查通过。
+- This maintenance is installed in the local formal Windows build and synchronized to repository source and bilingual documentation. Public website and GitHub release assets are not rebuilt by this pass. Earlier review details below are historical evidence for v2.2.1.
+  此次维护已安装至本地Windows正式版，并同步仓库源码和中英文文档；网站及GitHub发布附件未重新构建。以下为v2.2.1的历史审核记录。
+
 Reviewed on 2026-10-17, against v2.2.1. This maintenance pass preserves the current interface and musical behavior.
 
 本次于2026-10-17审核v2.2.1源码，保留当前界面和音乐功能。

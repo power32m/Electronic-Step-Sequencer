@@ -6,6 +6,8 @@
 
 Version 2.2.2, updated 2026-10-17. The interface is Chinese; labels below identify the controls. See the [Windows guide](WINDOWS.en.md) for builds, offline use and storage.
 
+For version and delivery details, see the [changelog](../CHANGELOG.md) and [Windows build status](WINDOWS.en.md). Autosaves and personal projects are preserved by the local maintenance; JSON backups remain the way to transfer work between web and desktop.
+
 ## 1. Playback and navigation
 
 First launch defaults to **赤影战士 (Shadow of the Ninja · Boss Battle)**; later launches can restore autosave. Select a piece and click **播放 (Play)**, click again to pause, then **继续 (Continue)** to resume. Pause preserves the audio clock and held-note state.

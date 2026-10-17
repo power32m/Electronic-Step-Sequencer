@@ -10,6 +10,8 @@ Version 2.2.2 (2026-10-17) contains the ten selected examples and stable sticky 
 
 You can also [play online](https://op16-field-sequencer.breezysquid.chatgpt.site/). The build steps below are for developers; users of the ZIP need no development tools.
 
+The current source also includes the subsequent rendering cleanup: 101 retired PCB meshes and unused explosion/X-ray updates were removed, and idle top view avoids unnecessary redraws. This was installed and tested locally. The existing v2.2.2 download has the ten-song library but predates that cleanup; build the current source to include it. The hosted website was not redeployed for this maintenance.
+
 ## Build and start
 
 Use 64-bit Windows, Node.js 22.12 or later, the .NET 8 SDK and Microsoft Edge WebView2 Runtime. From the repository root:
@@ -35,7 +37,7 @@ To update, save JSON and exit the old app, back up its whole program folder, the
 
 ## Desktop checks completed
 
-The 2026-10-16 local distribution passed startup, JSON save/restore, complete 40.2-second boss-battle WAV export and background playback at normal and 125% display scaling. Large-project restoration used the roughly 1.7 MB, 113-bar Mega Man II project.
+The 2026-10-17 local maintenance build passed 42 automated checks, all ten examples, startup, JSON save/restore, complete 40.2-second boss-battle WAV export and background playback at normal and 125% display scaling. The installed formal copy was tested again and all 496 packaged files were verified against their hashes. Large-project restoration used the roughly 1.7 MB, 113-bar Mega Man II project.
 
 Developers can run `OP16电子步进音序器.exe --smoke-test` in a temporary publish copy, adding `--smoke-125` for 125% scaling. It uses a separate profile, writes verification files in the app directory, then exits. Keep these separate from personal projects.
 

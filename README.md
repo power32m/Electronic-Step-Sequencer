@@ -76,7 +76,9 @@ First launch defaults to the boss battle; later launches can restore autosave. C
 | Autosave | Current browser profile and site | Existing local `OP16/WebView` profile |
 | Project transfer | Save/open JSON | Save/open JSON |
 
-The local Windows distribution was synchronized on **2026-10-16**, including large-project reopening. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
+The local Windows formal build was updated on **2026-10-17**. It passed 42 automated checks, all ten library entries, 100%/125% desktop checks, 113-bar project restoration and a 40.2-second WAV export. The maintenance removes retired internal PCB rendering and unnecessary idle redraws in top view, while preserving the interface and music. See the [maintenance review](docs/CODE_AUDIT.md).
+
+The **published v2.2.2 ZIP** contains the ten-song library. The subsequent local rendering cleanup is included in the current source; the existing downloadable ZIP and hosted website have not been rebuilt for that cleanup. **[Download the Windows x64 ZIP](https://github.com/power32m/Electronic-Step-Sequencer/releases/tag/v2.2.2)**, extract it and open `OP16电子步进音序器.exe`. The SHA-256 file is attached to the same release. Keep all files together when publishing a desktop build.
 
 Autosave does not sync across browsers, devices, web and desktop. Download JSON backups before clearing browser data or replacing a project. Background playback depends on the OS/browser. A modern browser with WebGL2 is required for the instrument; desktop use is recommended for detailed editing.
 

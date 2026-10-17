@@ -6,6 +6,17 @@ Version **2.2.2** · Web and local Windows synchronized **2026-10-17**. Historic
 
 ## 2.2.2 — 2026-10-17 · Current / 当前
 
+### Maintenance / 维护更新
+
+- Remove 101 retired internal PCB meshes, two unused materials and explosion/X-ray rendering updates; preserve legacy project compatibility. Avoid continuous idle redraws in fixed top view when auto-rotation is selected.
+  移除101个废弃内部电路板网格、两种无用材质及拆解／透视渲染更新，保留旧工程兼容；固定俯视时选择自动旋转不再引起持续空闲重绘。
+- Verify 42 automated checks, ten preset playback/round trips, three keyboard layers, four responsive widths, and normal/125% native checks including 113-bar restoration, 40.2-second WAV export and minimized playback. All 496 files in the installed local formal copy match the verified package.
+  通过42项自动检查、10首曲目播放及工程往返、三层键盘、四种宽度和100%／125%桌面检查，覆盖113小节工程恢复、40.2秒WAV和最小化播放；本地正式版496个文件校验一致。
+- Source and bilingual documentation include this maintenance. The local formal build is updated; existing v2.2.2 release assets and the hosted website retain the preceding ten-song build.
+  当前源码及中英文文档包含本次维护，本地正式版已更新；已有v2.2.2下载附件和网站继续使用此前的10首曲目构建。
+
+### Library / 曲库更新
+
 - Keep and shorten names to 赤影战士, 恶魔城 and 超级马里奥; remove Super C, Double Dragon II and River City Ransom from the menu.
   保留并简化三个案例名称，移除超级魂斗罗、双截龙Ⅱ和热血物语菜单项。
 - Remove Jackal's 2.6-second silent lead-in without removing notes; edited older projects remain intact.
